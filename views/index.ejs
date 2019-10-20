@@ -1,11 +1,72 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+
+<head>
+  <% include ./partials/header %>
+</head>
+
+<body>
+  <% include ./partials/menu %>
+
+  <% include ./partials/mediaMenu %>
+
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-12 d-flex align-items-stretch">
+        <div class="row no-gutters bg-light position-relative mt-4" id="firstNews">
+          <div class="col-md-4 mb-md-0 p-md-4">
+            <img src="https://www.noupe.com/wp-content/uploads/2016/09/basketball_shot-666x418.jpg"
+              class="w-100 rounded" alt="">
+          </div>
+          <div class="col-md-8 position-relative p-4 pl-md-0">
+            <h5 id="newsTitle" class="mt-0">Columns with stretched link</h5>
+            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
+              odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
+              fringilla.Donec lacinia congue felis in
+              faucibus.
+            </p>
+            <a href="#" class="stretched-link">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 d-flex align-items-stretch">
+        <div class="row no-gutters bg-light position-relative mt-4" id="firstNews">
+          <div class="col-md-4 mb-md-0 p-md-4">
+            <img src="https://www.noupe.com/wp-content/uploads/2016/09/basketball_shot-666x418.jpg"
+              class="w-100 rounded" alt="">
+          </div>
+          <div class="col-md-8 position-relative p-4 pl-md-0">
+            <h5 id="newsTitle" class="mt-0">Columns with stretched link</h5>
+            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
+              odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
+              fringilla.Donec lacinia congue felis in
+              faucibus.
+            </p>
+            <a href="#" class="stretched-link">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 d-flex align-items-stretch">
+        <div class="row no-gutters bg-light position-relative mt-4" id="firstNews">
+          <div class="col-md-4 mb-md-0 p-md-4">
+            <img src="https://www.noupe.com/wp-content/uploads/2016/09/basketball_shot-666x418.jpg"
+              class="w-100 rounded" alt="">
+          </div>
+          <div class="col-md-8 position-relative p-4 pl-md-0">
+            <h5 id="newsTitle" class="mt-0">Columns with stretched link</h5>
+            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
+              odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
+              fringilla.Donec lacinia congue felis in
+              faucibus.
+            </p>
+            <a href="#" class="stretched-link">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   </body>
+  <% include ./partials/script %>
+
 </html>
