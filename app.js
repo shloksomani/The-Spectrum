@@ -6,15 +6,15 @@ var logger = require("morgan");
 
 // Mongoose setup
 // TODO: add mongoDb url from atlas
-const mongoose = require("mongoose");
-mongoose.set("useCreateIndex", true);
-mongoose
-	.connect("URL", {
-		useNewUrlParser: true,
-		useUnifiedTopology: true
-	})
-	.then(() => console.log("database connected"))
-	.catch(err => console.log(err));
+// const mongoose = require("mongoose");
+// mongoose.set("useCreateIndex", true);
+// mongoose
+// 	.connect("URL", {
+// 		useNewUrlParser: true,
+// 		useUnifiedTopology: true
+// 	})
+// 	.then(() => console.log("database connected"))
+// 	.catch(err => console.log(err));
 
 //Routes
 var indexRouter = require("./routes/index");
@@ -33,13 +33,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(
-	session({
-		secret: "secret key",
-		saveUninitialized: false,
-		resave: false
-	})
-);
+// app.use(
+// 	session({
+// 		secret: "secret key",
+// 		saveUninitialized: false,
+// 		resave: false
+// 	})
+// );
 
 // Flash messages
 app.use(require("connect-flash")());
