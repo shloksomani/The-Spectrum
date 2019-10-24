@@ -1,0 +1,69 @@
+.navbar {
+	font-family: "Playfair Display";
+}
+
+html {
+	height: 100%;
+}
+body {
+	height: 100%;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-image: linear-gradient(
+		-225deg,
+		#473b7b 0%,
+		#3584a7 51%,
+		#30d2be 100%
+	);
+}
+
+.navbar-brand {
+	font-weight: bold;
+	font-size: 40px !important;
+}
+
+#mediaMenu {
+}
+#mediaMenu.navbar .navbar-nav li a {
+	color: #ffffff !important;
+	opacity: 1;
+}
+
+#header {
+}
+#header.navbar .navbar-nav li a {
+	color: #ffffff !important;
+	font-size: 20px !important;
+}
+
+#newsTitle {
+	font-family: "Playfair Display";
+	font-weight: bold;
+}
+
+#mediaMenu .navbar .navbar-text .btn-primary,
+.btn:hover,
+.btn:active,
+.btn:visited {
+	background-color: #e7e96d !important;
+}
+
+.jumbotron {
+	padding-left: 100px !important;
+	padding-right: 100px !important;
+	background-color: transparent !important;
+}
+
+#firstNews {
+	border-radius: 25px !important;
+}
+
+#dashBody {
+	color: #ffffff;
+}
+
+#dashBody .smth {
+	background-color: #ffffff;
+	color: black;
+}
