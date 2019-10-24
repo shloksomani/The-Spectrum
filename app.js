@@ -4,7 +4,6 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
-
 // Mongoose setup
 // TODO: add mongoDb url from atlas
 // const mongoose = require("mongoose");
