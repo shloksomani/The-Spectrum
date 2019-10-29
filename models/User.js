@@ -1,15 +1,31 @@
 //const mongoose = require("mongoose");
 
 //const model_name = "users";
-const users = []
+const users = [];
 
 function createUser(name, email, password) {
-  let user = {
-    "name":name,
-    "email":email,
-    "password":password
-  };
-  users.push(user)
+	let user1 = {
+		name: user1,
+		email: user1,
+		password: user1,
+		isAdmin: false
+	};
+
+	let user2 = {
+		name: user2,
+		email: user2,
+		password: user2,
+		isAdmin: false
+	};
+
+	let user3 = {
+		name: user3,
+		email: admin,
+		password: admin,
+		isAdmin: true
+	};
+
+	users.push(user1, user2, user3);
 }
 
 // Create schema for users
@@ -35,4 +51,4 @@ function createUser(name, email, password) {
 // });
 
 // module.exports = mongoose.model(model_name, schmea, model_name);
-module.exports = createUser();
+module.exports = createUser;
