@@ -16,6 +16,12 @@ const logger = require("morgan");
 // 	.then(() => console.log("database connected"))
 // 	.catch(err => console.log(err));
 
+// Calling in Users from Model
+
+// Passport Setup
+/** Configured Passport */
+const passport = require("./passport");
+
 //Routes
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
@@ -33,21 +39,24 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-// app.use(
-// 	session({
-// 		secret: "secret key",
-// 		saveUninitialized: false,
-// 		resave: false
-// 	})
-// );
+app.use(
+	session({
+		secret: "secret key",
+		saveUninitialized: false,
+		resave: false
+	})
+);
 
 // Flash messages
 app.use(require("connect-flash")());
 
-// Passport will go here
+// Initializing passport and passport sessions
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/auth", authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
