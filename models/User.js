@@ -1,31 +1,67 @@
 //const mongoose = require("mongoose");
 
 //const model_name = "users";
-const users = [];
+let users = [
+	{
+		name: "user1",
+		email: "shlok@test",
+		password: "123456",
+		isAdmin: false,
+		id: "1"
+	},
 
-function createUser(name, email, password) {
-	let user1 = {
-		name: user1,
-		email: user1,
-		password: user1,
-		isAdmin: false
+	{
+		name: "user2",
+		email: "user2",
+		password: "user2",
+		isAdmin: false,
+		id: "2"
+	},
+
+	{
+		name: "user3",
+		email: "admin",
+		password: "admin",
+		isAdmin: true,
+		id: "0"
+	}
+];
+
+function createUser(name, email, password, isAdmin) {
+	let user = {
+		name: name,
+		email: email,
+		password: password,
+		isAdmin: isAdmin,
+		id: Date.now().toString()
 	};
 
-	let user2 = {
-		name: user2,
-		email: user2,
-		password: user2,
-		isAdmin: false
-	};
+	users.push(user);
+	return user;
+}
 
-	let user3 = {
-		name: user3,
-		email: admin,
-		password: admin,
-		isAdmin: true
-	};
+// if an email exists it will return true otherwise false
 
-	users.push(user1, user2, user3);
+function findEmail(email) {
+	// console.log(users + " in user.js line42");
+	return users.filter(user => user.email === email).length !== 0 ? true : false;
+}
+
+// Find by email
+function getUserObj(email) {
+	let userObj = users.find(o => o.email === email);
+	// console.log(userObj + "in user.js line47");
+	return userObj;
+}
+
+// Get all the User
+function getAllUser() {
+	return users;
+}
+
+// Find the user by id
+function getUserById(id) {
+	return users.filter(user => user.id === id);
 }
 
 // Create schema for users
@@ -51,4 +87,10 @@ function createUser(name, email, password) {
 // });
 
 // module.exports = mongoose.model(model_name, schmea, model_name);
-module.exports = createUser;
+module.exports = {
+	createUser,
+	findEmail,
+	getUserObj,
+	getAllUser,
+	getUserById
+};
