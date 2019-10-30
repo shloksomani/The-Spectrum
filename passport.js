@@ -87,18 +87,8 @@ passport.use(
 			const user = User.getUserObj(email);
 			console.log(user + " line 96 passport");
 			if (emailExist) {
-				if (
-					(email === "shlok@test" && password === "123456") ||
-					(email === "user2" && password === "user2")
-				) {
-					match = true;
-				} else if (email === "admin" && password === "admin") {
-					match = true;
-				} else {
-					match = await bcrypt.compare(password, user.password);
-					// console.log(match + "in passport.js 87");
-				}
-
+				match = await bcrypt.compare(password, user.password);
+				// console.log(match + "in passport.js 87");
 				if (match) {
 					/** All Set */
 					return done(null, {
