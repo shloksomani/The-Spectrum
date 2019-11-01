@@ -1,4 +1,4 @@
-<!-- 
+<!--
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-end">
   <a class="navbar-brand" href="#">The Spectrum</a>
   <button class="btn btn-success ml-auto mr-1">Always Show</button>
@@ -64,6 +64,11 @@
       <li class="nav-item" id="logout">
         <a class="nav-link" href="/auth/logout">Logout</a>
       </li>
+      <% if(user[0].id === '0'){ %>
+        <li class="nav-item" id="logout">
+          <a class="nav-link" href="/auth/admin">Admin</a>
+        </li>
+      <% } %>
       <% } else{ %>
       <li class="nav-item" id="login">
         <a class="nav-link" href="/auth/login">Log In</a>
