@@ -4,8 +4,8 @@
 let users = [
 	{
 		name: "user1",
-		email: "shlok@test",
-		password: "123456",
+		email: "user1",
+		password: "user1",
 		isAdmin: false,
 		id: "1"
 	},

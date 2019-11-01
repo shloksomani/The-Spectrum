@@ -1,66 +1,100 @@
 .navbar {
-  font-family: "Playfair Display";
+	font-family: "Playfair Display";
 }
 
 html {
-  height: 100%;
+	height: 100%;
 }
 
 body {
-  height: 100%;
-  margin: 0;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-image: linear-gradient(-225deg, #473b7b 0%, #3584a7 51%, #30d2be 100%);
+	height: 100%;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-image: linear-gradient(
+		-225deg,
+		#473b7b 0%,
+		#3584a7 51%,
+		#30d2be 100%
+	);
 }
 
 .navbar-brand {
-  font-weight: bold;
-  font-size: 40px !important;
+	font-weight: bold;
+	font-size: 40px !important;
 }
 
 #mediaMenu.navbar .navbar-nav li a {
-  color: #ffffff !important;
-  opacity: 1;
+	color: #ffffff !important;
+	opacity: 1;
 }
 
-.searchBar{
-  margin:auto 40%;
+.searchBar {
+	margin: auto 40%;
 }
 
 #header.navbar .navbar-nav li a {
-  color: #ffffff !important;
-  font-size: 20px !important;
+	color: #ffffff !important;
+	font-size: 20px !important;
 }
 
 #newsTitle {
-  font-family: "Playfair Display";
-  font-weight: bold;
+	font-family: "Playfair Display";
+	font-weight: bold;
 }
 
 #mediaMenu .navbar .navbar-text .btn-primary,
 .btn:hover,
 .btn:active,
 .btn:visited {
-  background-color: #e7e96d !important;
+	background-color: #e7e96d !important;
 }
 
 .jumbotron {
-  padding-left: 100px !important;
-  padding-right: 100px !important;
-  background-color: transparent !important;
+	padding-left: 100px !important;
+	padding-right: 100px !important;
+	background-color: transparent !important;
 }
 
 #firstNews {
-  border-radius: 25px !important;
+	border-radius: 25px !important;
 }
 
 #dashBody {
-  color: #ffffff;
+	color: #ffffff;
 }
 
 #dashBody .smth {
-  background-color: #ffffff;
-  color: black;
+	background-color: #ffffff;
+	color: black;
 }
+
+.sticky {
+	position: fixed !important;
+	top: 0 !important;
+	width: 100% !important;
+	z-index: 1000 !important;
+	background-image: linear-gradient(
+		-225deg,
+		#473b7b 0%,
+		#3584a7 51%,
+		#30d2be 100%
+	);
+	/* background-color: rgb(230, 130, 73); */
+}
+
+.sticky + .content {
+	padding-top: 60px !important;
+}
+
+.search-icon {
+	display: none;
+}
+
+.search-icon div {
+}
+
+@media screen and (max-width: 768px) {
+}
+
 /*# sourceMappingURL=style.css.map */

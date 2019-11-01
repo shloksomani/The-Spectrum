@@ -57,14 +57,22 @@
       <li class="nav-item">
         <a class="nav-link" href="/">Home </a>
       </li>
+
+
       <% if(user){ %>
-      <li class="nav-item" id="logout">
+      <li class="nav-item" id="Dash">
         <a class="nav-link" href="/dash">Dashboard</a>
       </li>
       <li class="nav-item" id="logout">
         <a class="nav-link" href="/auth/logout">Logout</a>
       </li>
-      <% } else{ %>
+
+      <% if (user[0].id === '0' && user[0].isAdmin) { %>
+      <li class="nav-item" id="Admin">
+        <a class="nav-link" href="/admin">Admin</a>
+      </li>
+
+      <% }} else{ %>
       <li class="nav-item" id="login">
         <a class="nav-link" href="/auth/login">Log In</a>
       </li>
@@ -72,6 +80,8 @@
         <a class="nav-link" href="/auth/signup">Sign Up</a>
       </li>
       <% } %>
+
+
 
     </ul>
   </div>
