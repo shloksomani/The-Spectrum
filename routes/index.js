@@ -1,7 +1,20 @@
+const fs = require('fs')
 const express = require("express");
 const router = express.Router();
 const authMiddleware = require("../middleware");
 const User = require("../models/User");
+let parsed_data;
+
+// Get the dummydata from JSON file
+try {
+	const data = fs.readFileSync('./public/dummydata.json');
+	parsed_data = JSON.parse(data);
+	console.log("BLAST OFF!")
+}catch(e){
+	parsed_data = {}
+	console.log("Houston we have a problem")
+
+}
 
 // GET home page.
 router.get("/", authMiddleware.Index, function(req, res, next) {
@@ -9,7 +22,7 @@ router.get("/", authMiddleware.Index, function(req, res, next) {
 
 	data.title = req.user.name;
 	data.user = req.user;
-
+	data.dummydata = parsed_data;
 	res.render("index", data);
 });
 
