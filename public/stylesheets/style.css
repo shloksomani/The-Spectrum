@@ -35,7 +35,7 @@ body {
 }
 
 .searchBar {
-	margin: auto 40%;
+	/* justify-content: space-evenly !important; */
 }
 
 #header.navbar .navbar-nav li a {
@@ -74,22 +74,24 @@ body {
 	color: black;
 }
 
-.sticky {
-	position: fixed !important;
-	top: 0 !important;
-	width: 100% !important;
-	z-index: 1000 !important;
-	background-image: linear-gradient(
-		-225deg,
-		#473b7b 0%,
-		#3584a7 51%,
-		#30d2be 100%
-	);
-	/* background-color: rgb(230, 130, 73); */
-}
+@media screen and (min-width: 991px) {
+	.sticky {
+		position: fixed !important;
+		top: 0 !important;
+		width: 100% !important;
+		z-index: 1000 !important;
+		background-image: linear-gradient(
+			-225deg,
+			#473b7b 0%,
+			#3584a7 51%,
+			#30d2be 100%
+		);
+		/* background-color: rgb(230, 130, 73); */
+	}
 
-.sticky + .content {
-	padding-top: 60px !important;
+	.sticky + .content {
+		padding-top: 60px !important;
+	}
 }
 
 .search-icon .search-svg {
@@ -104,6 +106,11 @@ body {
 		max-width: 30px !important;
 		margin: 0px !important;
 	}
+
+	#header .search-icon:hover {
+		cursor: pointer;
+	}
+
 	#header .navbar-toggler {
 		display: flex !important;
 		margin-left: auto !important;
@@ -120,6 +127,7 @@ body {
 		padding: 0px !important;
 		position: relative !important;
 		float: right !important;
+		cursor: pointer !important;
 	}
 }
 
@@ -132,77 +140,126 @@ body {
 
 /*# sourceMappingURL=style.css.map */
 
+/* Search  https://www.w3schools.com/howto/howto_css_fullscreen_search.asp*/
+.overlay {
+	height: 100%;
+	width: 100%;
+	display: none;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.9);
+}
 
+.overlay-content {
+	position: relative;
+	top: 46%;
+	width: 80%;
+	text-align: center;
+	margin-top: 30px;
+	margin: auto;
+	animation: 750ms 1 forwards ani;
+}
+
+.overlay .closebtn {
+	position: absolute;
+	top: 20px;
+	right: 45px;
+	font-size: 60px;
+	cursor: pointer;
+	color: white;
+}
+
+.overlay .closebtn:hover {
+	color: #ccc;
+}
+
+/* .overlay input[type="text"] {
+	padding: 15px;
+	font-size: 17px;
+	border: none;
+	float: left;
+	width: 80%;
+	background: white;
+} */
+
+/* .overlay input[type="text"]:hover {
+	background: #f1f1f1;
+} */
+
+.overlay button {
+	/* background-color: ; */
+	color: white;
+}
+
+/* .overlay button:hover {
+	background: #bbb;
+} */
+
+/*  */
 /*Pie Chart CSS Code: */
 
 .heading {
-  color: white;
-  margin-left: 50px;
-  font-size: 20px;
-  /* background: gray; */
-  padding: 2px;
-  padding-bottom: 30px;
-  padding-top: 50px;
+	color: white;
+	margin-left: 50px;
+	font-size: 20px;
+	/* background: gray; */
+	padding: 2px;
+	padding-bottom: 30px;
+	padding-top: 50px;
 }
 .chart {
-  position: relative;
-  background: conic-gradient(#f15854 30%, #5da5da 0 80%, #faa43a 0);
-  border-radius: 50%;
-  width: 20%;
-  height: 0;
-  padding-top: 20%;
-  margin-left: 50px;
-  float: left;
-  padding-left: 50px;
-  padding-right: 20px;
+	position: relative;
+	background: conic-gradient(#f15854 30%, #5da5da 0 80%, #faa43a 0);
+	border-radius: 50%;
+	width: 20%;
+	height: 0;
+	padding-top: 20%;
+	margin-left: 50px;
+	float: left;
+	padding-left: 50px;
+	padding-right: 20px;
 }
 .key {
-  width: 50%;
-  /* float: right; */
-  list-style: none;
-  display: table;
-  border-collapse: separate;
+	width: 50%;
+	/* float: right; */
+	list-style: none;
+	display: table;
+	border-collapse: separate;
 }
 .key > li {
-  display: table-row;
+	display: table-row;
 }
 .key > li > * {
-  display: table-cell;
-  border-bottom: 12px;
+	display: table-cell;
+	border-bottom: 12px;
 }
 .percent {
-  color: #fff;
-  padding: 10px 2px;
-  text-shadow: 0 0 1px #000;
-  text-align: center;
+	color: #fff;
+	padding: 10px 2px;
+	text-shadow: 0 0 1px #000;
+	text-align: center;
 }
 .choice {
-  padding-left: 10px;
+	padding-left: 10px;
 }
 .red {
-  background: #f15854;
+	background: #f15854;
 }
 .gray {
-  background: #4d4d4d;
+	background: #4d4d4d;
 }
 .blue {
-  background: #5da5da;
+	background: #5da5da;
 }
 .yellow {
-  background: #decf3f;
+	background: #decf3f;
 }
 .purple {
-  background: #b276b2;
+	background: #b276b2;
 }
 .orange {
-  background: #faa43a;
+	background: #faa43a;
 }
-* {
-  box-sizing: border-box;
-}
-body {
-  padding: 20px;
-  font-family: sans-serif;
-  color: white;
-}
-
