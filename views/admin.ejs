@@ -30,6 +30,8 @@
 
     <script>const userTable = document.querySelector('#userTable')
             console.log(userTable);
+            //const specificUser = require("../models/User")
+            userTable.addEventListener('click', deleteUser)
             var userCheck = <%- JSON.stringify(allUsers)%>
             userCheck.forEach(function(user){
               addUserToTable(user)
@@ -49,6 +51,16 @@
            	row.appendChild(action)
            	tablebody = userTable.querySelector('tbody')
            	tablebody.appendChild(row)
+          }
+
+          function deleteUser(e){
+            e.preventDefault();
+          	// check if return button was clicked, otherwise do nothing.
+          	if(e.target.classList.contains('return')){
+              console.log(e.target.parentElement.parentElement.rowIndex);
+            //  specificUser.deleteUserbyId(e.target.parentElement.parentElement.rowIndex - 1)
+              userTable.deleteRow(e.target.parentElement.parentElement.rowIndex)
+            }
           }
     </script>
     <% include ./partials/script %>
