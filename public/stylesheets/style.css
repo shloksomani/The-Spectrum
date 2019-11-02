@@ -131,3 +131,78 @@ body {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+
+/*Pie Chart CSS Code: */
+
+.heading {
+  color: white;
+  margin-left: 50px;
+  font-size: 20px;
+  /* background: gray; */
+  padding: 2px;
+  padding-bottom: 30px;
+  padding-top: 50px;
+}
+.chart {
+  position: relative;
+  background: conic-gradient(#f15854 30%, #5da5da 0 80%, #faa43a 0);
+  border-radius: 50%;
+  width: 20%;
+  height: 0;
+  padding-top: 20%;
+  margin-left: 50px;
+  float: left;
+  padding-left: 50px;
+  padding-right: 20px;
+}
+.key {
+  width: 50%;
+  /* float: right; */
+  list-style: none;
+  display: table;
+  border-collapse: separate;
+}
+.key > li {
+  display: table-row;
+}
+.key > li > * {
+  display: table-cell;
+  border-bottom: 12px;
+}
+.percent {
+  color: #fff;
+  padding: 10px 2px;
+  text-shadow: 0 0 1px #000;
+  text-align: center;
+}
+.choice {
+  padding-left: 10px;
+}
+.red {
+  background: #f15854;
+}
+.gray {
+  background: #4d4d4d;
+}
+.blue {
+  background: #5da5da;
+}
+.yellow {
+  background: #decf3f;
+}
+.purple {
+  background: #b276b2;
+}
+.orange {
+  background: #faa43a;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  padding: 20px;
+  font-family: sans-serif;
+  color: white;
+}
+
