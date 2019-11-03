@@ -24,6 +24,11 @@ body {
 	font-size: 40px !important;
 }
 
+#bias{
+	margin-left: 30%;
+	color: #ffffff;
+}
+
 #header .navbar-toggler {
 	border: none;
 	outline: none;
@@ -140,7 +145,7 @@ body {
 
 /*# sourceMappingURL=style.css.map */
 
-/* Search 
+/* Search
     Citation:
     https://www.w3schools.com/howto/howto_css_fullscreen_search.asp
     Used the above website as a reference to understand how to build charts interactively
