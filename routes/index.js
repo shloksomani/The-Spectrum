@@ -114,5 +114,49 @@ router.post("/admin", function (req, res, next) {
 	res.render("admin", data);
 });
 
+// router.post("/index", function (req, res, next) {
+// 	const query = req.params
+// 	console.log(query);
+	
+// })
+
+router.get("/index/keywords", function(req, res, next){
+	// //const query = req
+	console.log("logging keywords");
+	//console.log(location);
+	data = {}
+	data.user = req.user;
+	// get the query from url
+	keywords_string = req.url.split('=')[1]
+	data.keywords = keywords_string.split("+").filter(function(el) {
+		return el != "";
+	})
+	// for strings that are not empty, search through keywords in dummy data. If keyword in it. Add to array
+	data.dummy_data = []
+	
+	// for each bias
+	for (let bias in parsed_data) {
+		// List of articles that have the bias
+		const bias_list = parsed_data[bias]
+		for (let i = 0; i < bias_list.length; i++){
+			// each article in the article list
+			const article = bias_list[i]
+			for (let j = 0; j < article.keywords.length; j++){
+				// each keyword attributed to the article
+				keyword = article.keywords[j]
+				// compare the users searched words to the articles keywords
+				for (let k = 0; k < data.keywords.length; k++){
+					search_word = data.keywords[k]
+					if (keyword == search_word ){
+						// if they match, add the article to dummy data
+						data.dummy_data.push(article)
+					}
+				}
+			}
+		}
+	}
+	
+	res.render("index", data);
+})
 
 module.exports = router;
