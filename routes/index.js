@@ -22,7 +22,7 @@ router.get("/", function(req, res, next) {
 	// data.title = req.user.name;
 	data.user = req.user;
 	data.dummy_data = parsed_data;
-	//console.log(data.dummy_data)
+	console.log(data.dummy_data)
 	res.render("index", data);
 });
 
