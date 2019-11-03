@@ -7,22 +7,12 @@ let parsed_data;
 
 // Get the dummydata from JSON file
 try {
-<<<<<<< Updated upstream
 	const data = fs.readFileSync('./public/dummydata.json');
 	parsed_data =  JSON.parse(data);
 	console.log("BLAST OFF!")
 }catch(e){
 	parsed_data = {}
 	console.log("Houston we have a problem")
-
-=======
-	const data = fs.readFileSync("./public/dummydata.json");
-	parsed_data = JSON.parse(data);
-	console.log("BLAST OFF!");
-} catch (e) {
-	parsed_data = {};
-	console.log("Houston we have a problem");
->>>>>>> Stashed changes
 }
 
 // GET home page.
@@ -44,6 +34,14 @@ router.get("/dash", authMiddleware.loginRequired, function(req, res, next) {
 
 	res.render("dash", data);
 });
+
+//GET left_biases
+router.get("/left_bias", function (req, res, next) {
+	const data = {};
+	data.user = req.user;
+	data.dummydata = parsed_data.left_bias;
+	res.render("left_bias", data);
+})
 
 // GET admin page
 router.get("/admin", function(req, res, next) {
