@@ -64,8 +64,8 @@ function getUserById(id) {
 	return users.filter(user => user.id === id);
 }
 
-function deleteUserbyId(id){
-	users = users.filter(user => user.id != id)
+function deleteUserById(id) {
+	users = users.filter(user => user.id != id);
 }
 
 // Create schema for users
@@ -97,5 +97,5 @@ module.exports = {
 	getUserObj,
 	getAllUser,
 	getUserById,
-	deleteUserbyId
+	deleteUserById
 };

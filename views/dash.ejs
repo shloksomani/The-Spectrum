@@ -9,32 +9,51 @@
 <body id="dashBody">
     <% include ./partials/menu %>
 
-   
-<div class="heading">
-    User's Media Consumption Diet
-</div>
+    <!-- 
+    <div class="heading">
+        User's Media Consumption Diet
+    </div> -->
 
-<div>
+    <!-- <div>
         <div class="chart"></div>
 
         <ul class="key">
-          <li>
-            <strong class="percent red">30%</strong>
-            <span class="choice">Right-biased</span>
-          </li>
-          <li>
-            <strong class="percent blue">50%</strong>
-            <span class="choice">Left-biased</span>
-          </li>
-          <li>
-            <strong class="percent orange">20%</strong>
-            <span class="choice">Undefined</span>
-          </li>
+            <li>
+                <strong class="percent red">30%</strong>
+                <span class="choice">Right-biased</span>
+            </li>
+            <li>
+                <strong class="percent blue">50%</strong>
+                <span class="choice">Left-biased</span>
+            </li>
+            <li>
+                <strong class="percent orange">20%</strong>
+                <span class="choice">Undefined</span>
+            </li>
         </ul>
-</div>
+    </div> -->
+
+    <div class="dropdown d-flex justify-content-center">
+        <h4 class="d-inline-block align-middle heading">User's Media Consumption Diet</h4>
+        <button class="btn  dropdown-toggle smth" type="button" id="dropdownMenu2" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Dropdown
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <button class="dropdown-item" type="button">Action</button>
+            <button class="dropdown-item" type="button">Another action</button>
+            <button class="dropdown-item" type="button">Something else here</button>
+        </div>
+    </div>
+
+
+
+    <canvas id="Schart" width="600" height="400"></canvas>
 </body>
 
 <% include ./partials/script %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script src="/javascripts/pieChart.js"></script>
 
 </html>
 
