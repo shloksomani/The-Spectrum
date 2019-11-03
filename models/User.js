@@ -43,15 +43,14 @@ function createUser(name, email, password, isAdmin) {
 }
 
 // if an email exists it will return true otherwise false
-
 function findEmail(email) {
 	// console.log(users + " in user.js line42");
-	return users.filter(user => user.email === email).length !== 0 ? true : false;
+	return JgetAllUser().filter(user => user.email === email).length !== 0 ? true : false;
 }
 
 // Find by email
 function getUserObj(email) {
-	let userObj = users.find(o => o.email === email);
+	let userObj = JgetAllUser().find(o => o.email === email);
 	// console.log(userObj + "in user.js line47");
 	return userObj;
 }
@@ -84,9 +83,10 @@ function JcreateUser(name, email, password, isAdmin) {
 		isAdmin: isAdmin,
 		id: Date.now().toString()
 	};
-
+	userArr = JgetAllUser()
+	userArr.push(user)
 	users.push(user);
-	JsaveUserToJSONFile(user)
+	JsaveUserToJSONFile(userArr)
 	return user;
 }
 
@@ -110,7 +110,7 @@ const JgetAllUser = () => {
 const JgetUserById = (id) => {
 	const users = JgetAllUser()
 	const userWithId = users.filter((user) => user.id === id)
-	return userWithId[0]
+	return userWithId
 }
 
 // Removing a student
