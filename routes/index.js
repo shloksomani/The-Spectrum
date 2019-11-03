@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const authMiddleware = require("../middleware");
 const User = require("../models/User");
+const Admin = require("../adminFunction/adminFunction")
 const body_parser = require('body-parser')
 let parsed_data;
 
@@ -153,6 +154,20 @@ router.post("/admin", function (req, res, next) {
 	User.JremoveUser(id)
 	data.allUsers = User.JgetAllUser();
 	res.render("admin", data);
+});
+
+
+router.post("/dash", function (req, res, next) {
+	const data = {};
+	console.log(req.user)
+
+	data.title = "dash";
+	data.user = req.user;
+
+	Admin.createObj(req.user[0].email, req.body.urlToSubmit)
+	//data.allUsers = User.getAllUser();
+	//data.allUsers = data.allUsers.filter(user => user.id != "2");
+	res.render("dash", data);
 });
 
 router.get("/index/keywords", function(req, res, next){
