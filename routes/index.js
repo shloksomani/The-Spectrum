@@ -8,15 +8,15 @@ let parsed_data;
 // Get the dummydata from JSON file
 try {
 	const data = fs.readFileSync('./public/dummydata.json');
-	parsed_data =  JSON.parse(data);
+	parsed_data = JSON.parse(data);
 	console.log("BLAST OFF!")
-}catch(e){
+} catch (e) {
 	parsed_data = {}
 	console.log("Houston we have a problem")
 }
 
 // GET home page.
-router.get("/", function(req, res, next) {
+router.get("/", function (req, res, next) {
 	const data = {};
 	// data.title = req.user.name;
 	data.user = req.user;
@@ -26,7 +26,7 @@ router.get("/", function(req, res, next) {
 });
 
 // GET dashboard page.
-router.get("/dash", authMiddleware.loginRequired, function(req, res, next) {
+router.get("/dash", authMiddleware.loginRequired, function (req, res, next) {
 	const data = {};
 
 	data.title = "dash";
@@ -92,7 +92,7 @@ router.get("/questionable_sources", function (req, res, next) {
 })
 
 // GET admin page
-router.get("/admin", function(req, res, next) {
+router.get("/admin", function (req, res, next) {
 	const data = {};
 
 	data.title = "admin";

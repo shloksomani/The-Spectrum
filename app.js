@@ -18,6 +18,7 @@ const session = require("express-session");
 // 	.catch(err => console.log(err));
 
 // Calling in Users from Model
+const User = require("./models/User");
 
 // Passport Setup
 /** Configured Passport */
@@ -39,6 +40,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.locals.everyUser = User.getAllUser();
 
 app.use(
 	session({

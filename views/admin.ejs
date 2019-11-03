@@ -3,6 +3,7 @@
 
 <head>
     <% include ./partials/header %>
+
     <link rel="stylesheet" href="/stylesheets/admin.css">
     <title>Admin</title>
 </head>
@@ -29,9 +30,13 @@
     </table>
 
     <script>const userTable = document.querySelector('#userTable')
-        console.log(userTable);
+
         //const specificUser = require("../models/User")
         userTable.addEventListener('click', deleteUser)
+        
+        var del = <%- delUser %>
+        var user = <%- JSON.stringify(allUsers) %>
+
         var userCheck = <%- JSON.stringify(allUsers) %>
             userCheck.forEach(function (user) {
                 addUserToTable(user)
@@ -54,9 +59,20 @@
         }
         function deleteUser(e) {
             e.preventDefault();
+            
             // check if return button was clicked, otherwise do nothing.
             if (e.target.classList.contains('return')) {
                 console.log(e.target.parentElement.parentElement.rowIndex);
+                let i = ((e.target.parentElement.parentElement.rowIndex) - 1).toString();
+                console.log(typeof(i))
+
+                del(i)
+               
+                // everyUser = everyUser.filter(user => user.id != "1");
+              
+
+
+                // delete(i.toString());
                 //  specificUser.deleteUserbyId(e.target.parentElement.parentElement.rowIndex - 1)
                 userTable.deleteRow(e.target.parentElement.parentElement.rowIndex)
             }
