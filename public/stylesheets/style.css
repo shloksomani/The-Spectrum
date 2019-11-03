@@ -140,7 +140,11 @@ body {
 
 /*# sourceMappingURL=style.css.map */
 
-/* Search  https://www.w3schools.com/howto/howto_css_fullscreen_search.asp*/
+/* Search 
+    Citation:
+    https://www.w3schools.com/howto/howto_css_fullscreen_search.asp
+    Used the above website as a reference to understand how to build charts interactively
+ */
 .overlay {
 	height: 100%;
 	width: 100%;
@@ -176,29 +180,11 @@ body {
 	color: #ccc;
 }
 
-/* .overlay input[type="text"] {
-	padding: 15px;
-	font-size: 17px;
-	border: none;
-	float: left;
-	width: 80%;
-	background: white;
-} */
-
-/* .overlay input[type="text"]:hover {
-	background: #f1f1f1;
-} */
-
 .overlay button {
 	/* background-color: ; */
 	color: white;
 }
 
-/* .overlay button:hover {
-	background: #bbb;
-} */
-
-/*  */
 /*Pie Chart CSS Code: */
 
 .heading {
