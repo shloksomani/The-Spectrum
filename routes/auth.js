@@ -53,7 +53,7 @@ router.post("/signup", async function(req, res, next) {
 	const password = await bcrypt.hash(req.body.password, salt);
 
 	try {
-		const newUser = User.createUser(
+		const newUser = User.JcreateUser(
 			req.body.name,
 			req.body.email,
 			password,
