@@ -10,64 +10,49 @@
 
   <% include ./partials/mediaMenu %>
 
-<% console.log(dummydata) %>
+<% console.log(dummy_data) %>
 <h1 id="bias">Right Biases Trending</h1>
   <div class="content">
     <div class="row justify-content-center">
       <div class="col-10 d-flex align-items-stretch">
         <div class="row no-gutters bg-light position-relative mt-4" id="firstNews">
           <div class="col-md-4 mb-md-0 p-md-4">
-            <img src="<%= dummydata[0].top_image%>"
+            <img src="<%= dummy_data[0].top_image%>"
               class="w-100 rounded" alt="">
           </div>
           <div class="col-md-8 position-relative p-4 pl-md-0">
-            <h5 id="newsTitle" class="mt-0"><%= dummydata[0].title %></h5>
-            <p><%= dummydata[0].summary %>
+            <h5 id="newsTitle" class="mt-0"><%= dummy_data[0].title %></h5>
+            <p><%= dummy_data[0].summary %>
             </p>
-            <div><a href="<%=dummydata[0].url%>" class="stretched-link">Link to news</a></div>
+            <div><a href="<%=dummy_data[0].url%>" class="stretched-link">Link to news</a></div>
           </div>
         </div>
       </div>
       <div class="col-10 d-flex align-items-stretch">
         <div class="row no-gutters bg-light position-relative mt-4" id="firstNews">
           <div class="col-md-4 mb-md-0 p-md-4">
-            <img src="<%= dummydata[1].top_image %>"
+            <img src="<%= dummy_data[1].top_image %>"
               class="w-100 rounded" alt="">
           </div>
           <div class="col-md-8 position-relative p-4 pl-md-0">
-            <h5 id="newsTitle" class="mt-0"><%= dummydata[1].title %></h5>
-            <p><%= dummydata[1].summary %>
+            <h5 id="newsTitle" class="mt-0"><%= dummy_data[1].title %></h5>
+            <p><%= dummy_data[1].summary %>
             </p>
-            <a href="<%=dummydata[1].url%>" class="stretched-link">Link to News Article</a>
+            <a href="<%=dummy_data[1].url%>" class="stretched-link">Link to News Article</a>
           </div>
         </div>
       </div>
       <div class="col-10 d-flex align-items-stretch">
         <div class="row no-gutters bg-light position-relative mt-4" id="firstNews">
           <div class="col-md-4 mb-md-0 p-md-4">
-            <img src="<%= dummydata[2].top_image %>"
+            <img src="<%= dummy_data[2].top_image %>"
               class="w-100 rounded" alt="">
           </div>
           <div class="col-md-8 position-relative p-4 pl-md-0">
-            <h5 id="newsTitle" class="mt-0"><%= dummydata[2].title %></h5>
-            <p><%= dummydata[2].summary %>
+            <h5 id="newsTitle" class="mt-0"><%= dummy_data[2].title %></h5>
+            <p><%= dummy_data[2].summary %>
             </p>
-            <a href="<%=dummydata[2].url%>" class="stretched-link">Link to News Article</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-10 d-flex align-items-stretch">
-        <div class="row no-gutters bg-light position-relative mt-4" id="firstNews">
-          <div class="col-md-4 mb-md-0 p-md-4">
-            <img src="<%= dummydata[5].top_image %>"
-              class="w-100 rounded" alt="">
-          </div>
-          <div class="col-md-8 position-relative p-4 pl-md-0">
-            <h5 id="newsTitle" class="mt-0"><%= dummydata[5].title %></h5>
-            <p><%= dummydata[5].summary %>
-            </p>
-            <a href="<%=dummydata[5].url%>" class="stretched-link">Link to News Article</a>
+            <a href="<%=dummy_data[2].url%>" class="stretched-link">Link to News Article</a>
           </div>
         </div>
       </div>
@@ -75,14 +60,29 @@
       <div class="col-10 d-flex align-items-stretch">
         <div class="row no-gutters bg-light position-relative mt-4" id="firstNews">
           <div class="col-md-4 mb-md-0 p-md-4">
-            <img src="<%= dummydata[4].top_image %>"
+            <img src="<%= dummy_data[5].top_image %>"
               class="w-100 rounded" alt="">
           </div>
           <div class="col-md-8 position-relative p-4 pl-md-0">
-            <h5 id="newsTitle" class="mt-0"><%= dummydata[4].title %></h5>
-            <p><%= dummydata[4].summary %>
+            <h5 id="newsTitle" class="mt-0"><%= dummy_data[5].title %></h5>
+            <p><%= dummy_data[5].summary %>
             </p>
-            <a href="<%=dummydata[4].url%>" class="stretched-link">Link to News Article</a>
+            <a href="<%=dummy_data[5].url%>" class="stretched-link">Link to News Article</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-10 d-flex align-items-stretch">
+        <div class="row no-gutters bg-light position-relative mt-4" id="firstNews">
+          <div class="col-md-4 mb-md-0 p-md-4">
+            <img src="<%= dummy_data[4].top_image %>"
+              class="w-100 rounded" alt="">
+          </div>
+          <div class="col-md-8 position-relative p-4 pl-md-0">
+            <h5 id="newsTitle" class="mt-0"><%= dummy_data[4].title %></h5>
+            <p><%= dummy_data[4].summary %>
+            </p>
+            <a href="<%=dummy_data[4].url%>" class="stretched-link">Link to News Article</a>
           </div>
         </div>
       </div>
