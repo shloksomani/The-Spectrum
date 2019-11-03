@@ -8,7 +8,7 @@ let parsed_data;
 // Get the dummydata from JSON file
 try {
 	const data = fs.readFileSync('./public/dummydata.json');
-	parsed_data = JSON.parse(data);
+	parsed_data =  JSON.parse(data);
 	console.log("BLAST OFF!")
 }catch(e){
 	parsed_data = {}
@@ -17,12 +17,12 @@ try {
 }
 
 // GET home page.
-router.get("/", authMiddleware.Index, function(req, res, next) {
+router.get("/", function(req, res, next) {
 	const data = {};
-
-	data.title = req.user.name;
+	// data.title = req.user.name;
 	data.user = req.user;
-	data.dummydata = parsed_data;
+	data.dummy_data = parsed_data;
+	//console.log(data.dummy_data)
 	res.render("index", data);
 });
 

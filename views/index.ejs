@@ -10,6 +10,7 @@
 
   <% include ./partials/mediaMenu %>
 
+  
 
   <div class="content">
     <div class="row justify-content-center">
@@ -138,7 +139,6 @@
   </div>
 
   <!-- </div> -->
-
   <script>
     window.onscroll = function () { myFunction() };
 
@@ -152,6 +152,66 @@
         navbar.classList.remove("sticky");
       }
     }
+  </script>
+  <script>
+    let dummy_data = <%- JSON.stringify(dummy_data) %>
+    console.log("Logging dummy data");
+        
+    const left_bias = document.querySelector('.LeftB')
+    console.log(left_bias)
+    const left_center_bias = document.querySelector('.LCB')
+    const least_bias = document.querySelector('.LeastB')
+    const right_center_bias = document.querySelector('.RCB')
+    const right_bias = document.querySelector('.RB')
+    const pro_science = document.querySelector('.PS')
+    const questionable_sources = document.querySelector('.QS')
+
+    left_bias.addEventListener("click",filter_lb)
+    left_center_bias.addEventListener("click",filter_lcb)
+    least_bias.addEventListener("click", filter_leastb)
+    right_center_bias.addEventListener("click", filter_rcb)
+    right_bias.addEventListener("click", filter_rb)
+    pro_science.addEventListener("click", filter_ps)
+    questionable_sources.addEventListener("click", filter_qs)
+
+    
+    // function filter_for_bias(bias) {
+    //   console.log(bias)
+    //   console.log(dummy_data[bias])
+    // }
+    function filter_lb(e){
+      console.log(dummy_data.left_bias)
+    }
+    function filter_lcb(e) {
+      console.log(dummy_data.left_center_bias);
+      
+    }
+    function filter_leastb(e) {
+      console.log(dummy_data.least_bias);
+      
+    }
+    function filter_rcb(e) {
+      console.log(dummy_data.right_center_bias);
+    }
+    function filter_rb(e) {
+      console.log(dummy_data.right_bias);
+      
+    }
+    function filter_ps(e) {
+      console.log(dummy_data.pro_science)
+      }
+    function filter_qs(e) {
+      console.log(dummy_data.questionable_sources);
+    }
+    // function filter(e){
+    //   console.log("filter");
+    //   console.log(typeof(e.target.innerHTML));
+    //   console.log(dummy_data)
+    
+    //   console.log(dummy_data.e.target.innerHTML);
+      
+    // }
+
   </script>
 </body>
 <% include ./partials/script %>
