@@ -203,3 +203,10 @@ body {
 	background-color: black !important;
 	outline: white;
 }
+
+#Schart {
+	max-width: 800px;
+	max-height: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}

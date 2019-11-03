@@ -5,6 +5,7 @@ const authMiddleware = require("../middleware");
 const User = require("../models/User");
 let parsed_data;
 
+
 // Get the dummydata from JSON file
 try {
 	const data = fs.readFileSync('./public/dummydata.json');
@@ -100,5 +101,18 @@ router.get("/admin", function (req, res, next) {
 	data.allUsers = User.getAllUser();
 	res.render("admin", data);
 });
+
+router.post("/admin", function (req, res, next) {
+	const data = {};
+
+	console.log("hi")
+
+	data.title = "admin";
+	data.user = req.user;
+	data.allUsers = User.getAllUser();
+	data.allUsers = data.allUsers.filter(user => user.id != "2");
+	res.render("admin", data);
+});
+
 
 module.exports = router;

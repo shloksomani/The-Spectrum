@@ -32,10 +32,8 @@
     <script>const userTable = document.querySelector('#userTable')
 
         //const specificUser = require("../models/User")
-        userTable.addEventListener('click', deleteUser)
+        // userTable.addEventListener('click', deleteUser)
         
-        var del = <%- delUser %>
-        var user = <%- JSON.stringify(allUsers) %>
 
         var userCheck = <%- JSON.stringify(allUsers) %>
             userCheck.forEach(function (user) {
@@ -49,7 +47,8 @@
             const email = document.createElement("td")
             email.appendChild(bold)
             const action = document.createElement("td")
-            action.innerHTML = "<button class='return'>Remove</button>"
+            // action.innerHTML = "<button class='return'>Remove</button>"
+            action.innerHTML = "<form action=\"/admin\" method=\"POST\"> <input class= \"return\" type=\"submit\"> </form>"
             const row = document.createElement("tr")
             row.appendChild(nameOfUser)
             row.appendChild(email)
@@ -62,16 +61,10 @@
             
             // check if return button was clicked, otherwise do nothing.
             if (e.target.classList.contains('return')) {
-                console.log(e.target.parentElement.parentElement.rowIndex);
+                // console.log(e.target.parentElement.parentElement.rowIndex);
                 let i = ((e.target.parentElement.parentElement.rowIndex) - 1).toString();
-                console.log(typeof(i))
-
-                del(i)
-               
+                // console.log(typeof(i))
                 // everyUser = everyUser.filter(user => user.id != "1");
-              
-
-
                 // delete(i.toString());
                 //  specificUser.deleteUserbyId(e.target.parentElement.parentElement.rowIndex - 1)
                 userTable.deleteRow(e.target.parentElement.parentElement.rowIndex)
