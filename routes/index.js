@@ -52,11 +52,11 @@ router.get("/left_center_bias", function (req, res, next) {
 })
 
 //GET least_biased
-router.get("/least_biased", function (req, res, next) {
+router.get("/least_bias", function (req, res, next) {
 	const data = {};
 	data.user = req.user;
 	data.dummydata = parsed_data.least_bias;
-	res.render("least_biased", data);
+	res.render("least_bias", data);
 })
 
 //GET right_center_bias
