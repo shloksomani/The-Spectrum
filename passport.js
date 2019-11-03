@@ -23,7 +23,8 @@ passport.serializeUser(function(user, done) {
  */
 passport.deserializeUser(async function(id, done) {
 	try {
-		return done(null, User.getUserById(id));
+		//return done(null, User.getUserById(id));
+    return done(null, User.JgetUserById(id));
 	} catch (error) {
 		done(error);
 	}
