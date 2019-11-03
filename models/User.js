@@ -1,6 +1,6 @@
 //const mongoose = require("mongoose");
 
-// const fs = require('fs')
+const fs = require('fs')
 
 //const model_name = "users";
 let users = [
@@ -70,56 +70,58 @@ function deleteUserById(id) {
 	users = users.filter(user => user.id != id);
 }
 
-
-
+// Adding a user
+function RepopulateJson(){
+	JsaveUserToJSONFile(users)
+}
 
 // Adding a student
-// function JcreateUser(name, email, password, isAdmin) {
-// 	let user = {
-// 		name: name,
-// 		email: email,
-// 		password: password,
-// 		isAdmin: isAdmin,
-// 		id: Date.now().toString()
-// 	};
+function JcreateUser(name, email, password, isAdmin) {
+	let user = {
+		name: name,
+		email: email,
+		password: password,
+		isAdmin: isAdmin,
+		id: Date.now().toString()
+	};
 
-// 	users.push(user);
-// 	saveUserToJSONFile(user)
-// 	return user;
-// }
+	users.push(user);
+	JsaveUserToJSONFile(user)
+	return user;
+}
 
 
-// // Saving an array of students to a JSON file
-// const JsaveUserToJSONFile = (user) => {
-// 	fs.writeFileSync('UserData.json', JSON.stringify(user))
-// }
+// Saving an array of students to a JSON file
+const JsaveUserToJSONFile = (user) => {
+	fs.writeFileSync('./models/users.json', JSON.stringify(user))
+}
 
-// // Getting all students from the JSON file
-// const JgetAllUser = () => {
-// 	try {
-// 		const usersFromFile = fs.readFileSync('UserData.json')
-// 		return JSON.parse(usersFromFile)
-// 	} catch (e) {
-// 		return []
-// 	}
-// }
+// Getting all students from the JSON file
+const JgetAllUser = () => {
+	try {
+		const usersFromFile = fs.readFileSync('./models/users.json')
+		return JSON.parse(usersFromFile)
+	} catch (e) {
+		return []
+	}
+}
 
-// // Getting a single student by an id
-// const JgetUserById = (id) => {
-// 	const users = getAllUsers()
-// 	const userWithId = users.filter((user) => user.id === id)
-// 	return userWithId[0]
-// }
+// Getting a single student by an id
+const JgetUserById = (id) => {
+	const users = JgetAllUser()
+	const userWithId = users.filter((user) => user.id === id)
+	return userWithId[0]
+}
 
-// // Removing a student
-// const JremoveUser = (id) => {
-// 	const users = getAllUser()
-// 	const usersToKeep = users.filter((user) => user.id !== id)
-// 	saveUserToJSONFile(usersToKeep)
+// Removing a student
+const JremoveUser = (id) => {
+	const users = JgetAllUser()
+	const usersToKeep = users.filter((user) => user.id !== id)
+	JsaveUserToJSONFile(usersToKeep)
 
-// 	return users.length !== usersToKeep.length
+	return users.length !== usersToKeep.length
 
-// }
+}
 
 module.exports = {
 	createUser,
@@ -127,14 +129,11 @@ module.exports = {
 	getUserObj,
 	getAllUser,
 	getUserById,
-	deleteUserById
-	// JcreateUser,
-	// JgetAllUser,
-	// JsaveUserToJSONFile,
-	// JgetUserById,
-	// JremoveUser
+	deleteUserById,
+	JcreateUser,
+	JgetAllUser,
+	JsaveUserToJSONFile,
+	JgetUserById,
+	JremoveUser,
+	RepopulateJson,
 };
-
-
-
-
