@@ -11,9 +11,9 @@
 <body id="dashBody">
     <% include ./partials/menu %>
     <% include ./partials/mediaMenu %>
-    <h1>Admin Page to manage Users</h1>
-    <div class="smth">
-        <p>Here is some text dashboard</p>
+    <h1 class = "title">Admin Page to manage Users</h1>
+    <div class="smth title">
+        <p>Admin is allowed to remove users</p>
     </div>
     <table id='userTable'>
         <tbody>
@@ -24,7 +24,7 @@
                 <th>
                     Email
                 </th>
-                <th>Action</th>
+                <th>Action: id</th>
             </tr>
         </tbody>
     </table>
@@ -33,7 +33,6 @@
 
         //const specificUser = require("../models/User")
         // userTable.addEventListener('click', deleteUser)
-        
 
         var userCheck = <%- JSON.stringify(allUsers) %>
             userCheck.forEach(function (user) {
@@ -48,7 +47,8 @@
             email.appendChild(bold)
             const action = document.createElement("td")
             // action.innerHTML = "<button class='return'>Remove</button>"
-            action.innerHTML = "<form action=\"/admin\" method=\"POST\"> <input class= \"return\" type=\"submit\"> </form>"
+           // action.innerHTML = "<form action=\"/admin\" method=\"POST\"> <input class= \"return\" type=\"submit\"> </form>"
+            action.innerHTML = "<form action=\"/admin\" method=\"POST\"> <input class= \"return\" name=\"id\" value =\"remove: "+user.id+ "\" type=\"submit\"> </form>"
             const row = document.createElement("tr")
             row.appendChild(nameOfUser)
             row.appendChild(email)
@@ -56,20 +56,20 @@
             tablebody = userTable.querySelector('tbody')
             tablebody.appendChild(row)
         }
-        function deleteUser(e) {
-            e.preventDefault();
-            
-            // check if return button was clicked, otherwise do nothing.
-            if (e.target.classList.contains('return')) {
-                // console.log(e.target.parentElement.parentElement.rowIndex);
-                let i = ((e.target.parentElement.parentElement.rowIndex) - 1).toString();
-                // console.log(typeof(i))
-                // everyUser = everyUser.filter(user => user.id != "1");
-                // delete(i.toString());
-                //  specificUser.deleteUserbyId(e.target.parentElement.parentElement.rowIndex - 1)
-                userTable.deleteRow(e.target.parentElement.parentElement.rowIndex)
-            }
-        }
+        // function deleteUser(e) {
+        //     e.preventDefault();
+        //
+        //     // check if return button was clicked, otherwise do nothing.
+        //     if (e.target.classList.contains('return')) {
+        //         // console.log(e.target.parentElement.parentElement.rowIndex);
+        //         let i = ((e.target.parentElement.parentElement.rowIndex) - 1).toString();
+        //         // console.log(typeof(i))
+        //         // everyUser = everyUser.filter(user => user.id != "1");
+        //         // delete(i.toString());
+        //         //  specificUser.deleteUserbyId(e.target.parentElement.parentElement.rowIndex - 1)
+        //         userTable.deleteRow(e.target.parentElement.parentElement.rowIndex)
+        //     }
+        // }
     </script>
     <% include ./partials/script %>
     <!-- <script type="text/javascript" src="/admin.js"></script> -->
