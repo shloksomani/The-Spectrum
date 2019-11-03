@@ -4,7 +4,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
-
+const body_parser = require('body-parser');
 // Mongoose setup
 // TODO: add mongoDb url from atlas
 // const mongoose = require("mongoose");
@@ -66,6 +66,9 @@ app.use("/auth", authRouter(passport));
 app.use(function(req, res, next) {
 	next(createError(404));
 });
+
+//allows nested objects to be parsed from url
+app.use(body_parser.urlencoded({extended: true}))
 
 // error handler
 app.use(function(err, req, res, next) {
