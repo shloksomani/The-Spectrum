@@ -4,6 +4,14 @@
 	font-family: "Helvetica Neue", Helvetica, sans-serif;
 } */
 
+table{
+	margin: auto;
+}
+
+.title{
+	text-align: center;
+}
+
 table, td, th {
 	border-collapse: collapse;
 	border: 1px solid black;
@@ -18,7 +26,7 @@ h4 {
 	margin-bottom: 2px;
 }
 
-.patron {
+/* .patron {
 	border: 1px solid black;
 	padding: 10px;
 	max-width: 1000px;
@@ -41,7 +49,7 @@ h4 {
 #bookInfo span {
 	font-weight: normal;
 	color: black;
-}
+} */
 
 .green {
 	color: green;
