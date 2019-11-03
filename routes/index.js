@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const authMiddleware = require("../middleware");
 const User = require("../models/User");
+const body_parser = require('body-parser')
 let parsed_data;
 
 
@@ -24,6 +25,11 @@ function shuffleArray(array) {
 		array[j] = temp;
 	}
 }
+
+//repopulates json user array whenever server launches again
+(function(){
+	User.RepopulateJson();
+})()
 
 // GET home page.
 router.get("/", function (req, res, next) {
@@ -130,27 +136,24 @@ router.get("/admin", function (req, res, next) {
 
 	data.title = "admin";
 	data.user = req.user;
-	data.allUsers = User.getAllUser();
+	//data.allUsers = User.getAllUser();
+	data.allUsers = User.JgetAllUser();
 	res.render("admin", data);
 });
 
+//Delete user and render
 router.post("/admin", function (req, res, next) {
 	const data = {};
 
-	console.log("hi")
-
 	data.title = "admin";
 	data.user = req.user;
-	data.allUsers = User.getAllUser();
-	data.allUsers = data.allUsers.filter(user => user.id != "2");
+	//data.allUsers = User.getAllUser();
+	//data.allUsers = data.allUsers.filter(user => user.id != "2");
+	const id = req.body.id.split(" ")[1]
+	User.JremoveUser(id)
+	data.allUsers = User.JgetAllUser();
 	res.render("admin", data);
 });
-
-// router.post("/index", function (req, res, next) {
-// 	const query = req.params
-// 	console.log(query);
-	
-// })
 
 router.get("/index/keywords", function(req, res, next){
 	// //const query = req
@@ -178,15 +181,15 @@ router.get("/index/keywords", function(req, res, next){
 	if (req.url){
 		keywords_string = req.url.split('=')[1]
 		if (keywords_string != '') {
-			
-		
+
+
 			console.log("After the break")
 			data.keywords = keywords_string.split("+").filter(function(el) {
 				return el != "";
 			})
 			// for strings that are not empty, search through keywords in dummy data. If keyword in it. Add to array
 			data.dummy_data = []
-			
+
 			// for each bias
 			for (let bias in parsed_data) {
 				// List of articles that have the bias
@@ -217,7 +220,7 @@ router.get("/index/keywords", function(req, res, next){
 		random_dummy_data()
 	}
 
-				
+
 	res.render("index", data);
 })
 
