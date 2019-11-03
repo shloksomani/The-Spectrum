@@ -32,7 +32,7 @@
         console.log(userTable);
         //const specificUser = require("../models/User")
         userTable.addEventListener('click', deleteUser)
-        var userCheck = <% - JSON.stringify(allUsers) %>
+        var userCheck = <%- JSON.stringify(allUsers) %>
             userCheck.forEach(function (user) {
                 addUserToTable(user)
             });
