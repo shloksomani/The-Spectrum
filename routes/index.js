@@ -1,4 +1,4 @@
-const fs = require('fs')
+const fs = require("fs");
 const express = require("express");
 const router = express.Router();
 const authMiddleware = require("../middleware");
@@ -7,6 +7,7 @@ let parsed_data;
 
 // Get the dummydata from JSON file
 try {
+<<<<<<< Updated upstream
 	const data = fs.readFileSync('./public/dummydata.json');
 	parsed_data =  JSON.parse(data);
 	console.log("BLAST OFF!")
@@ -14,6 +15,14 @@ try {
 	parsed_data = {}
 	console.log("Houston we have a problem")
 
+=======
+	const data = fs.readFileSync("./public/dummydata.json");
+	parsed_data = JSON.parse(data);
+	console.log("BLAST OFF!");
+} catch (e) {
+	parsed_data = {};
+	console.log("Houston we have a problem");
+>>>>>>> Stashed changes
 }
 
 // GET home page.
