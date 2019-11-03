@@ -47,7 +47,7 @@ router.get("/left_bias", function (req, res, next) {
 router.get("/left_center_bias", function (req, res, next) {
 	const data = {};
 	data.user = req.user;
-	data.dummydata = parsed_data.left_bias;
+	data.dummydata = parsed_data.left_center_bias;
 	res.render("left_center_bias", data);
 })
 
@@ -55,7 +55,7 @@ router.get("/left_center_bias", function (req, res, next) {
 router.get("/least_biased", function (req, res, next) {
 	const data = {};
 	data.user = req.user;
-	data.dummydata = parsed_data.left_bias;
+	data.dummydata = parsed_data.least_bias;
 	res.render("least_biased", data);
 })
 
@@ -63,7 +63,7 @@ router.get("/least_biased", function (req, res, next) {
 router.get("/right_center_bias", function (req, res, next) {
 	const data = {};
 	data.user = req.user;
-	data.dummydata = parsed_data.left_bias;
+	data.dummydata = parsed_data.right_center_bias;
 	res.render("right_center_bias", data);
 })
 
@@ -71,7 +71,7 @@ router.get("/right_center_bias", function (req, res, next) {
 router.get("/right_bias", function (req, res, next) {
 	const data = {};
 	data.user = req.user;
-	data.dummydata = parsed_data.left_bias;
+	data.dummydata = parsed_data.right_bias;
 	res.render("right_bias", data);
 })
 
@@ -79,7 +79,7 @@ router.get("/right_bias", function (req, res, next) {
 router.get("/pro_science", function (req, res, next) {
 	const data = {};
 	data.user = req.user;
-	data.dummydata = parsed_data.left_bias;
+	data.dummydata = parsed_data.pro_science;
 	res.render("pro_science", data);
 })
 
@@ -87,7 +87,7 @@ router.get("/pro_science", function (req, res, next) {
 router.get("/questionable_sources", function (req, res, next) {
 	const data = {};
 	data.user = req.user;
-	data.dummydata = parsed_data.left_bias;
+	data.dummydata = parsed_data.questionable_sources;
 	res.render("questionable_sources", data);
 })
 
