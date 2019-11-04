@@ -5,6 +5,7 @@ const fs = require('fs')
 
 // Creating the Object so that user can see which 
 // user made the request to add a specific URL
+// Everything will be stored in a Database in phase-2 and will call database here
 const createObj = (email, url) => {
   try{
     const usersFromFile = fs.readFileSync("./public/sources.json")

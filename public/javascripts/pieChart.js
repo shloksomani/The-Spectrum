@@ -5,7 +5,8 @@ let myBarChart;
 
 // HardCoded data for the history 
 // A database will have all the user and a user will have all the history
-// Currently all users will have the same data   
+// Currently all users will have the same data  
+// Everything will be stored in the user Database in phase-2 and will call database here
 let todayHistory = [10, 10, 10, 10, 20, 20, 20]
 let thisWeekHistory = [20, 10, 10, 10, 10, 10, 30]
 let thisMonthHistory = [10, 20, 10, 10, 10, 10, 30]

@@ -33,6 +33,7 @@ router.get("/logout", function(req, res) {
 });
 
 // Post Request For Signup
+// Will call database here to store user
 router.post("/signup", async function(req, res, next) {
 	// check if user exist
 	const existing = User.findEmail(req.body.email);
@@ -52,7 +53,6 @@ router.post("/signup", async function(req, res, next) {
 
 	const salt = await bcrypt.genSalt(10);
 	const password = await bcrypt.hash(req.body.password, salt);
-
 	try {
 		const newUser = User.JcreateUser(
 			req.body.name,

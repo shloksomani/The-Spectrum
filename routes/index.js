@@ -8,6 +8,8 @@ const body_parser = require('body-parser')
 let parsed_data;
 
 
+// Will call database here to get the news summary 
+// and will use it populate the pages dynamically 
 // Get the dummy_data from JSON file
 try {
 	const data = fs.readFileSync('./public/dummy_data.json');
@@ -162,7 +164,7 @@ router.post("/dash", function (req, res, next) {
 	Admin.createObj(req.user[0].email, req.body.urlToSubmit)
 	//data.allUsers = User.getAllUser();
 	//data.allUsers = data.allUsers.filter(user => user.id != "2");
-	res.render("dash", data);
+	res.redirect("/dash");
 });
 
 // Search Functionality

@@ -1,5 +1,4 @@
-//const mongoose = require("mongoose");
-
+// Everything will be stored in user Database in phase-2 and will call database here
 const fs = require('fs')
 
 // Initial Data Set
