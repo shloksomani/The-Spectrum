@@ -11,7 +11,6 @@ const createObj = (email, url) => {
     
     let fileRn = JSON.parse(usersFromFile)
     if (fileRn == "{}") {
-      console.log("line 21")
       let obj1 = { email: email, url: [url] }
       fs.writeFileSync('./public/sources.json', JSON.stringify(obj1))
     }

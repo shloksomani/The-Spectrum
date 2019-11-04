@@ -242,11 +242,7 @@ router.get("/user/history", function(req, res, next){
 //adds article to user history
 router.post("/index/history", function(req, res, next){
 	const article = req.body
-	console.log(req.user);
-	console.log(req.body);
-	console.log(req.user[0].id);
 	if(req.user){
-		console.log("inside if");
 	User.JaddToHistory(req.user[0].id, article)
 }
 res.redirect("/")

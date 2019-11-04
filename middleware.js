@@ -3,7 +3,6 @@
 
 module.exports = {
 	loginRequired(req, res, next) {
-		console.log(req.user + " at line 4");
 		if (req.user) {
 			return next();
 		}
