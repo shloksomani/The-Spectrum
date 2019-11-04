@@ -66,8 +66,12 @@ Scraping and collecting news biases will be done through a python script in the 
 #### User Interaction:
 
 <strong>User signup is functional if you would like to create a new user</strong>. Alternatively, these are some pre-existing credentials.
-- username: user
-- password: user
+
+    username: user 
+    password: user
+
+    username: user2
+    password: user2
 
 <strong>New users can sign up with the username of their choice</strong>, passwords are safely secured through hashing and salt.
 When a user signs up or logs in, they will be <strong>taken to their own personal dashboard.</strong> This feature does not exist for general users.
@@ -95,8 +99,8 @@ It is important to note that <strong>a user remains logged in, even if they canc
 
 #### Admin Interaction:
 
-- username: admin
-- password admin
+    username: admin
+    password admin
 
 Admins have the same functionality as users with some important additional functionality. When an admin logs in they <strong> will have an admin button on the top right of their page. If they select this, they are brought to an admin only page which with a table of all existing users, user emails and the option to remove a user. If a user is removed, they will no longer be able to login as their credentials will no longer exist. </strong>
 
@@ -106,6 +110,8 @@ Our website is available to everyone, even if they do not have an account or are
 
 ### Technology used
 
+- HTML5/CSS3
+- JavaScript
 - Node.js
 - Express
 - Express Sessions
