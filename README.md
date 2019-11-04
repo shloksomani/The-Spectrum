@@ -59,6 +59,7 @@ http://localhost:3000/
 ```
 
 ### Specification
+We are using JSON files to store our hardcoded data. This data does not persist, whenever the server is restarted the data will revert back to the initial default data.
 #### User Interaction:
 - username: user1
 - password: user1
