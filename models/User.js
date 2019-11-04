@@ -135,13 +135,9 @@ const JremoveUser = (id) => {
 //adding to user history
 const JaddToHistory = (id, article) =>{
 	const users = JgetAllUser()
-	console.log("inside JaddToHistory");
-	console.log(id);
 
 	const userToChange = users.filter((user) => user.id === id)
-	console.log(userToChange);
 	userToChange[0].history.push(article)
-	console.log(userToChange);
 	JsaveUserToJSONFile(users)
 }
 

@@ -46,7 +46,6 @@ passport.use(
 			// console.log(userExist + " in passport.js 83");
 			let match = false;
 			const user = User.getUserObj(email);
-			console.log(user + " line 96 passport");
 			if (emailExist) {
 				if (
 					(email === "user" && password === "user") ||

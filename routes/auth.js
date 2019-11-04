@@ -36,7 +36,6 @@ router.get("/logout", function(req, res) {
 router.post("/signup", async function(req, res, next) {
 	// check if user exist
 	const existing = User.findEmail(req.body.email);
-	console.log(existing + " line 39");
 	// if true show error
 	if (existing) {
 		/** Set flash message and redirect to signup page */
@@ -61,7 +60,6 @@ router.post("/signup", async function(req, res, next) {
 			password,
 			false
 		);
-		console.log(newUser);
 		req.logIn(newUser, function() {
 			res.redirect("/dash");
 		});
@@ -80,7 +78,6 @@ module.exports = function(passport) {
 			successRedirect: "/dash"
 		}),
 		async function(req, res) {
-			console.log("line 94");
 			res.redirect("/dash");
 		}
 	);
