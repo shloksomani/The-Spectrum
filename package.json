@@ -6,8 +6,10 @@
 		"start": "node ./bin/www"
 	},
 	"nodemonConfig": {
-	    "ignore": ["models/users.json"]
-	  },
+		"ignore": [
+			"models/users.json"
+		]
+	},
 	"dependencies": {
 		"bcryptjs": "^2.4.3",
 		"body-parser": "^1.19.0",
