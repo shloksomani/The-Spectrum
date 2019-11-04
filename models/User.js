@@ -2,7 +2,7 @@
 
 const fs = require('fs')
 
-//const model_name = "users";
+// Initial Data Set
 let users = [
 	{
 		name: "user1",
@@ -32,6 +32,8 @@ let users = [
 	}
 ];
 
+
+// Create a user and save it JSON
 function createUser(name, email, password, isAdmin) {
 	let user = {
 		name: name,
@@ -46,13 +48,13 @@ function createUser(name, email, password, isAdmin) {
 	return user;
 }
 
+// Find by email
 // if an email exists it will return true otherwise false
 function findEmail(email) {
-	// console.log(users + " in user.js line42");
 	return JgetAllUser().filter(user => user.email === email).length !== 0 ? true : false;
 }
 
-// Find by email
+// Getting the User Object
 function getUserObj(email) {
 	let userObj = JgetAllUser().find(o => o.email === email);
 	// console.log(userObj + "in user.js line47");
@@ -69,16 +71,18 @@ function getUserById(id) {
 	return users.filter(user => user.id === id);
 }
 
+// Delete a User with specific id
 function deleteUserById(id) {
 	users = users.filter(user => user.id != id);
 }
 
-// Adding a user
+// Adding a user for the first time 
+// when the server starts to maintain the initial state 
 function RepopulateJson(){
 	JsaveUserToJSONFile(users)
 }
 
-// Adding a student
+// Adding a User To JSON
 function JcreateUser(name, email, password, isAdmin) {
 	let user = {
 		name: name,
@@ -96,12 +100,12 @@ function JcreateUser(name, email, password, isAdmin) {
 }
 
 
-// Saving an array of students to a JSON file
+// Saving an array of user to a JSON file
 const JsaveUserToJSONFile = (user) => {
 	fs.writeFileSync('./models/users.json', JSON.stringify(user))
 }
 
-// Getting all students from the JSON file
+// Getting all user from the JSON file
 const JgetAllUser = () => {
 	try {
 		const usersFromFile = fs.readFileSync('./models/users.json')
@@ -111,14 +115,14 @@ const JgetAllUser = () => {
 	}
 }
 
-// Getting a single student by an id
+// Getting a single user by an id
 const JgetUserById = (id) => {
 	const users = JgetAllUser()
 	const userWithId = users.filter((user) => user.id === id)
 	return userWithId
 }
 
-// Removing a student
+// Removing a user
 const JremoveUser = (id) => {
 	const users = JgetAllUser()
 	const usersToKeep = users.filter((user) => user.id !== id)

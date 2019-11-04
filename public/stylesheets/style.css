@@ -39,6 +39,11 @@ body {
 	opacity: 1;
 }
 
+#mediaMenu .searchBtnMediaMenu {
+	border-color: #e3e8fd;
+}
+
+
 .searchBar {
 	/* justify-content: space-evenly !important; */
 }
@@ -210,3 +215,5 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+

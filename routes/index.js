@@ -12,12 +12,12 @@ let parsed_data;
 try {
 	const data = fs.readFileSync('./public/dummy_data.json');
 	parsed_data = JSON.parse(data);
-	console.log("BLAST OFF!")
+	console.log("Welcome to \"The Spectrum\" ")
 } catch (e) {
 	parsed_data = {}
-	console.log("Houston we have a problem")
 }
 
+// To have shuffled news on any page 
 function shuffleArray(array) {
 	for (var i = array.length - 1; i > 0; i--) {
 		var j = Math.floor(Math.random() * (i + 1));
@@ -48,8 +48,6 @@ router.get("/", function (req, res, next) {
 		for (let i = 0; i < 2; i++) {
 			// each article in the article list
 			const article = bias_list[i]
-			console.log(article.title);
-
 			data.dummy_data.push(article)
 		}
 	}
@@ -126,13 +124,12 @@ router.get("/questionable_sources", function (req, res, next) {
 	const data = {};
 	data.user = req.user;
 	data.dummy_data = parsed_data.questionable_sources;
-	console.log(parsed_data)
 	shuffleArray(data.dummy_data)
 	res.render("questionable_sources", data);
 })
 
 // GET admin page
-router.get("/admin", function (req, res, next) {
+router.get("/admin", authMiddleware.isAdmin ,function (req, res, next) {
 	const data = {};
 
 	data.title = "admin";
@@ -142,7 +139,7 @@ router.get("/admin", function (req, res, next) {
 	res.render("admin", data);
 });
 
-//Delete user and render
+//Delete user and render admin
 router.post("/admin", function (req, res, next) {
 	const data = {};
 
@@ -156,11 +153,9 @@ router.post("/admin", function (req, res, next) {
 	res.render("admin", data);
 });
 
-
+// Submit the URL for the Admin Approval
 router.post("/dash", function (req, res, next) {
 	const data = {};
-	console.log(req.user)
-
 	data.title = "dash";
 	data.user = req.user;
 
@@ -170,10 +165,9 @@ router.post("/dash", function (req, res, next) {
 	res.render("dash", data);
 });
 
-//filter articles with user keywords and render with new data
+// Search Functionality 
 router.get("/index/keywords", function(req, res, next){
-	// //const query = req
-	console.log("KEYWORDSEARCH");
+
 	function random_dummy_data(){
 		data.dummy_data = []
 
@@ -184,7 +178,6 @@ router.get("/index/keywords", function(req, res, next){
 			for (let i = 0; i < 2; i++) {
 				// each article in the article list
 				const article = bias_list[i]
-				console.log(article.title);
 
 				data.dummy_data.push(article)
 			}
@@ -197,9 +190,6 @@ router.get("/index/keywords", function(req, res, next){
 	if (req.url){
 		keywords_string = req.url.split('=')[1]
 		if (keywords_string != '') {
-
-
-			console.log("After the break")
 			data.keywords = keywords_string.split("+").filter(function(el) {
 				return el != "";
 			})
@@ -218,7 +208,7 @@ router.get("/index/keywords", function(req, res, next){
 						keyword = article.keywords[j]
 						// compare the users searched words to the articles keywords
 						for (let k = 0; k < data.keywords.length; k++){
-							search_word = data.keywords[k]
+							search_word = data.keywords[k].toLowerCase() 
 							if (keyword == search_word ){
 								// if they match, add the article to dummy data
 								data.dummy_data.push(article)

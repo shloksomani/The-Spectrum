@@ -1,7 +1,11 @@
+
+// Get the id of the pieChart in the dashboard 
 let consumption = document.getElementById("Schart");
 let myBarChart;
 
-
+// HardCoded data for the history 
+// A database will have all the user and a user will have all the history
+// Currently all users will have the same data   
 let todayHistory = [10, 10, 10, 10, 20, 20, 20]
 let thisWeekHistory = [20, 10, 10, 10, 10, 10, 30]
 let thisMonthHistory = [10, 20, 10, 10, 10, 10, 30]
@@ -13,6 +17,7 @@ let eternityHistory = [10, 10, 20, 10, 10, 10, 30]
 Chart.defaults.global.defaultFontFamily = "Lato";
 Chart.defaults.global.defaultFontSize = 18;
 
+// Setting up the bias
 let bias = {
 	labels: [
 		"Left Bias",
@@ -41,9 +46,10 @@ let bias = {
 };
 
 
-
+// Initializing the chart 
 init()
 
+// Initialization function 
 function init() {
 	// Chart declaration:
 	myBarChart = new Chart(consumption, {
@@ -70,11 +76,10 @@ document.getElementById('thisMonth').addEventListener('click', toggle);
 document.getElementById("eternity").addEventListener('click', toggle);
 
 
-
+// A toggle to dynamically change the pie chart with the hard-coded data  
 function toggle(e){
 	myBarChart.destroy();
 	let dataToBe;
-	// console.log(e.target.innerHTML)
 	document.querySelector(".smth").innerHTML = e.target.innerHTML
 	if (e.target.innerHTML === "Today"){
 		dataToBe = todayHistory;

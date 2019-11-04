@@ -1,3 +1,4 @@
+<!-- Dashboard Page -->
 <!DOCTYPE html>
 <html>
 
@@ -9,6 +10,7 @@
 
 <body id="dashBody">
     <% include ./partials/menu %>
+    <% include ./partials/mediaMenu %>
 
     <div class="dropdown d-flex justify-content-center filter-dash">
         <h4 class="d-inline-block align-middle heading">User's Media Consumption Diet</h4>
@@ -32,18 +34,18 @@
                 <div class="col-lg-4 offset-4 text-center">
                     <label for="urlSubmit" class="">Add New News URL</label>
                     <div class="">
-                        <input name="urlToSubmit" type="text" class="form-control" id="urlSubmit" placeholder="https://gocrazy">
+                        <input name="urlToSubmit" type="text" class="form-control" id="urlSubmit"
+                            placeholder="https://gocrazy">
                     </div>
                 </div>
             </div>
         </form>
     </div>
 
+    <% include ./partials/script %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script src="/javascripts/pieChart.js"></script>
 </body>
-
-<% include ./partials/script %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
-<script src="/javascripts/pieChart.js"></script>
 
 </html>
 

@@ -1,23 +1,15 @@
+// Admin Functions 
+
 
 const fs = require('fs')
 
-const readToSourceFile = () => {
-  const usersFromFile = fs.readFileSync('./adminFunction/sources.json')
-  return JSON.parse(usersFromFile)
-}
-
-// Saving an array of students to a JSON file
-const writeToSourceFile = (file) => {
-  fs.writeFileSync('./public/sources.json', JSON.stringify(file))
-}
-
-
+// Creating the Object so that user can see which 
+// user made the request to add a specific URL
 const createObj = (email, url) => {
   try{
     const usersFromFile = fs.readFileSync("./public/sources.json")
     
     let fileRn = JSON.parse(usersFromFile)
-    console.log(fileRn);
     if (fileRn == "{}") {
       console.log("line 21")
       let obj1 = { email: email, url: [url] }
@@ -26,8 +18,7 @@ const createObj = (email, url) => {
     else {
       let flag = false;
       fileRn.forEach(function (obj) {
-        console.log(email)
-        console.log(obj)
+
         if (obj.email == email) {
           obj.url.push(url)
           flag = true;
@@ -41,22 +32,10 @@ const createObj = (email, url) => {
   }
 
   catch(e){
-    console.log("fuck off")
+    console.log("Not good")
   }
   
 }
-
-
-
-// // Getting all students from the JSON file
-// const getAllSources = () => {
-//   try {
-//     const usersFromFile = fs.readFileSync('/adminFunction/sources.json')
-//     return JSON.parse(usersFromFile)
-//   } catch (e) {
-//     return []
-//   }
-// }
 
 module.exports = {
   createObj
