@@ -170,6 +170,7 @@ router.post("/dash", function (req, res, next) {
 	res.render("dash", data);
 });
 
+//filter articles with user keywords and render with new data
 router.get("/index/keywords", function(req, res, next){
 	// //const query = req
 	console.log("KEYWORDSEARCH");
@@ -239,4 +240,16 @@ router.get("/index/keywords", function(req, res, next){
 	res.render("index", data);
 })
 
+//user history
+router.post("/index/history", function(req, res, next){
+	const article = req.body
+	console.log(req.user);
+	console.log(req.body);
+	console.log(req.user[0].id);
+	if(req.user){
+		console.log("inside if");
+	User.JaddToHistory(req.user[0].id, article)
+}
+res.redirect("/")
+})
 module.exports = router;
