@@ -9,7 +9,8 @@ let users = [
 		email: "user1",
 		password: "user1",
 		isAdmin: false,
-		id: "1"
+		id: "1",
+		history: []
 	},
 
 	{
@@ -17,7 +18,8 @@ let users = [
 		email: "user2",
 		password: "user2",
 		isAdmin: false,
-		id: "2"
+		id: "2",
+		history: []
 	},
 
 	{
@@ -25,7 +27,8 @@ let users = [
 		email: "admin",
 		password: "admin",
 		isAdmin: true,
-		id: "0"
+		id: "0",
+		history: []
 	}
 ];
 
@@ -35,7 +38,8 @@ function createUser(name, email, password, isAdmin) {
 		email: email,
 		password: password,
 		isAdmin: isAdmin,
-		id: Date.now().toString()
+		id: Date.now().toString(),
+		history: []
 	};
 
 	users.push(user);
@@ -81,7 +85,8 @@ function JcreateUser(name, email, password, isAdmin) {
 		email: email,
 		password: password,
 		isAdmin: isAdmin,
-		id: Date.now().toString()
+		id: Date.now().toString(),
+		history: []
 	};
 	userArr = JgetAllUser()
 	userArr.push(user)
@@ -123,6 +128,20 @@ const JremoveUser = (id) => {
 
 }
 
+//adding to user history
+const JaddToHistory = (id, article) =>{
+	const users = JgetAllUser()
+	console.log("inside JaddToHistory");
+	console.log(id);
+
+	const userToChange = users.filter((user) => user.id === id)
+	console.log(userToChange);
+	userToChange[0].history.push(article)
+	console.log(userToChange);
+	JsaveUserToJSONFile(users)
+}
+
+
 module.exports = {
 	createUser,
 	findEmail,
@@ -136,4 +155,5 @@ module.exports = {
 	JgetUserById,
 	JremoveUser,
 	RepopulateJson,
+	JaddToHistory
 };
