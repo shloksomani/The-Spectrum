@@ -6,7 +6,7 @@ This website helps users to see the whole spectrum of any global story by classi
 
 - [Requirements](#Requirements)
 - [Installation](#Installation)
-- Specification
+- [Specification](#Specification)
 - [Technology used](#Technology-used)
 - [Idea](#Idea)
 - [Story](#Story)
