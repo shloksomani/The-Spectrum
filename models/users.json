@@ -1,1 +1,1 @@
-[{"name":"user1","email":"user1","password":"user1","isAdmin":false,"id":"1"},{"name":"user2","email":"user2","password":"user2","isAdmin":false,"id":"2"},{"name":"user3","email":"admin","password":"admin","isAdmin":true,"id":"0"}]
+[{"name":"user1","email":"user1","password":"user1","isAdmin":false,"id":"1","history":[]},{"name":"user2","email":"user2","password":"user2","isAdmin":false,"id":"2","history":[]},{"name":"user3","email":"admin","password":"admin","isAdmin":true,"id":"0","history":[]}]
