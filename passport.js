@@ -1,5 +1,5 @@
 const passport = require("passport");
-const User = require("./models/User");
+const User = require("./routes/index");
 const bcrypt = require("bcryptjs");
 
 const LocalStrategy = require("passport-local").Strategy;
@@ -24,7 +24,7 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(async function(id, done) {
 	try {
 		//return done(null, User.getUserById(id));
-    return done(null, User.JgetUserById(id));
+    return done(null, User.getUserById(id));
 	} catch (error) {
 		done(error);
 	}

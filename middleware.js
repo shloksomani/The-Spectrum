@@ -7,7 +7,7 @@ module.exports = {
 			return next();
 		}
 		req.flash("error", "Please Login First");
-		return res.redirect("/auth/login");
+		return res.redirect("/login");
 	},
 
 	isAdmin(req, res, next){
@@ -18,7 +18,7 @@ module.exports = {
 			return res.redirect("/");
 		}
 		req.flash("error", "Please Login First");
-		return res.redirect("/auth/login");
+		return res.redirect("/login");
 	},
 
 	notAuthenticate(req, res, next) {

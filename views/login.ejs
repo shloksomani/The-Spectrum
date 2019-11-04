@@ -5,13 +5,13 @@
 
 <head>
     <title><%= title %></title>
-    <% include ../partials/header%>
+    <% include ./partials/header%>
     <link rel="stylesheet" href="../stylesheets/style.css">
 </head>
 
 <body>
-    <% include ../partials/menu %>
-    <% include ../partials/mediaMenu %>
+    <% include ./partials/menu %>
+    <% include ./partials/mediaMenu %>
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-4 m-auto">
@@ -24,7 +24,7 @@
                 <% } %>
                 <div class="card card-body">
                     <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i> Login</h1>
-                    <form action="/auth/login" method="POST">
+                    <form action="/login" method="POST">
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="" id="email" name="email" class="form-control" placeholder="Enter Email"
@@ -48,6 +48,6 @@
 
 </body>
 
-<%include ../partials/script %>
+<%include ./partials/script %>
 
 </html>

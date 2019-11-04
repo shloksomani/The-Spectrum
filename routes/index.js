@@ -1,10 +1,10 @@
-const fs = require("fs");
 const express = require("express");
 const router = express.Router();
 const authMiddleware = require("../middleware");
-const User = require("../models/User");
+// const User = require("./auth");
 const Admin = require("../adminFunction/adminFunction")
-const body_parser = require('body-parser')
+const bcrypt = require("bcryptjs");
+
 
 // This will be stored in the Database and the database will be called here 
 let parsed_data = {
@@ -666,6 +666,124 @@ let parsed_data = {
 }
 
 
+// Initial Data Set for user 
+// Here we will call The databse 
+let users = [
+	{
+		name: "user",
+		email: "user",
+		password: "user",
+		isAdmin: false,
+		id: "1",
+		history: []
+	},
+
+	{
+		name: "user2",
+		email: "user2",
+		password: "user2",
+		isAdmin: false,
+		id: "2",
+		history: []
+	},
+
+	{
+		name: "user3",
+		email: "admin",
+		password: "admin",
+		isAdmin: true,
+		id: "0",
+		history: []
+	}
+];
+
+// Get Request For Login
+// router.get("/login", authMiddleware.notAuthenticate, function(req, res) {
+// 	const data = {};
+
+// 	data.title = "Login";
+// 	data.errors = req.flash("error");
+// 	data.user = req.user;
+
+// 	res.render("auth/login", data);
+// });
+
+
+
+
+
+// Create a user and save it JSON
+function createUser(name, email, password, isAdmin) {
+	let user = {
+		name: name,
+		email: email,
+		password: password,
+		isAdmin: isAdmin,
+		id: Date.now().toString(),
+		history: []
+	};
+
+	users.push(user);
+	return user;
+}
+
+// Find by email
+// if an email exists it will return true otherwise false
+function findEmail(email) {
+	return getAllUser().filter(user => user.email === email).length !== 0 ? true : false;
+}
+
+// Getting the User Object
+function getUserObj(email) {
+	let userObj = getAllUser().find(o => o.email === email);
+	// console.log(userObj + "in user.js line47");
+	return userObj;
+}
+
+// Get all the User
+function getAllUser() {
+	return users;
+}
+
+// Find the user by id
+function getUserById(id) {
+	return users.filter(user => user.id === id);
+}
+
+// Delete a User with specific id
+function deleteUserById(id) {
+	users = users.filter(user => user.id != id);
+}
+
+
+//adding to user history
+const addToHistory = (id, article) => {
+
+	const userToChange = users.filter((user) => user.id === id)
+	deleteUserById(id);
+	userToChange[0].history.push(article)
+	users.push(userToChange);
+}
+
+const removeUser = (id) => {
+	users = users.filter(user => user.id != id);
+}
+
+function pAuth(passport) {
+	router.post(
+		"/login",
+		passport.authenticate("local", {
+			failureRedirect: "/login",
+			successRedirect: "/dash"
+		}),
+		async function (req, res) {
+			res.redirect("/dash");
+		}
+	);
+	return router;
+}
+
+
 // Will call database here to get the news summary 
 // and will use it populate the pages dynamically 
 // Get the dummy_data from JSON file
@@ -690,10 +808,10 @@ function shuffleArray(array) {
 	}
 }
 
-//repopulates json user array whenever server launches again
-(function(){
-	User.RepopulateJson();
-})()
+// //repopulates json user array whenever server launches again
+// (function(){
+// 	User.RepopulateJson();
+// })()
 
 // GET home page.
 router.get("/", function (req, res, next) {
@@ -716,6 +834,71 @@ router.get("/", function (req, res, next) {
 	}
 	shuffleArray(data.dummy_data)
 	res.render("index", data);
+});
+
+// Get Request For Login
+router.get("/login", authMiddleware.notAuthenticate, function (req, res) {
+	const data = {};
+
+	data.title = "Login";
+	data.errors = req.flash("error");
+	data.user = req.user;
+
+	res.render("login", data);
+});
+
+// Get Request For Sign up
+router.get("/signup", authMiddleware.notAuthenticate, function (req, res) {
+	const data = {};
+
+	data.title = "Signup";
+	data.errors = req.flash("error");
+	data.user = req.user;
+
+	res.render("signup", data);
+});
+
+// Get Request For logout
+router.get("/logout", function (req, res) {
+	req.logout();
+	res.redirect("/");
+});
+
+// Post Request For Signup
+// Will call database here to store user
+router.post("/signup", async function (req, res, next) {
+	// check if user exist
+	const existing = findEmail(req.body.email);
+	// if true show error
+	if (existing) {
+		/** Set flash message and redirect to signup page */
+		req.flash("error", "User Already Exists");
+		return res.redirect("/signup");
+	}
+
+	if (req.body.password != req.body.password2) {
+		req.flash("error", "Password do not match");
+		return res.redirect("/signup");
+	}
+
+	//Hash password and save it into the array
+
+	const salt = await bcrypt.genSalt(10);
+	const password = await bcrypt.hash(req.body.password, salt);
+	try {
+		const newUser = createUser(
+			req.body.name,
+			req.body.email,
+			password,
+			false
+		);
+		req.logIn(newUser, function () {
+			res.redirect("/dash");
+		});
+		// Passport stuff
+	} catch (error) {
+		next(error);
+	}
 });
 
 // GET dashboard page.
@@ -798,7 +981,7 @@ router.get("/admin", authMiddleware.isAdmin ,function (req, res, next) {
 	data.title = "admin";
 	data.user = req.user;
 	//data.allUsers = User.getAllUser();
-	data.allUsers = User.JgetAllUser();
+	data.allUsers = getAllUser();
 	res.render("admin", data);
 });
 
@@ -811,8 +994,8 @@ router.post("/admin", function (req, res, next) {
 	//data.allUsers = User.getAllUser();
 	//data.allUsers = data.allUsers.filter(user => user.id != "2");
 	const id = req.body.id.split(" ")[1]
-	User.JremoveUser(id)
-	data.allUsers = User.JgetAllUser();
+	removeUser(id)
+	data.allUsers = getAllUser();
 	res.render("admin", data);
 });
 
@@ -830,7 +1013,6 @@ router.post("/dash", function (req, res, next) {
 
 // Search Functionality
 router.get("/index/keywords", function(req, res, next){
-
 	function random_dummy_data(){
 		data.dummy_data = []
 
@@ -872,6 +1054,7 @@ router.get("/index/keywords", function(req, res, next){
 						// compare the users searched words to the articles keywords
 						for (let k = 0; k < data.keywords.length; k++){
 							search_word = data.keywords[k].toLowerCase()
+							console.log(keyword)
 							if (keyword == search_word ){
 								// if they match, add the article to dummy data
 								data.dummy_data.push(article)
@@ -880,6 +1063,7 @@ router.get("/index/keywords", function(req, res, next){
 					}
 				}
 			}
+			console.log(data.dummy_data)
 		}
 		else {
 			random_dummy_data()
@@ -894,7 +1078,7 @@ router.get("/index/keywords", function(req, res, next){
 })
 
 //get user history
-router.get("/user/history", function(req, res, next){
+router.get("/user/history", authMiddleware.loginRequired, function(req, res, next){
 	const data = {};
 	// data.title = req.user.name;
 	data.user = req.user;
@@ -903,11 +1087,20 @@ router.get("/user/history", function(req, res, next){
 })
 
 //adds article to user history
-router.post("/index/history", function(req, res, next){
+router.post("/index/history", authMiddleware.loginRequired, function(req, res, next){
 	const article = req.body
 	if(req.user){
-	User.JaddToHistory(req.user[0].id, article)
+	addToHistory(req.user[0].id, article)
 }
 res.redirect("/")
 })
-module.exports = router;
+
+module.exports = {
+	findEmail,
+	getUserObj,
+	getAllUser,
+	getUserById,
+	deleteUserById,
+	pAuth,
+	createUser,
+}

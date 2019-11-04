@@ -45,10 +45,10 @@ app.use(require("connect-flash")());
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use("/", indexRouter);
+app.use("/", indexRouter.pAuth(passport));
 app.use("/users", usersRouter);
 
-app.use("/auth", authRouter(passport));
+app.use("/auth", authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
