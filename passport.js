@@ -30,47 +30,7 @@ passport.deserializeUser(async function(id, done) {
 	}
 });
 
-/**
- * Passport Local Strategey
- *
- * 'passReqToCallback' is set to true to access req object and to set some flash messages
- * in case of any errors.
- */
-// passport.use(
-// 	new LocalStrategy(
-// 		{
-// passReqToCallback: true,
-// usernameField: "email", // the desired username field you have defaults to 'username'
-// passwordField: "password" // the desired password field you have defaults to 'password'
-// 		},
-// 		async function(req, email, password, done) {
-// 			/**
-// 			 * Find User
-// 			 */
-// 			const userObj = await User.findOne({ email: email });
 
-// 			if (userObj && userObj._id) {
-// 				/**
-// 				 * Match Password
-// 				 */
-// 				const match = await bcrypt.compare(password, userObj.password);
-
-// if (match) {
-// 	/** All Set */
-// 	return done(null, {
-// 		id: userObj._id
-// 	});
-// }
-// 			}
-
-// 			/**
-// 			 * Set error message in flash and call the callback.
-// 			 */
-// req.flash("error", "Wrong Credentials");
-// return done(null, false);
-// 		}
-// 	)
-// );
 
 passport.use(
 	new LocalStrategy(
@@ -116,3 +76,48 @@ passport.use(
 );
 
 module.exports = passport;
+
+
+
+
+/**
+ * Passport Local Strategey
+ *
+ * 'passReqToCallback' is set to true to access req object and to set some flash messages
+ * in case of any errors.
+ */
+// passport.use(
+// 	new LocalStrategy(
+// 		{
+// passReqToCallback: true,
+// usernameField: "email", // the desired username field you have defaults to 'username'
+// passwordField: "password" // the desired password field you have defaults to 'password'
+// 		},
+// 		async function(req, email, password, done) {
+// 			/**
+// 			 * Find User
+// 			 */
+// 			const userObj = await User.findOne({ email: email });
+
+// 			if (userObj && userObj._id) {
+// 				/**
+// 				 * Match Password
+// 				 */
+// 				const match = await bcrypt.compare(password, userObj.password);
+
+// if (match) {
+// 	/** All Set */
+// 	return done(null, {
+// 		id: userObj._id
+// 	});
+// }
+// 			}
+
+// 			/**
+// 			 * Set error message in flash and call the callback.
+// 			 */
+// req.flash("error", "Wrong Credentials");
+// return done(null, false);
+// 		}
+// 	)
+// );

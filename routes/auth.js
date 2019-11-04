@@ -1,11 +1,10 @@
 const express = require("express");
 const router = express.Router();
-
 const User = require("../models/User");
-
 const bcrypt = require("bcryptjs");
 const authMiddleware = require("../middleware");
 
+// Get Request For Login
 router.get("/login", authMiddleware.notAuthenticate, function(req, res) {
 	const data = {};
 
@@ -16,6 +15,7 @@ router.get("/login", authMiddleware.notAuthenticate, function(req, res) {
 	res.render("auth/login", data);
 });
 
+// Get Request For Sign up
 router.get("/signup", authMiddleware.notAuthenticate, function(req, res) {
 	const data = {};
 
@@ -26,11 +26,13 @@ router.get("/signup", authMiddleware.notAuthenticate, function(req, res) {
 	res.render("auth/signup", data);
 });
 
+// Get Request For logout
 router.get("/logout", function(req, res) {
 	req.logout();
 	res.redirect("/");
 });
 
+// Post Request For Signup
 router.post("/signup", async function(req, res, next) {
 	// check if user exist
 	const existing = User.findEmail(req.body.email);
@@ -69,25 +71,7 @@ router.post("/signup", async function(req, res, next) {
 	}
 });
 
-// router.post(
-// 	"/login",
-// 	req.authenticate("local", {
-// 		successRedirect: "/dash",
-// 		failureRedirect: "/auth/login",
-// 		failureFlash: true
-// 	})
-// );
-
-// router.post(
-// 	"/login",
-// 	passport.authenticate("local", {
-// 		failureRedirect: "/auth/login"
-// 	}),
-// 	async function(req, res) {
-// 		res.redirect("/dash");
-// 	}
-// );
-
+// exporting the passport to use in the routes 
 module.exports = function(passport) {
 	router.post(
 		"/login",

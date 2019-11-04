@@ -5,23 +5,11 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const body_parser = require('body-parser');
-// Mongoose setup
-// TODO: add mongoDb url from atlas
-// const mongoose = require("mongoose");
-// mongoose.set("useCreateIndex", true);
-// mongoose
-// 	.connect("URL", {
-// 		useNewUrlParser: true,
-// 		useUnifiedTopology: true
-// 	})
-// 	.then(() => console.log("database connected"))
-// 	.catch(err => console.log(err));
 
 // Calling in Users from Model
 const User = require("./models/User");
 
 // Passport Setup
-/** Configured Passport */
 const passport = require("./passport");
 
 //Routes
