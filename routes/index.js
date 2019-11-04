@@ -17,7 +17,7 @@ try {
 	parsed_data = {}
 }
 
-// To have shuffled news on any page 
+// To have shuffled news on any page
 function shuffleArray(array) {
 	for (var i = array.length - 1; i > 0; i--) {
 		var j = Math.floor(Math.random() * (i + 1));
@@ -165,7 +165,7 @@ router.post("/dash", function (req, res, next) {
 	res.render("dash", data);
 });
 
-// Search Functionality 
+// Search Functionality
 router.get("/index/keywords", function(req, res, next){
 
 	function random_dummy_data(){
@@ -208,7 +208,7 @@ router.get("/index/keywords", function(req, res, next){
 						keyword = article.keywords[j]
 						// compare the users searched words to the articles keywords
 						for (let k = 0; k < data.keywords.length; k++){
-							search_word = data.keywords[k].toLowerCase() 
+							search_word = data.keywords[k].toLowerCase()
 							if (keyword == search_word ){
 								// if they match, add the article to dummy data
 								data.dummy_data.push(article)
@@ -230,7 +230,16 @@ router.get("/index/keywords", function(req, res, next){
 	res.render("index", data);
 })
 
-//user history
+//get user history
+router.get("/user/history", function(req, res, next){
+	const data = {};
+	// data.title = req.user.name;
+	data.user = req.user;
+	//data.dummy_data = parsed_data;
+	res.render("history", data)
+})
+
+//adds article to user history
 router.post("/index/history", function(req, res, next){
 	const article = req.body
 	console.log(req.user);

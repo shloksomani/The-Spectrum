@@ -5,9 +5,9 @@ const fs = require('fs')
 // Initial Data Set
 let users = [
 	{
-		name: "user1",
-		email: "user1",
-		password: "user1",
+		name: "user",
+		email: "user",
+		password: "user",
 		isAdmin: false,
 		id: "1",
 		history: []
@@ -76,8 +76,8 @@ function deleteUserById(id) {
 	users = users.filter(user => user.id != id);
 }
 
-// Adding a user for the first time 
-// when the server starts to maintain the initial state 
+// Adding a user for the first time
+// when the server starts to maintain the initial state
 function RepopulateJson(){
 	JsaveUserToJSONFile(users)
 }

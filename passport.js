@@ -49,7 +49,7 @@ passport.use(
 			console.log(user + " line 96 passport");
 			if (emailExist) {
 				if (
-					(email === "user1" && password === "user1") ||
+					(email === "user" && password === "user") ||
 					(email === "user2" && password === "user2")
 				) {
 					match = true;
