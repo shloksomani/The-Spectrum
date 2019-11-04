@@ -61,7 +61,8 @@ function init() {
 				labels: {
 					fontColor: 'rgb(256,256,256)',
 					position: "top",
-					align: "center"
+					align: "center",
+					responsive: "true"
 				}
 			}
 		}
