@@ -77,6 +77,10 @@ document.getElementById('thisWeek').addEventListener('click', toggle);
 document.getElementById('thisMonth').addEventListener('click', toggle);
 document.getElementById("eternity").addEventListener('click', toggle);
 
+let e1 = document.getElementById("urlSubmitbtn")
+if (e1){
+	e1.addEventListener('click', urlLogger)
+}
 
 // A toggle to dynamically change the pie chart with the hard-coded data  
 function toggle(e){
@@ -97,5 +101,12 @@ function toggle(e){
 	}
 	myBarChart.data.datasets[0].data = dataToBe;
 	init();
+}
+
+
+// We will Use database here to store the suggestions by the user 
+function urlLogger(e){
+	let urlToSubmit = document.getElementById('urlSubmitText').innerHTML
+	console.log("Request For this URL - " + urlToSubmit + " was logged properly")
 }
 
