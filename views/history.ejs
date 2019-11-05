@@ -35,8 +35,181 @@
     <!-- Manipulating the table -->
     <script>const userTable = document.querySelector('#userTable')
 
-        var userCheck = <%- JSON.stringify(user) %>
-            userCheck[0].history.forEach(function (article) {
+        //var userCheck =  JSON.stringify(user) %>
+        const history = [{
+      		title: 'Stock Markets Suffer as China Trade Taxes Rais Prices',
+      		summary:
+      			'China has started upping the prices on goods and looking for markets elsewhere such as India. Ever since the taxes have come into effect they are not able to maintain trade at such cheap prices.',
+      		keywords: ["china",
+      			"india",
+      			"world",
+      			"trade",
+      			"president",
+      			"trump",
+      			"tax",
+      			"economy",
+      			"president"],
+      		top_image:
+      			'https://bipartisanreport.com/wp-content/uploads/2019/11/trump-furious-angry-ugly.jpg',
+      		url:
+      			'https://bipartisanreport.com/2019/11/02/world-series-pitcher-refuses-trump-invite-like-a-literal-pro/',
+      		bias: 'left_bias',
+      		mbfc: 'https://mediabiasfactcheck.com/bipartisan-report/'
+      	},
+        {
+      		title:
+      			'Former Georgia cop who killed a naked black man gets 12 years in prison',
+      		summary:
+      			'(CNN) A former Georgia police officer was sentenced to 12 years in prison Friday for the killing of a mentally ill, unarmed and naked black man in 2015.\nDeKalb County Superior Court Judge LaTisha Dear Jackson gave Robert "Chip" Olsen a 20-year term, with 12 years to be served in custody.\nUnder the sentence, Olsen is prohibited from working in law enforcement, possessing firearms or profiting from the case.\n"Many might have thought you were stoic and void of emotion," the judge told Olsen.\nProsecutors had asked the court for a 25-year sentence with five years probation.',
+      		keywords: ["man",
+      			"black",
+      			"watched",
+      			"jackson",
+      			"olsen",
+      			"gets",
+      			"saw",
+      			"youve",
+      			"court",
+      			"working",
+      			"naked",
+      			"cop",
+      			"prison",
+      			"judge",
+      			"killed",
+      			"12",
+      			"sentence",
+      			"georgia"],
+      		top_image:
+      			'https://cdn.cnn.com/cnnnext/dam/assets/191014140843-anthony-hill-robert-olsen-split-super-tease.jpg',
+      		url:
+      			'https://cnn.com/2019/11/01/us/anthony-hill-robert-olsen-sentencing/index.html',
+      		bias: 'left_bias',
+      		mbfc: 'https://mediabiasfactcheck.com/cnn/'
+      	},
+        {
+      		title:
+      			'Pullback in Syria could prolong war \'two or three decades,\' former top diplomat says',
+      		summary:
+      			'After talking to President Trump, Turkish President Recep Tayyip Erdogan ordered attacks against Syrian Kurdish fighters to create a “safe zone” on his country’s border with Syria.\nThe Turks view the Syrian Kurds as having links to the PKK, a militant Kurdish group in Turkey that Erdogan views as terrorists.\n“So the Turks and the Kurds will sort of go to war,” Stengel said.\nPutin “weaponized immigration in Germany … and that bled over into the U.S.,” he said.\nDownload or subscribe on iTunes: “Skullduggery” from Yahoo News_____Download the Yahoo News app to customize your experience.',
+      		keywords: ["turkish",
+      			"prolong",
+      			"stengel",
+      			"turks",
+      			"trump",
+      			"state",
+      			"syrian",
+      			"syria",
+      			"decades",
+      			"russian",
+      			"president",
+      			"diplomat",
+      			"pullback",
+      			"mean",
+      			"war"],
+      		top_image:
+      			'https://s.yimg.com/uu/api/res/1.2/f3ppxEkzQUVrM8__CB5s5A--~B/aD03NTY7dz0xNDA0O3NtPTE7YXBwaWQ9eXRhY2h5b24-/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2019-10/cb9820e0-ec59-11e9-bf77-13dddcfb5f7b',
+      		url:
+      			'https://news.yahoo.com/pullback-in-syria-could-prolong-war-two-or-three-decades-former-top-diplomat-says-192215706.html',
+      		bias: 'left_center_bias',
+      		mbfc: 'https://mediabiasfactcheck.com/yahoo-news/'
+      	},
+        {
+      		title: 'The Moralistic Style in American Politics',
+      		summary:
+      			'MORALITY VERSUS MORALISMOne of the most striking features of contemporary American politics is that political rhetoric is increasingly moralistic while the actual ability of governing systems to achieve moral ends is in decline.\nThat was a remark about the inherent limitations of statecraft, about the politician\'s constant choice between competing moral ends.\nA moral politics is more than merely transactional — the transactions must advance moral goals — but less than crusading.\nMoral politics, by contrast, is self-confident in its aims but never so certain of its ends as to expatriate dissenters.\nThe risk is that it does so at the expense of a moral politics, because this politics has no end but winning.',
+      		keywords: ["politics",
+      			"moralist",
+      			"world",
+      			"statesman",
+      			"moralism",
+      			"moral",
+      			"style",
+      			"moralistic",
+      			"moralizer",
+      			"american",
+      			"political",
+      			"ends",
+      			"war"],
+      		top_image:
+      			'https://www.nationalaffairs.com/storage/app/uploads/public/146/e52/aad/thumb__817_0_0_0_auto.jpg',
+      		url:
+      			'https://www.nationalaffairs.com/publications/detail/the-moralistic-style-in-american-politics',
+      		bias: 'right_center_bias',
+      		mbfc: 'https://mediabiasfactcheck.com/national-affairs-magazine/'
+      	},
+        {
+      		title:
+      			'Boris Johnson vows to save free TV licences for over-75s as a top election priority – The Sun',
+      		summary:
+      			'BORIS Johnson has vowed to save free TV licences for over-75s as a top election priority.\nSenior Tory election planners want to include a free licence pledge in the party’s manifesto.\nLib Dem leader Jo Swinson demands to be included in ITV\'s election debate“But it’s also crucial that the BBC recognises its duty to pay for free TV licences for all over-75s.\nLabour’s Gordon Brown introduced free TV licences for the over-75s when Chancellor in 1999.\nEight-year high for pensions rise STATE pensions will increase by 3.9 per cent to £175.20 from April, the biggest rise in eight years.',
+      		keywords: ["johnson",
+      			"election",
+      			"priority",
+      			"free",
+      			"tv",
+      			"boris",
+      			"vows",
+      			"pensions",
+      			"cent",
+      			"rise",
+      			"over75s",
+      			"save",
+      			"licences"],
+      		top_image:
+      			'https://www.thesun.co.uk/wp-content/uploads/2019/11/NINTCHDBPICT000535686027.jpg?strip=all&quality=100&w=1200&h=800&crop=1',
+      		url:
+      			'https://www.thesun.co.uk/news/10267743/election-boris-johnson-free-tv-licences/',
+      		bias: 'right_bias',
+      		mbfc: 'https://mediabiasfactcheck.com/the-sun/'
+      	},
+        {
+      		title: 'Is there a biological reason to eat three meals a day?',
+      		summary:
+      			'Most of us eat breakfast, lunch and dinner every day.\nWhile the content of your plate may vary from day to day, you rarely deviate from getting three squares.\nIs there a biological reason to eat three meals a day, or is it a societal construct so ingrained in our culture that you never question it?\nAdvertisementFreedman contends there isn\'t a biological reason to eat three meals a day.\nThe vast majority of respondents reported eating their main meals at noon and again at 6 p.m., with fewer taking the time to eat breakfast [source: USDA].',
+      		keywords: ["day",
+      			"reason",
+      			"meals",
+      			"snack",
+      			"eat",
+      			"breakfast",
+      			"industry",
+      			"lunch",
+      			"biological",
+      			"dinner",
+      			"noon"],
+      		top_image: 'https://cdn.hswstatic.com/gif/three-meals-daily-orig.jpg',
+      		url:
+      			'https://recipes.howstuffworks.com/biological-reason-to-eat-three-meals-day.htm',
+      		bias: 'pro_science',
+      		mbfc: 'https://mediabiasfactcheck.com/howstuffworks/'
+      	},
+        {
+      		title: 'Top Democrats clash over health care at marquee Iowa event',
+      		summary:
+      			'DES MOINES, Iowa (AP) — The leading Democrats vying for their party’s presidential nomination clashed over the critical issue of health care while offering starkly contrasting visions for the nation’s ideological direction before thousands of cheering Iowa activists at a raucous event kicking off the three-month sprint to the first-in-the-nation caucuses.\nBiden said he would overhaul health care nationwide without “increases in taxes for the middle class.\nThe former vice president has promised not to “abandon” Obama’s signature health care law.\nThe event amounts to the largest gathering of Democrats in an early voting state — and was something of a dress rehearsal for the Feb. 3 caucuses.\nWarren supporters erected a giant likeness of Bailey, the senator’s golden retriever.',
+      		keywords: ["iowa",
+      			"sen",
+      			"biden",
+      			"warren",
+      			"marquee",
+      			"democrats",
+      			"health",
+      			"event",
+      			"buttigieg",
+      			"care",
+      			"supporters",
+      			"medicare",
+      			"president",
+      			"clash"],
+      		top_image:
+      			'https://media.breitbart.com/media/2019/11/wi/ap/02/0ad022_aptopix-election-2020-joe-biden-40252-joe-biden-democratic-presidential-640x335.jpg',
+      		url:
+      			'https://www.breitbart.com/news/top-democrats-clash-over-health-care-at-marquee-iowa-event/',
+      		bias: 'questionable_sources',
+      		mbfc: 'https://mediabiasfactcheck.com/breitbart/'
+      	}
+        ]
+            history.forEach(function (article) {
                 addUserToTable(article)
             });
         function addUserToTable(article) {
