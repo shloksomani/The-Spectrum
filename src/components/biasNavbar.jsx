@@ -11,24 +11,74 @@ import {
 export class BiasNavbar extends Component {
 	render() {
 		return (
-			<Navbar bg="" expand="lg" className="navbar" id="bias-header">
-				<Navbar.Toggle aria-controls="basic-navbar-nav " id="header" />
-				<Navbar.Collapse id="basic-navbar-nav">
-					<Nav className="mr-auto">
-						<Nav.Link href="#home">Left Bias</Nav.Link>
-						<Nav.Link href="#link">Left-Center Bias</Nav.Link>
-						<Nav.Link href="#link">Least Bias</Nav.Link>
-						<Nav.Link href="#link">Right-Center Bias</Nav.Link>
-						<Nav.Link href="#link">Right Bias</Nav.Link>
-						<Nav.Link href="#link">Questionable Bias</Nav.Link>
-						<Nav.Link href="#link">Pro-Science Bias</Nav.Link>
-					</Nav>
-					<Form inline>
-						<FormControl type="text" placeholder="Search" className="mr-sm-2" />
-						<Button variant="outline-success">Search</Button>
-					</Form>
-				</Navbar.Collapse>
-			</Navbar>
+			<React.Fragment>
+				<nav id="mediaMenu" className="navbar navbar-expand-lg navbar-light">
+					<div
+						className="collapse navbar-collapse navbarCombine"
+						id="navbarText"
+					>
+						<ul className="navbar-nav mr-auto">
+							<li className="nav-item">
+								<a className="nav-link LeftB" href="#">
+									Left Bias
+								</a>
+							</li>
+							<li className="nav-item">
+								<a className="nav-link LCB" href="#">
+									Left-Center Bias
+								</a>
+							</li>
+							<li className="nav-item">
+								<a className="nav-link LeastB" href="#">
+									Least Biased
+								</a>
+							</li>
+							<li className="nav-item">
+								<a className="nav-link RCB" href="#">
+									Right-Center Bias
+								</a>
+							</li>
+							<li className="nav-item">
+								<a className="nav-link RB" href="#">
+									Right Bias
+								</a>
+							</li>
+							<li className="nav-item">
+								<a className="nav-link PS" href="#">
+									Pro-Science
+								</a>
+							</li>
+							<li className="nav-item">
+								<a className="nav-link QS" href="#">
+									Questionable Sources
+								</a>
+							</li>
+						</ul>
+
+						<span className="navbar-text d-none d-lg-block d-xl-block">
+							<form
+								className="form-inline"
+								action="/index/keywords"
+								method="GET"
+							>
+								<input
+									className="form-control mr-sm-2"
+									type="search"
+									name="user_search"
+									placeholder="Search"
+									aria-label="Search"
+								/>
+								<button
+									className="btn my-2 my-sm-0 searchBtnMediaMenu"
+									type="submit"
+								>
+									Search
+								</button>
+							</form>
+						</span>
+					</div>
+				</nav>
+			</React.Fragment>
 		);
 	}
 }
