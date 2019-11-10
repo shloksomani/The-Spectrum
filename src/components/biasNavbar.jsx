@@ -1,14 +1,10 @@
 import React, { Component } from "react";
-import {
-	Navbar,
-	Nav,
-	NavDropdown,
-	Form,
-	Button,
-	FormControl
-} from "react-bootstrap";
 
 export class BiasNavbar extends Component {
+	state = {
+		bias: this.props.bias
+	};
+
 	render() {
 		return (
 			<React.Fragment>
@@ -19,37 +15,45 @@ export class BiasNavbar extends Component {
 					>
 						<ul className="navbar-nav mr-auto">
 							<li className="nav-item">
-								<a className="nav-link LeftB" href="#">
+								<a
+									className="nav-link LeftB"
+									href="#"
+									onClick={this.handelBias}
+								>
 									Left Bias
 								</a>
 							</li>
 							<li className="nav-item">
-								<a className="nav-link LCB" href="#">
-									Left-Center Bias
+								<a className="nav-link LCB" href="#" onClick={this.handelBias}>
+									Left Center Bias
 								</a>
 							</li>
 							<li className="nav-item">
-								<a className="nav-link LeastB" href="#">
+								<a
+									className="nav-link LeastB"
+									href="#"
+									onClick={this.handelBias}
+								>
 									Least Biased
 								</a>
 							</li>
 							<li className="nav-item">
-								<a className="nav-link RCB" href="#">
-									Right-Center Bias
+								<a className="nav-link RCB" href="#" onClick={this.handelBias}>
+									Right Center Bias
 								</a>
 							</li>
 							<li className="nav-item">
-								<a className="nav-link RB" href="#">
+								<a className="nav-link RB" href="#" onClick={this.handelBias}>
 									Right Bias
 								</a>
 							</li>
 							<li className="nav-item">
-								<a className="nav-link PS" href="#">
-									Pro-Science
+								<a className="nav-link PS" href="#" onClick={this.handelBias}>
+									Pro Science
 								</a>
 							</li>
 							<li className="nav-item">
-								<a className="nav-link QS" href="#">
+								<a className="nav-link QS" href="#" onClick={this.handelBias}>
 									Questionable Sources
 								</a>
 							</li>
@@ -81,6 +85,10 @@ export class BiasNavbar extends Component {
 			</React.Fragment>
 		);
 	}
+
+	handelBias = event => {
+		this.props.setterParent(event.target.innerHTML);
+	};
 }
 
 export default BiasNavbar;

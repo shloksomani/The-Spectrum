@@ -106,7 +106,7 @@ body {
 	}
 }
 
-.search-icon .search-svg {
+#search-icon {
 	display: none;
 	width: 100% !important;
 	max-height: 30px !important;

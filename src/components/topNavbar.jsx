@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
+import searchLens from "../assets/image/loupe.svg";
 
 export class TopNavbar extends Component {
 	render() {
@@ -12,6 +13,13 @@ export class TopNavbar extends Component {
 
 					<div className="d-flex ml-auto">
 						<span className="search-icon"></span>
+						<img
+							className="search-svg"
+							id="search-icon"
+							src={searchLens}
+							alt="search-icon"
+							onClick="openSearch()"
+						></img>
 					</div>
 
 					<div id="myOverlay" className="overlay">
