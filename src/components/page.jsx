@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import TopNavbar from "./topNavbar";
 import BiasNavbar from "./biasNavbar";
 import Container from "./container";
-import parsed_data from "../data";
+import parsed_data from "../assets/data/data";
 export class Page extends Component {
 	state = {
 		data: [],
