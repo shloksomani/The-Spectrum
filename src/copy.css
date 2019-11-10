@@ -23,6 +23,7 @@ body {
 .navbar-brand {
 	font-weight: bold;
 	font-size: 40px !important;
+	color: #ffffff !important;
 }
 
 #bias {
@@ -30,9 +31,10 @@ body {
 	color: #ffffff;
 }
 
-#header .navbar-toggler {
+#header {
 	border: none;
 	outline: none;
+	color: #ffffff !important;
 }
 
 #mediaMenu.navbar .navbar-nav li a {
@@ -44,17 +46,17 @@ body {
 	border-color: #e3e8fd;
 }
 
-#header .searchHeader {
+#header-toggle {
 	border-color: #e3e8fd;
 }
 
-.searchBar {
-	/* justify-content: space-evenly !important; */
+#topheader .nav-link {
+	color: white !important;
+	font-size: 25px;
 }
 
-#header.navbar .navbar-nav li a {
-	color: #ffffff !important;
-	font-size: 20px !important;
+#bias-header .nav-link {
+	color: white !important;
 }
 
 #newsTitle {
