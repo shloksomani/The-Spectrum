@@ -6,4 +6,7 @@ import "./copy.css";
 import Page from "./components/page";
 import "bootstrap/dist/css/bootstrap.css";
 
-ReactDOM.render(<Page />, document.getElementById("root"));
+ReactDOM.render(
+  <Page />,
+  document.getElementById("root")
+);
