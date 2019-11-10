@@ -1,0 +1,283 @@
+/* Admin  */
+
+/* body {
+	background-color: #dce3ed;
+	margin-left: 20px;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+} */
+
+table {
+	margin: auto;
+}
+
+.title {
+	text-align: center;
+}
+
+table,
+td,
+th {
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+
+td,
+th {
+	min-width: 200px;
+}
+
+h4 {
+	margin-top: 5px;
+	margin-bottom: 2px;
+}
+
+/* .patron {
+	border: 1px solid black;
+	padding: 10px;
+	max-width: 1000px;
+	margin-top: 10px;
+}
+.patron p {
+	margin: 2px;
+}
+.patron span {
+	font-weight: bold;
+}
+#bookInfo p {
+	font-weight: bold;
+}
+#bookInfo span {
+	font-weight: normal;
+	color: black;
+} */
+
+.green {
+	color: green;
+}
+
+.red {
+	color: red;
+}
+
+/* style css  */
+
+.navbar {
+	font-family: "Playfair Display";
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-image: linear-gradient(
+		-225deg,
+		#473b7b 0%,
+		#3584a7 51%,
+		#30d2be 100%
+	);
+}
+
+.navbar-brand {
+	font-weight: bold;
+	font-size: 40px !important;
+}
+
+#bias {
+	margin-left: 30%;
+	color: #ffffff;
+}
+
+#header .navbar-toggler {
+	border: none;
+	outline: none;
+}
+
+#mediaMenu.navbar .navbar-nav li a {
+	color: #ffffff !important;
+	opacity: 1;
+}
+
+#mediaMenu .searchBtnMediaMenu {
+	border-color: #e3e8fd;
+}
+
+#header .searchHeader {
+	border-color: #e3e8fd;
+}
+
+.searchBar {
+	/* justify-content: space-evenly !important; */
+}
+
+#header.navbar .navbar-nav li a {
+	color: #ffffff !important;
+	font-size: 20px !important;
+}
+
+#newsTitle {
+	font-family: "Playfair Display";
+	font-weight: bold;
+}
+
+#mediaMenu .navbar .navbar-text .btn-primary,
+.btn:hover,
+.btn:active,
+.btn:visited {
+	background-color: #e7e96d !important;
+}
+
+.jumbotron {
+	padding-left: 100px !important;
+	padding-right: 100px !important;
+	background-color: transparent !important;
+}
+
+#firstNews {
+	border-radius: 25px !important;
+}
+
+#dashBody {
+	color: #ffffff;
+}
+
+#dashBody .smth {
+	background-color: #ffffff;
+	color: black;
+}
+
+@media screen and (min-width: 991px) {
+	.sticky {
+		position: fixed !important;
+		top: 0 !important;
+		width: 100% !important;
+		z-index: 1000 !important;
+		background-image: linear-gradient(
+			-225deg,
+			#473b7b 0%,
+			#3584a7 51%,
+			#30d2be 100%
+		);
+		/* background-color: rgb(230, 130, 73); */
+	}
+
+	.sticky + .content {
+		padding-top: 60px !important;
+	}
+}
+
+.search-icon .search-svg {
+	display: none;
+	width: 100% !important;
+	max-height: 30px !important;
+	stroke-width: 4 !important;
+}
+
+@media screen and (max-width: 991px) {
+	#header .search-icon {
+		max-width: 30px !important;
+		margin: 0px !important;
+	}
+
+	#header .search-icon:hover {
+		cursor: pointer;
+	}
+
+	#header .navbar-toggler {
+		display: flex !important;
+		margin-left: auto !important;
+		padding: 5px !important;
+		border: none;
+		outline: none;
+		margin: 0px !important;
+		/* padding: 5px !important; */
+	}
+	.search-svg {
+		max-width: 30px !important;
+		max-height: 30px !important;
+		display: flex !important;
+		padding: 0px !important;
+		position: relative !important;
+		float: right !important;
+		cursor: pointer !important;
+	}
+}
+
+@media screen and (max-width: 395px) {
+	#header .navbar-brand {
+		font-weight: bold;
+		font-size: 30px !important;
+	}
+}
+
+/*# sourceMappingURL=style.css.map */
+
+/* Search
+    Citation:
+    https://www.w3schools.com/howto/howto_css_fullscreen_search.asp
+    Used the above website as a reference to understand how to build charts interactively
+ */
+.overlay {
+	height: 100%;
+	width: 100%;
+	display: none;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.9);
+}
+
+.overlay-content {
+	position: relative;
+	top: 46%;
+	width: 80%;
+	text-align: center;
+	margin-top: 30px;
+	margin: auto;
+	animation: 750ms 1 forwards ani;
+}
+
+.overlay .closebtn {
+	position: absolute;
+	top: 20px;
+	right: 45px;
+	font-size: 60px;
+	cursor: pointer;
+	color: white;
+}
+
+.overlay .closebtn:hover {
+	color: #ccc;
+}
+
+.overlay button {
+	/* background-color: ; */
+	color: white;
+}
+
+/*Pie Chart CSS Code: */
+
+.dropdown .heading {
+	padding: 5px !important;
+}
+
+.dropdown .btn .smth {
+	display: inline-block !important;
+	vertical-align: middle !important;
+	float: none !important;
+	background-color: black !important;
+	outline: white;
+}
+
+#Schart {
+	max-width: 800px;
+	max-height: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}
