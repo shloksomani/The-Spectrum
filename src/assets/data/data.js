@@ -1450,4 +1450,4 @@ let users = [
 	}
 ];
 
-module.exports = {parsed_data, users};
+module.exports = parsed_data;

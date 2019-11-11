@@ -20,7 +20,17 @@ export class Page extends Component {
 						setterParent={this.handleBias}
 					></BiasNavbar>
 
-					<BiasPage bias={this.state.bias}></BiasPage>
+					<Route
+						exact
+						path="/"
+						render={props => <BiasPage {...props} bias={this.state.bias} />}
+					/>
+					<Route
+						exact
+						path="/:id"
+						render={props => <BiasPage {...props} bias={this.state.bias} />}
+					/>
+					{/* // <BiasPage bias={this.state.bias}></BiasPage> */}
 				</Router>
 			</React.Fragment>
 		);
