@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export class BiasNavbar extends Component {
 	render() {
@@ -11,47 +12,96 @@ export class BiasNavbar extends Component {
 					>
 						<ul className="navbar-nav mr-auto">
 							<li className="nav-item">
-								<a
+								{/* <a
 									className="nav-link LeftB"
 									href="#"
 									onClick={this.handelBias}
 								>
 									Left Bias
-								</a>
+								</a> */}
+								<Link
+									to="/left_bias"
+									className="nav-link"
+									onClick={this.handelBias}
+								>
+									Left Bias
+								</Link>
 							</li>
 							<li className="nav-item">
-								<a className="nav-link LCB" href="#" onClick={this.handelBias}>
+								{/* <a className="nav-link LCB" href="#" onClick={this.handelBias}>
 									Left Center Bias
-								</a>
+								</a> */}
+								<Link
+									to="/left_center_bias"
+									className="nav-link"
+									onClick={this.handelBias}
+								>
+									Left Center Bias
+								</Link>
 							</li>
 							<li className="nav-item">
-								<a
+								{/* <a
 									className="nav-link LeastB"
 									href="#"
 									onClick={this.handelBias}
 								>
 									Least Biased
-								</a>
+								</a> */}
+								<Link
+									to="/least_bias"
+									className="nav-link"
+									onClick={this.handelBias}
+								>
+									Least Biased
+								</Link>
 							</li>
 							<li className="nav-item">
-								<a className="nav-link RCB" href="#" onClick={this.handelBias}>
+								{/* <a className="nav-link RCB" href="#" onClick={this.handelBias}>
 									Right Center Bias
-								</a>
+								</a> */}
+								<Link
+									to="/right_center_bias"
+									className="nav-link"
+									onClick={this.handelBias}
+								>
+									Right Center Bias
+								</Link>
 							</li>
 							<li className="nav-item">
-								<a className="nav-link RB" href="#" onClick={this.handelBias}>
+								{/* <a className="nav-link RB" href="#" onClick={this.handelBias}>
 									Right Bias
-								</a>
+								</a> */}
+								<Link
+									to="/right_bias"
+									className="nav-link"
+									onClick={this.handelBias}
+								>
+									Right Bias
+								</Link>
 							</li>
 							<li className="nav-item">
-								<a className="nav-link PS" href="#" onClick={this.handelBias}>
+								{/* <a className="nav-link PS" href="#" onClick={this.handelBias}>
 									Pro Science
-								</a>
+								</a> */}
+								<Link
+									to="/pro_science"
+									className="nav-link"
+									onClick={this.handelBias}
+								>
+									Pro Science
+								</Link>
 							</li>
 							<li className="nav-item">
-								<a className="nav-link QS" href="#" onClick={this.handelBias}>
+								{/* <a className="nav-link QS" href="#" onClick={this.handelBias}>
 									Questionable Sources
-								</a>
+								</a> */}
+								<Link
+									to="/questionable_sources"
+									className="nav-link"
+									onClick={this.handelBias}
+								>
+									Questionable Sources
+								</Link>
 							</li>
 						</ul>
 
