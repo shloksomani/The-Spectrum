@@ -1,0 +1,63 @@
+<!-- Admin Page -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include ./partials/header %>
+    <% include ./partials/cssLink %>
+
+    <link rel="stylesheet" href="/stylesheets/admin.css">
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <title>History</title>
+</head>
+
+<body id="dashBody">
+     <% include ./partials/menu %>
+    <% include ./partials/mediaMenu %>
+    <h1 class = "title">User History</h1>
+    <div class="smth title">
+        <p>Look at your media diet</p>
+    </div>
+    <div class="container">
+
+    <table id='userTable'>
+        <tbody>
+            <tr>
+                <th>
+                    Article Title
+                </th>
+                <th>
+                    Bias
+                </th>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <!-- Manipulating the table -->
+    <script>const userTable = document.querySelector('#userTable')
+
+        var userCheck = <%- JSON.stringify(user) %>
+            userCheck[0].history.forEach(function (article) {
+                addUserToTable(article)
+            });
+        function addUserToTable(article) {
+            const title = document.createElement("td")
+            title.appendChild(document.createTextNode(article.title))
+            const bold = document.createElement("strong")
+            bold.appendChild(document.createTextNode(article.bias))
+            const bias = document.createElement("td")
+            bias.appendChild(bold)
+            // const action = document.createElement("td")
+            // action.innerHTML = "<form action=\"/admin\" method=\"POST\"> <input class= \"return\" name=\"id\" value =\"remove: "+user.id+ "\" type=\"submit\"> </form>"
+            const row = document.createElement("tr")
+            row.appendChild(title)
+            row.appendChild(bias)
+            tablebody = userTable.querySelector('tbody')
+            tablebody.appendChild(row)
+        }
+
+    </script>
+    <% include ./partials/script %>
+</body>
+
+</html>

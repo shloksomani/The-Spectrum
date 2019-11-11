@@ -1,0 +1,112 @@
+<!--
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-end">
+  <a class="navbar-brand" href="#">The Spectrum</a>
+  <button class="btn btn-success ml-auto mr-1">Always Show</button>
+  <div class="flex-grow-0" id="navbarSupportedContent">
+    <ul class="navbar-nav text-right">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Right Link 1</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Right Link 2</a>
+      </li>
+    </ul>
+  </div>
+</nav> -->
+
+
+
+
+<!-- <nav id="header" class="navbar navbar-expand-lg navbar-dark">
+  <a class="navbar-brand ml-2" href="/">The Spectrum</a>
+
+  <div class="collapse navbar-right navbar-collapse navbarCombine" id="navbarTogglerDemo01">
+    <ul class="navbar-nav mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Home </a>
+      </li>
+      <% if(user){ %>
+      <li class="nav-item" id="dashboard">
+        <a class="nav-link" href="/dash">Dashboard</a>
+      </li>
+      <li class="nav-item" id="logout">
+        <a class="nav-link" href="/auth/logout">Logout</a>
+      </li>
+      <% } else{ %>
+      <li class="nav-item" id="login">
+        <a class="nav-link" href="/auth/login">Log In</a>
+      </li>
+      <li class="nav-item" id="signup">
+        <a class="nav-link" href="/auth/signup">Sign Up</a>
+      </li>
+      <% } %>
+
+    </ul>
+  </div>
+</nav> -->
+
+<nav id="header" class="navbar navbar-expand-lg navbar-dark">
+  <a class="navbar-brand ml-2" href="/">The Spectrum</a>
+
+  <div class="d-flex ml-auto">
+    <span class="search-icon">
+      <img class="search-svg" src="/images/search.jpg" alt="search-icon" onclick="openSearch()">
+    </span>
+  </div>
+
+
+  <div id="myOverlay" class="overlay">
+    <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
+    <div class="d-flex justify-content-center overlay-content">
+      <span class="navbar-text d-lg-none d-xl-none searchBar">
+        <form class="form-inline" action="/index/keywords" method="GET">
+          <input class="form-control mr-sm-2" type="search" name="user_search" placeholder="Search" aria-label="Search">
+          <button class="btn my-2 my-sm-0 searchHeader" type="submit">Search</button>
+        </form>
+      </span>
+    </div>
+  </div>
+
+
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbarCombine"
+    aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-right navbar-collapse navbarCombine" id="navbarTogglerDemo01">
+    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Home </a>
+      </li>
+
+
+      <% if(user){ %>
+      <li class="nav-item" id="Dash">
+        <a class="nav-link" href="/dash">Dashboard</a>
+      </li>
+      <li class="nav-item" id="logout">
+        <a class="nav-link" href="/auth/logout">Logout</a>
+      </li>
+      <li class="nav-item" id="logout">
+        <a class="nav-link" href="/user/history">History</a>
+      </li>
+      <% if (user[0].id === '0' && user[0].isAdmin) { %>
+      <li class="nav-item" id="Admin">
+        <a class="nav-link" href="/admin">Admin</a>
+      </li>
+
+      <% }} else{ %>
+      <li class="nav-item" id="login">
+        <a class="nav-link" href="/auth/login">Log In</a>
+      </li>
+      <li class="nav-item" id="signup">
+        <a class="nav-link" href="/auth/signup">Sign Up</a>
+      </li>
+      <% } %>
+    </ul>
+  </div>
+
+
+
+
+</nav>

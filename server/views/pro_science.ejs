@@ -1,0 +1,108 @@
+<!-- Pro Science Page -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ./partials/header %>
+  <% include ./partials/cssLink %>
+</head>
+
+<body>
+  <% include ./partials/menu %>
+
+  <% include ./partials/mediaMenu %>
+
+<h1 id="bias">Pro-Science Trending</h1>
+  <div class="content">
+    <div class="row justify-content-center">
+      <div class="col-10 d-flex align-items-stretch">
+        <div class="row no-gutters bg-light position-relative mt-4" id="firstNews">
+          <div class="col-md-4 mb-md-0 p-md-4">
+            <img src="<%= dummy_data[0].top_image%>"
+              class="w-100 rounded" alt="">
+          </div>
+          <div class="col-md-8 position-relative p-4 pl-md-0">
+            <h5 id="newsTitle" class="mt-0"><%= dummy_data[0].title %></h5>
+            <p><%= dummy_data[0].summary %>
+            </p>
+            <div><a href="<%=dummy_data[0].url%>" class="stretched-link check history_0">Link to news</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-10 d-flex align-items-stretch">
+        <div class="row no-gutters bg-light position-relative mt-4" id="firstNews">
+          <div class="col-md-4 mb-md-0 p-md-4">
+            <img src="<%= dummy_data[1].top_image %>"
+              class="w-100 rounded" alt="">
+          </div>
+          <div class="col-md-8 position-relative p-4 pl-md-0">
+            <h5 id="newsTitle" class="mt-0"><%= dummy_data[1].title %></h5>
+            <p><%= dummy_data[1].summary %>
+            </p>
+            <a href="<%=dummy_data[1].url%>" class="stretched-link check history_1">Link to News Article</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-10 d-flex align-items-stretch">
+        <div class="row no-gutters bg-light position-relative mt-4" id="firstNews">
+          <div class="col-md-4 mb-md-0 p-md-4">
+            <img src="<%= dummy_data[2].top_image %>"
+              class="w-100 rounded" alt="">
+          </div>
+          <div class="col-md-8 position-relative p-4 pl-md-0">
+            <h5 id="newsTitle" class="mt-0"><%= dummy_data[2].title %></h5>
+            <p><%= dummy_data[2].summary %>
+            </p>
+            <a href="<%=dummy_data[2].url%>" class="stretched-link check history_2">Link to News Article</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-10 d-flex align-items-stretch">
+        <div class="row no-gutters bg-light position-relative mt-4" id="firstNews">
+          <div class="col-md-4 mb-md-0 p-md-4">
+            <img src="<%= dummy_data[3].top_image %>"
+              class="w-100 rounded" alt="">
+          </div>
+          <div class="col-md-8 position-relative p-4 pl-md-0">
+            <h5 id="newsTitle" class="mt-0"><%= dummy_data[3].title %></h5>
+            <p><%= dummy_data[3].summary %>
+            </p>
+            <a href="<%=dummy_data[5].url%>" class="stretched-link check history_5">Link to News Article</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-10 d-flex align-items-stretch">
+        <div class="row no-gutters bg-light position-relative mt-4" id="firstNews">
+          <div class="col-md-4 mb-md-0 p-md-4">
+            <img src="<%= dummy_data[4].top_image %>"
+              class="w-100 rounded" alt="">
+          </div>
+          <div class="col-md-8 position-relative p-4 pl-md-0">
+            <h5 id="newsTitle" class="mt-0"><%= dummy_data[4].title %></h5>
+            <p><%= dummy_data[4].summary %>
+            </p>
+            <a href="<%=dummy_data[4].url%>" class="stretched-link check history_4">Link to News Article</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    let dummy_data = <%- JSON.stringify(dummy_data) %>
+    document.addEventListener('click', function(e){
+      if(e.target.classList.contains('check')){
+      //  console.log("clicked article link!");
+        let c = e.target.classList[2]
+        const id = c[c.length - 1]
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://localhost:3000/index/history", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(dummy_data[id]));
+      }
+    });
+  </script>
+<% include ./partials/script %>
+</body>
+</html>
