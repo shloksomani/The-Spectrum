@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 
 export class BiasNavbar extends Component {
-	state = {
-		bias: this.props.bias
-	};
-
 	render() {
 		return (
 			<React.Fragment>
