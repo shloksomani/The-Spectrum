@@ -11,13 +11,12 @@ export class Signup extends Component {
 							role="alert"
 						></div>
 					</div>
-
 					<div class="card card-body">
 						<h1 class="text-center mb-3">
 							<i class="fas fa-user-plus"></i> Register
 						</h1>
 
-						<form action="/auth/signup" method="POST">
+						<form action="/signup" method="POST">
 							<div class="form-group">
 								<label for="name">Name</label>
 								<input
@@ -26,7 +25,7 @@ export class Signup extends Component {
 									name="name"
 									class="form-control"
 									placeholder="Enter Name"
-									value="<%= typeof name != 'undefined' ? name : '' %>"
+									value=""
 									required
 								/>
 							</div>
@@ -38,7 +37,7 @@ export class Signup extends Component {
 									name="email"
 									class="form-control"
 									placeholder="Enter Email"
-									value="<%= typeof email != 'undefined' ? email : '' %>"
+									value=""
 									required
 								/>
 							</div>
@@ -50,7 +49,7 @@ export class Signup extends Component {
 									name="password"
 									class="form-control"
 									placeholder="Create Password"
-									value="<%= typeof password != 'undefined' ? password : '' %>"
+									value=""
 									required
 								/>
 							</div>
@@ -62,7 +61,7 @@ export class Signup extends Component {
 									name="password2"
 									class="form-control"
 									placeholder="Confirm Password"
-									value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
+									value=""
 									required
 								/>
 							</div>
@@ -71,7 +70,7 @@ export class Signup extends Component {
 							</button>
 						</form>
 						<p class="lead mt-4">
-							Have An Account? <a href="/auth/login">Login</a>
+							Have An Account? <a href="/login">Login</a>
 						</p>
 					</div>
 				</div>
@@ -79,5 +78,4 @@ export class Signup extends Component {
 		);
 	}
 }
-
 export default Signup;

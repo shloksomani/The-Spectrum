@@ -16,7 +16,7 @@ export class Login extends Component {
 							<h1 class="text-center mb-3">
 								<i class="fas fa-sign-in-alt"></i> Login
 							</h1>
-							<form action="/auth/login" method="POST">
+							<form action="/login" method="POST">
 								<div class="form-group">
 									<label for="email">Email</label>
 									<input
@@ -47,7 +47,7 @@ export class Login extends Component {
 								</button>
 							</form>
 							<p class="lead mt-4">
-								No Account? <a href="#">Register</a>
+								No Account? <a href="/auth/signup">Register</a>
 							</p>
 						</div>
 					</div>
@@ -56,5 +56,4 @@ export class Login extends Component {
 		);
 	}
 }
-
 export default Login;
