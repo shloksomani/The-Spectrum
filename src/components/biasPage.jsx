@@ -12,8 +12,9 @@ export class BiasPage extends Component {
 
 		if (this.props.bias === "") {
 			v = this.getData();
-			console.log("at line 24");
+			console.log("at line 15");
 		} else {
+			console.log("at line 17");
 			v = parsed_data[this.props.bias];
 		}
 		return v.map((article, index) => {
