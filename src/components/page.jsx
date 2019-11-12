@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import TopNavbar from "./topNavbar";
 import BiasNavbar from "./biasNavbar";
 import BiasPage from "./biasPage";
+import Home from "./home";
+import Login from "./login";
+import Signup from "./signup";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 export class Page extends Component {
 	state = {
-		data: [],
-		bias: ""
+		bias: "",
+		isLoggedIn: false
 	};
 
 	render() {
@@ -22,16 +25,22 @@ export class Page extends Component {
 						bias={this.state.bias}
 						setterParent={this.handleBias}
 					></BiasNavbar>
-					<Route
-						exact
-						path="/"
-						render={props => <BiasPage {...props} bias={this.state.bias} />}
-					/>
-					<Route
-						path="/:id"
-						render={props => <BiasPage {...props} bias={this.state.bias} />}
-					/>
-					}
+					<Switch>
+						<Route exact path="/">
+							<Home />
+						</Route>
+						<Route
+							exact
+							path="/:id"
+							render={props => <BiasPage {...props} bias={this.state.bias} />}
+						/>
+						<Route exact path="/auth/login">
+							<Login />
+						</Route>
+						<Route exact path="/auth/signup">
+							<Signup />
+						</Route>
+					</Switch>
 				</Router>
 			</React.Fragment>
 		);

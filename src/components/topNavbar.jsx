@@ -89,7 +89,7 @@ export class TopNavbar extends Component {
 									Dashboard
 								</a> */}
 								<Link
-									to="/dashboard"
+									to="/auth/dashboard"
 									className="nav-link"
 									onClick={this.handelLogin}
 								>
@@ -101,7 +101,7 @@ export class TopNavbar extends Component {
 									Logout
 								</a> */}
 								<Link
-									to="/logout"
+									to="/auth/logout"
 									className="nav-link"
 									onClick={this.handelLogin}
 								>
@@ -113,7 +113,7 @@ export class TopNavbar extends Component {
 									History
 								</a> */}
 								<Link
-									to="/history"
+									to="/auth/history"
 									className="nav-link"
 									onClick={this.handelLogin}
 								>
@@ -125,7 +125,7 @@ export class TopNavbar extends Component {
 									Admin
 								</a> */}
 								<Link
-									to="/Admin"
+									to="/auth/admin"
 									className="nav-link"
 									onClick={this.handelLogin}
 								>
@@ -137,7 +137,7 @@ export class TopNavbar extends Component {
 									Log In
 								</a> */}
 								<Link
-									to="/login"
+									to="/auth/login"
 									className="nav-link"
 									onClick={this.handelLogin}
 								>
@@ -149,11 +149,11 @@ export class TopNavbar extends Component {
 									Sign Up
 								</a> */}
 								<Link
-									to="/signup"
+									to="/auth/signup"
 									className="nav-link"
 									onClick={this.handelLogin}
 								>
-									Logout
+									Sign Up
 								</Link>
 							</li>
 						</ul>

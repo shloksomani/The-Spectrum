@@ -40,11 +40,7 @@ export class BiasNavbar extends Component {
 								</Link>
 							</li>
 							<li className="nav-item">
-								{/* <a
-									className="nav-link LeastB"
-									href="#"
-									onClick={this.handelBias}
-								>
+								{/* <a className="nav-link LeastB" onClick={this.handelBias}>
 									Least Biased
 								</a> */}
 								<Link

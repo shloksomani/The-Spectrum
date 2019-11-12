@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import parsed_data from "../assets/data/data";
 import Container from "./container";
+import Error from "./error";
 
 export class BiasPage extends Component {
 	render() {
@@ -9,33 +10,40 @@ export class BiasPage extends Component {
 
 	handleBias = () => {
 		let v = [];
-
-		if (this.props.bias === "") {
-			v = this.getData();
-			console.log("at line 15");
-		} else {
+		let p = this.handelNavRouting();
+		console.log(p);
+		if (p) {
 			console.log("at line 17");
-			v = parsed_data[this.props.bias];
+			v = parsed_data[this.props.match.params.id];
+		} else {
+			return <Error></Error>;
 		}
 		return v.map((article, index) => {
 			return <Container key={index} news={article}></Container>;
 		});
 	};
 
-	getData = () => {
-		const data1 = {};
-		data1.dummy_data = [];
-		for (let bias in parsed_data) {
-			// List of articles that have the bias
-			const bias_list = parsed_data[bias];
-			for (let i = 0; i < 2; i++) {
-				// each article in the article list
-				const article = bias_list[i];
-				data1.dummy_data.push(article);
-			}
+	handelNavRouting = () => {
+		console.log(this.props.match.params.id);
+		let v = this.props.match.params.id;
+		console.log(v);
+		if (v) {
+			let storedBiases = [
+				"left_bias",
+				"left_center_bias",
+				"least_bias",
+				"right_center_bias",
+				"right_bias",
+				"pro_science",
+				"questionable_sources"
+			];
+			let found = storedBiases.find(function(element) {
+				return element == v;
+			});
+			return found ? true : false;
+		} else {
+			return false;
 		}
-		// for each bias
-		return data1.dummy_data;
 	};
 }
 

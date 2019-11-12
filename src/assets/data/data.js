@@ -453,7 +453,7 @@ let parsed_data = {
 			mbfc: "https://mediabiasfactcheck.com/nbc-news/"
 		}
 	],
-	least_biased: [
+	least_bias: [
 		{
 			title: "The message from the world’s biggest and wildest IPO",
 			summary:
