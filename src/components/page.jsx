@@ -14,23 +14,24 @@ export class Page extends Component {
 			//
 			<React.Fragment>
 				<Router>
-					<TopNavbar></TopNavbar>
+					<TopNavbar
+						bias={this.state.bias}
+						setterParent={this.handleBias}
+					></TopNavbar>
 					<BiasNavbar
 						bias={this.state.bias}
 						setterParent={this.handleBias}
 					></BiasNavbar>
-
 					<Route
 						exact
 						path="/"
 						render={props => <BiasPage {...props} bias={this.state.bias} />}
 					/>
 					<Route
-						exact
 						path="/:id"
 						render={props => <BiasPage {...props} bias={this.state.bias} />}
 					/>
-					{/* // <BiasPage bias={this.state.bias}></BiasPage> */}
+					}
 				</Router>
 			</React.Fragment>
 		);
