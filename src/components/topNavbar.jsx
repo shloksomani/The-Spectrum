@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import searchLens from "../assets/image/loupe.svg";
+import { Link } from "react-router-dom";
 
 export class TopNavbar extends Component {
 	render() {
@@ -21,14 +22,14 @@ export class TopNavbar extends Component {
 							id="search-icon"
 							src={searchLens}
 							alt="search-icon"
-							onClick="openSearch()"
+							onClick={this.openSearch}
 						></img>
 					</div>
 
 					<div id="myOverlay" className="overlay">
 						<span
 							className="closebtn"
-							onClick="closeSearch()"
+							onClick={this.closeSearch}
 							title="Close Overlay"
 						>
 							×
@@ -75,40 +76,85 @@ export class TopNavbar extends Component {
 					>
 						<ul className="navbar-nav ml-auto mt-2 mt-lg-0">
 							<li className="nav-item">
-								<a className="nav-link" href="/">
+								{/* <a className="nav-link" href="/">
 									Home
-								</a>
+								</a> */}
+								<Link to="/" className="nav-link" onClick={this.handelBias}>
+									Home
+								</Link>
 							</li>
 
 							<li className="nav-item" id="Dash">
-								<a className="nav-link" href="#">
+								{/* <a className="nav-link" href="#">
 									Dashboard
-								</a>
+								</a> */}
+								<Link
+									to="/dashboard"
+									className="nav-link"
+									onClick={this.handelLogin}
+								>
+									Dashboard
+								</Link>
 							</li>
 							<li className="nav-item" id="logout">
-								<a className="nav-link" href="#">
+								{/* <a className="nav-link" href="#">
 									Logout
-								</a>
+								</a> */}
+								<Link
+									to="/logout"
+									className="nav-link"
+									onClick={this.handelLogin}
+								>
+									Logout
+								</Link>
 							</li>
 							<li className="nav-item" id="logout">
-								<a className="nav-link" href="#">
+								{/* <a className="nav-link" href="#">
 									History
-								</a>
+								</a> */}
+								<Link
+									to="/history"
+									className="nav-link"
+									onClick={this.handelLogin}
+								>
+									History
+								</Link>
 							</li>
 							<li className="nav-item" id="Admin">
-								<a className="nav-link" href="#">
+								{/* <a className="nav-link" href="#">
 									Admin
-								</a>
+								</a> */}
+								<Link
+									to="/Admin"
+									className="nav-link"
+									onClick={this.handelLogin}
+								>
+									Admin
+								</Link>
 							</li>
 							<li className="nav-item" id="login">
-								<a className="nav-link" href="#">
+								{/* <a className="nav-link" href="#">
 									Log In
-								</a>
+								</a> */}
+								<Link
+									to="/login"
+									className="nav-link"
+									onClick={this.handelLogin}
+								>
+									Login
+								</Link>
 							</li>
 							<li className="nav-item" id="signup">
-								<a className="nav-link" href="#">
+								{/* <a className="nav-link" href="#">
 									Sign Up
-								</a>
+								</a> */}
+								<Link
+									to="/signup"
+									className="nav-link"
+									onClick={this.handelLogin}
+								>
+									Logout
+								</Link>
 							</li>
 						</ul>
 					</div>
@@ -116,6 +162,23 @@ export class TopNavbar extends Component {
 			</React.Fragment>
 		);
 	}
+
+	handelBias = event => {
+		this.props.setterParent("");
+	};
+
+	handelLogin = () => {
+		console.log("here");
+	};
+
+	openSearch = () => {
+		document.getElementById("myOverlay").style.display = "block";
+	};
+
+	// To remove the overlay on smaller displays
+	closeSearch = () => {
+		document.getElementById("myOverlay").style.display = "none";
+	};
 }
 
 export default TopNavbar;
