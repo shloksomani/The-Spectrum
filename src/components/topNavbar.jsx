@@ -4,6 +4,9 @@ import searchLens from "../assets/image/loupe.svg";
 import { Link } from "react-router-dom";
 
 export class TopNavbar extends Component {
+  componentWillReceiveProps() {
+    this.handelLoginNav();
+  }
   render() {
     return (
       <React.Fragment>
@@ -87,78 +90,7 @@ export class TopNavbar extends Component {
                 </Link>
               </li>
 
-              <li className="nav-item" id="Dash">
-                {/* <a className="nav-link" href="#">
-									Dashboard
-								</a> */}
-                <Link
-                  to="/auth/dashboard"
-                  className="nav-link"
-                  onClick={this.handelLogin}
-                >
-                  Dashboard
-                </Link>
-              </li>
-              <li className="nav-item" id="logout">
-                {/* <a className="nav-link" href="#">
-									Logout
-								</a> */}
-                <Link
-                  to="/auth/logout"
-                  className="nav-link"
-                  onClick={this.handelLogin}
-                >
-                  Logout
-                </Link>
-              </li>
-              <li className="nav-item" id="logout">
-                {/* <a className="nav-link" href="#">
-									History
-								</a> */}
-                <Link
-                  to="/auth/history"
-                  className="nav-link"
-                  onClick={this.handelLogin}
-                >
-                  History
-                </Link>
-              </li>
-              <li className="nav-item" id="Admin">
-                {/* <a className="nav-link" href="#">
-									Admin
-								</a> */}
-                <Link
-                  to="/auth/admin"
-                  className="nav-link"
-                  onClick={this.handelLogin}
-                >
-                  Admin
-                </Link>
-              </li>
-              <li className="nav-item" id="login">
-                {/* <a className="nav-link" href="#">
-									Log In
-								</a> */}
-                <Link
-                  to="/auth/login"
-                  className="nav-link"
-                  onClick={this.handelLogin}
-                >
-                  Login
-                </Link>
-              </li>
-              <li className="nav-item" id="signup">
-                {/* <a className="nav-link" href="#">
-									Sign Up
-								</a> */}
-                <Link
-                  to="/auth/signup"
-                  className="nav-link"
-                  onClick={this.handelLogin}
-                >
-                  Sign Up
-                </Link>
-              </li>
+              {this.handelLoginNav()}
             </ul>
           </div>
         </nav>
@@ -170,8 +102,93 @@ export class TopNavbar extends Component {
     this.props.setterParent("");
   };
 
+  handelLoginNav = () => {
+    if (this.props.isLoggedIn) {
+      return (
+        <React.Fragment>
+          <li className="nav-item" id="Dash">
+            {/* <a className="nav-link" href="#">
+									Dashboard
+								</a> */}
+            <Link
+              to="/auth/dashboard"
+              className="nav-link"
+              onClick={this.handelLogin}
+            >
+              Dashboard
+            </Link>
+          </li>
+          <li className="nav-item" id="logout">
+            {/* <a className="nav-link" href="#">
+									Logout
+								</a> */}
+            <Link to="/" className="nav-link" onClick={this.handelLogout}>
+              Logout
+            </Link>
+          </li>
+          <li className="nav-item" id="logout">
+            {/* <a className="nav-link" href="#">
+									History
+								</a> */}
+            <Link
+              to="/auth/history"
+              className="nav-link"
+              onClick={this.handelLogin}
+            >
+              History
+            </Link>
+          </li>
+          <li className="nav-item" id="Admin">
+            {/* <a className="nav-link" href="#">
+									Admin
+								</a> */}
+            <Link
+              to="/auth/admin"
+              className="nav-link"
+              onClick={this.handelLogin}
+            >
+              Admin
+            </Link>
+          </li>
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <React.Fragment>
+          <li className="nav-item" id="login">
+            {/* <a className="nav-link" href="#">
+									Log In
+								</a> */}
+            <Link
+              to="/auth/login"
+              className="nav-link"
+              onClick={this.handelLogin}
+            >
+              Login
+            </Link>
+          </li>
+          <li className="nav-item" id="signup">
+            {/* <a className="nav-link" href="#">
+									Sign Up
+								</a> */}
+            <Link
+              to="/auth/signup"
+              className="nav-link"
+              onClick={this.handelLogin}
+            >
+              Sign Up
+            </Link>
+          </li>
+        </React.Fragment>
+      );
+    }
+  };
+
   handelLogin = () => {
     console.log("here");
+  };
+  handelLogout = () => {
+    this.props.handelIsLoggedIn(false);
   };
 
   openSearch = () => {

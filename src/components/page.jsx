@@ -19,6 +19,8 @@ export class Page extends Component {
           <TopNavbar
             bias={this.state.bias}
             setterParent={this.handleBias}
+            isLoggedIn={this.state.isLoggedIn}
+            handelIsLoggedIn={this.handelIsLoggedIn}
           ></TopNavbar>
           <BiasNavbar
             bias={this.state.bias}
@@ -34,10 +36,16 @@ export class Page extends Component {
               render={props => <BiasPage {...props} bias={this.state.bias} />}
             />
             <Route exact path="/auth/login">
-              <Login isLoggedIn={this.state.isLoggedIn} />
+              <Login
+                isLoggedIn={this.state.isLoggedIn}
+                handelIsLoggedIn={this.handelIsLoggedIn}
+              />
             </Route>
             <Route exact path="/auth/signup">
-              <Signup isLoggedIn={this.state.isLoggedIn} />
+              <Signup
+                isLoggedIn={this.state.isLoggedIn}
+                handelIsLoggedIn={this.handelIsLoggedIn}
+              />
             </Route>
           </Switch>
         </Router>
@@ -64,6 +72,10 @@ export class Page extends Component {
       console.log(k);
       this.setState({ bias: k }, () => console.log(this.state));
     }
+  };
+
+  handelIsLoggedIn = bool => {
+    this.setState({ isLoggedIn: bool });
   };
 }
 
