@@ -34,15 +34,12 @@ export class Page extends Component {
               path="/:id"
               render={props => <BiasPage {...props} bias={this.state.bias} />}
             />
-            {!this.state.isLoggedIn && (
-                <Route exact path="/auth/login">
-                  <Login isLoggedIn={this.state.isLoggedIn} />
-                </Route>
-              ) && (
-                <Route exact path="/auth/signup">
-                  <Signup isLoggedIn={this.state.isLoggedIn} />
-                </Route>
-              )}
+            <Route exact path="/auth/login">
+              <Login isLoggedIn={this.state.isLoggedIn} />
+            </Route>
+            <Route exact path="/auth/signup">
+              <Signup isLoggedIn={this.state.isLoggedIn} />
+            </Route>
           </Switch>
         </Router>
       </React.Fragment>
