@@ -93,7 +93,11 @@ export class Signup extends Component {
               />
             </div>
 
-            <button type="submit" className="btn btn-primary btn-block">
+            <button
+              type="submit"
+              onClick={this.handelLogin}
+              className="btn btn-primary btn-block"
+            >
               Register
             </button>
 
@@ -106,5 +110,9 @@ export class Signup extends Component {
       </div>
     );
   }
+
+  handelLogin = () => {
+    this.props.handelIsLoggedIn(true);
+  };
 }
 export default Signup;
