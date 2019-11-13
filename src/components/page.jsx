@@ -14,7 +14,6 @@ export class Page extends Component {
 
   render() {
     return (
-      //
       <React.Fragment>
         <Router>
           <TopNavbar

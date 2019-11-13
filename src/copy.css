@@ -19,6 +19,15 @@ body {
   );
 }
 
+#header {
+  background-image: linear-gradient(
+    -225deg,
+    #473b7b 20%,
+    #3584a7 1%,
+    #30d2be 100%
+  );
+}
+
 .navbar-brand {
   font-weight: bold;
   font-size: 40px !important;
