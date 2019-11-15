@@ -237,3 +237,36 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
+
+#userTable {
+  margin: auto;
+}
+
+.title {
+  text-align: center;
+}
+
+#userTable,
+td,
+th {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+td,
+th {
+  min-width: 200px;
+}
+
+h4 {
+  margin-top: 5px;
+  margin-bottom: 2px;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}

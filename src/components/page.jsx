@@ -5,6 +5,8 @@ import BiasPage from "./biasPage";
 import Home from "./home";
 import Login from "./login";
 import Signup from "./signup";
+import Admin from "./admin";
+import History from "./history";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 export class Page extends Component {
   state = {
@@ -46,6 +48,12 @@ export class Page extends Component {
                 isLoggedIn={this.state.isLoggedIn}
                 handelIsLoggedIn={this.handelIsLoggedIn}
               />
+            </Route>
+            <Route exact path="/auth/admin">
+              <Admin />
+            </Route>
+            <Route exact path="/auth/history">
+              <History />
             </Route>
           </Switch>
         </Router>
