@@ -13,10 +13,9 @@ export class Page extends Component {
     bias: "",
     isLoggedIn: false,
     data: [],
-    shuffle: this.shuffleArray
   };
 
-  shuffleArray(array) {
+  const shuffle = (array) => {
     for (var i = array.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
       var temp = array[i];
@@ -56,7 +55,7 @@ export class Page extends Component {
             <Route exact path="/">
               <Home
                 parsed_data={this.state.data}
-                shuffle={this.state.shuffle}
+                shuffle={this.shuffle}
               />
             </Route>
             <Route
@@ -67,7 +66,7 @@ export class Page extends Component {
                   {...props}
                   bias={this.state.bias}
                   parsed_data={this.state.data}
-                  shuffle={this.state.shuffle}
+                  shuffle={this.shuffle}
                 />
               )}
             />
