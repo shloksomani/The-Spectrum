@@ -59,6 +59,7 @@ router.post(
   }),
   async function(req, res) {
     //res.redirect("/dash");
+    console.log(req.body);
     res.status(200).send();
   }
 );

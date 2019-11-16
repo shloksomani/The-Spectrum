@@ -4,8 +4,13 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
+const session = require("express-session");
+const body_parser = require("body-parser");
+
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+
+const passport = require("./passport");
 
 var app = express();
 app.use(cors());
@@ -19,13 +24,30 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(
+  session({
+    secret: "secret key",
+    saveUninitialized: false,
+    resave: false
+  })
+);
+
+// Flash messages
+app.use(require("connect-flash")());
+
+// Initializing passport and passport sessions
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+//allows nested objects to be parsed from url
+app.use(body_parser.urlencoded({ extended: true }));
 
 // error handler
 app.use(function(err, req, res, next) {

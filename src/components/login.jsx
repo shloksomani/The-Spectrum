@@ -31,8 +31,8 @@ export class Login extends Component {
                   name="email"
                   className="form-control"
                   placeholder="Enter Email"
-                  onChange={(event, newValue) =>
-                    this.setState({ username: newValue })
+                  onChange={event =>
+                    this.setState({ username: event.target.value })
                   }
                   required
                 />
@@ -48,8 +48,8 @@ export class Login extends Component {
                   name="password"
                   className="form-control"
                   placeholder="Enter Password"
-                  onChange={(event, newValue) =>
-                    this.setState({ password: newValue })
+                  onChange={event =>
+                    this.setState({ password: event.target.value })
                   }
                   required
                 />
@@ -74,6 +74,7 @@ export class Login extends Component {
 
   handelLogin = e => {
     this.props.handelIsLoggedIn(true);
+    console.log();
     e.preventDefault();
     axios
       .post("http://localhost:5000/users/login", {

@@ -33,7 +33,7 @@ export class Page extends Component {
       .then(data => data.json())
       .then(res => {
         this.setState({ data: res });
-        console.log(this.state.data);
+        // console.log(this.state.data);
       });
   };
 
