@@ -53,10 +53,10 @@ router.post("/", async function(req, res, next) {
 
 router.post(
   "/login",
-  // passport.authenticate("local", {
-  //   //failureRedirect: "/auth/login",
-  //   //successRedirect: "/dash"
-  // }),
+  passport.authenticate("local", {
+    failureRedirect: "/auth/logout",
+    successRedirect: "/"
+  }),
   async function(req, res) {
     //res.redirect("/dash");
     res.status(200).send();
