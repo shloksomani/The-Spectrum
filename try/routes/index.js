@@ -4,7 +4,7 @@ var data = require("../data");
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
-  console.log(data);
+  //console.log(data);
   return res.json(data);
 
   // res.render("index", { title: "Express" });

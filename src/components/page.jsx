@@ -11,7 +11,31 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 export class Page extends Component {
   state = {
     bias: "",
-    isLoggedIn: false
+    isLoggedIn: false,
+    data: [],
+    shuffle: this.shuffleArray
+  };
+
+  shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+  }
+
+  componentDidMount() {
+    this.getDataFromDb();
+  }
+
+  getDataFromDb = () => {
+    fetch("http://localhost:5000")
+      .then(data => data.json())
+      .then(res => {
+        this.setState({ data: res });
+        console.log(this.state.data);
+      });
   };
 
   render() {
@@ -30,12 +54,22 @@ export class Page extends Component {
           ></BiasNavbar>
           <Switch>
             <Route exact path="/">
-              <Home />
+              <Home
+                parsed_data={this.state.data}
+                shuffle={this.state.shuffle}
+              />
             </Route>
             <Route
               exact
               path="/:id"
-              render={props => <BiasPage {...props} bias={this.state.bias} />}
+              render={props => (
+                <BiasPage
+                  {...props}
+                  bias={this.state.bias}
+                  parsed_data={this.state.data}
+                  shuffle={this.state.shuffle}
+                />
+              )}
             />
             <Route exact path="/auth/login">
               <Login
@@ -60,16 +94,6 @@ export class Page extends Component {
       </React.Fragment>
     );
   }
-
-  // This will be in BiasPage
-  // shuffleArray(array) {
-  // 	for (var i = array.length - 1; i > 0; i--) {
-  // 		var j = Math.floor(Math.random() * (i + 1));
-  // 		var temp = array[i];
-  // 		array[i] = array[j];
-  // 		array[j] = temp;
-  // 	}
-  // }
 
   handleBias = biasGet => {
     if (biasGet === "") {
