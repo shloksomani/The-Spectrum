@@ -1,16 +1,23 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+import { Redirect } from "react-router";
+import axios from "axios";
 export class Signup extends Component {
   state = {
     firstName: "",
     lastName: "",
     email: "",
     password: "",
-    password2: ""
+    password2: "",
+    redirect: false
   };
 
   render() {
+    if (this.state.redirect) {
+      console.log("inside redirect");
+
+      return <Redirect to="/auth/login" />;
+    }
     let a = "";
     return (
       <div className="row mt-5">
@@ -34,7 +41,10 @@ export class Signup extends Component {
                 name="name"
                 className="form-control"
                 placeholder="First Name"
-                onChange={event => (a = event.target.value)}
+                // onChange={event => (a = event.target.value)}
+                onChange={event =>
+                  this.setState({ firstName: event.target.value })
+                }
                 required
               />
             </div>
@@ -95,7 +105,7 @@ export class Signup extends Component {
 
             <button
               type="submit"
-              onClick={this.handelLogin}
+              onClick={this.handleLogin}
               className="btn btn-primary btn-block"
             >
               Register
@@ -111,8 +121,28 @@ export class Signup extends Component {
     );
   }
 
-  handelLogin = () => {
+  handleLogin = e => {
     this.props.handelIsLoggedIn(true);
+    console.log("sign up handle login, email: ");
+    console.log(this.state.email);
+    e.preventDefault();
+    axios
+      .post("http://localhost:5000/users/", {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: this.state.email,
+        password: this.state.password,
+        password2: this.state.password2
+      })
+      .then(response => {
+        console.log("signup success!");
+        console.log(response);
+        this.setState({ redirect: true });
+      })
+      .catch(error => {
+        console.log("signup error!");
+        console.log(error);
+      });
   };
 }
 export default Signup;

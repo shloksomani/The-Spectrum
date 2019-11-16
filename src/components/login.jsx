@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+import axios from "axios";
 export class Login extends Component {
   state = {
     username: "",
@@ -72,8 +72,23 @@ export class Login extends Component {
     );
   }
 
-  handelLogin = () => {
+  handelLogin = e => {
     this.props.handelIsLoggedIn(true);
+    e.preventDefault();
+    axios
+      .post("http://localhost:5000/users/login", {
+        username: this.state.username,
+        password: this.state.password
+      })
+      .then(response => {
+        console.log("login success!");
+        console.log(response);
+        //this.setState({ redirect: true });
+      })
+      .catch(error => {
+        console.log("login error!");
+        console.log(error);
+      });
   };
 }
 export default Login;
