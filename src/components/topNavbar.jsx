@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Navbar, Nav } from "react-bootstrap";
 import searchLens from "../assets/image/loupe.svg";
 import { Link } from "react-router-dom";
 
@@ -10,10 +9,7 @@ export class TopNavbar extends Component {
   render() {
     return (
       <React.Fragment>
-        <nav
-          id="header"
-          className="navbar navbar-expand-lg navbar-dark sticky-top"
-        >
+        <nav id="header" className="navbar navbar-expand-lg navbar-dark">
           {/* <a className="navbar-brand ml-2" href="/">
 						The Spectrum
 					</a> */}
