@@ -29,49 +29,51 @@ passport.deserializeUser(async function(id, done) {
     done(error);
   }
 });
+try {
+  passport.use(
+    new LocalStrategy(
+      {
+        passReqToCallback: true,
+        usernameField: "email",
+        passwordField: "password"
+      },
+      async function(req, email, password, done) {
+        console.log(email + " in passport.js 82");
 
-passport.use(
-  new LocalStrategy(
-    {
-      passReqToCallback: true,
-      usernameField: "email",
-      passwordField: "password"
-    },
-    async function(req, email, password, done) {
-      console.log(email + " in passport.js 82");
+        const emailExist = User.findEmail(email);
+        // console.log(userExist + " in passport.js 83");
+        let match = false;
+        const user = User.getUserObj(email);
+        if (emailExist) {
+          if (
+            (email === "user" && password === "user") ||
+            (email === "user2" && password === "user2")
+          ) {
+            match = true;
+          } else if (email === "admin" && password === "admin") {
+            match = true;
+          } else {
+            match = await bcrypt.compare(password, user.password);
+            // console.log(match + "in passport.js 87");
+          }
 
-      const emailExist = User.findEmail(email);
-      // console.log(userExist + " in passport.js 83");
-      let match = false;
-      const user = User.getUserObj(email);
-      if (emailExist) {
-        if (
-          (email === "user" && password === "user") ||
-          (email === "user2" && password === "user2")
-        ) {
-          match = true;
-        } else if (email === "admin" && password === "admin") {
-          match = true;
-        } else {
-          match = await bcrypt.compare(password, user.password);
-          // console.log(match + "in passport.js 87");
-        }
-
-        if (match) {
-          /** All Set */
-          return done(null, {
-            id: user.id
-          });
+          if (match) {
+            /** All Set */
+            return done(null, {
+              id: user.id
+            });
+          } //end if
         } //end if
-      } //end if
 
-      // setting Error message in flash and calling callback
-      req.flash("error", "Wrong Credentials");
-      return done(null, false);
-    }
-  )
-);
-
+        // setting Error message in flash and calling callback
+        req.flash("error", "Wrong Credentials");
+        return done(null, false);
+      }
+    )
+  );
+} catch (e) {
+  console.log(e);
+}
 module.exports = passport;
 
 /**

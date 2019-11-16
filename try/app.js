@@ -9,7 +9,7 @@ const body_parser = require("body-parser");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-
+const User = require("./models/User");
 const passport = require("./passport");
 
 var app = express();
@@ -48,7 +48,9 @@ app.use(function(req, res, next) {
 
 //allows nested objects to be parsed from url
 app.use(body_parser.urlencoded({ extended: true }));
-
+(function() {
+  User.RepopulateJson();
+})();
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development

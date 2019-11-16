@@ -12,17 +12,17 @@ export class Page extends Component {
   state = {
     bias: "",
     isLoggedIn: false,
-    data: [],
+    data: []
   };
 
-  const shuffle = (array) => {
+  shuffle = array => {
     for (var i = array.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
       var temp = array[i];
       array[i] = array[j];
       array[j] = temp;
     }
-  }
+  };
 
   componentDidMount() {
     this.getDataFromDb();
@@ -53,10 +53,7 @@ export class Page extends Component {
           ></BiasNavbar>
           <Switch>
             <Route exact path="/">
-              <Home
-                parsed_data={this.state.data}
-                shuffle={this.shuffle}
-              />
+              <Home parsed_data={this.state.data} shuffle={this.shuffle} />
             </Route>
             <Route
               exact
