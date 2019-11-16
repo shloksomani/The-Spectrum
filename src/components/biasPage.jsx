@@ -4,9 +4,28 @@ import Container from "./container";
 import Error from "./error";
 
 export class BiasPage extends Component {
+  // state = {
+  //   data: []
+  // };
+
+  // componentWillMount() {
+  //   this.getDataFromDb();
+  // }
+
   render() {
-    return <React.Fragment>{this.handleBias()}</React.Fragment>;
+    return (
+      // <React.Fragment>
+      <React.Fragment>{this.handleBias()}</React.Fragment>
+      // </React.Fragment>
+    );
   }
+
+  // getDataFromDb = () => {
+  //   fetch("http://localhost:5000")
+  //     .then(data => data.json())
+  //     .then(res => this.setState({ data: JSON.parse(res.data) }))
+  //     .then(console.log(this.state));
+  // };
 
   handleBias = () => {
     let v = [];
