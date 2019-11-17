@@ -73,11 +73,10 @@ router.post("/signup", async function(req, res, next) {
 module.exports = function(passport) {
   router.post(
     "/login",
-    passport.authenticate(
-      "local"
+    passport.authenticate("local", {
       // failureRedirect: "/auth/login"
-      // successRedirect: "/dash"
-    ),
+      successRedirect: "/"
+    }),
     async function(req, res) {
       // res.redirect("/dash");
       res.status(200).send;

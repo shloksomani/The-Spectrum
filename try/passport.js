@@ -34,7 +34,7 @@ try {
     new LocalStrategy(
       {
         passReqToCallback: true,
-        usernameField: "email",
+        usernameField: "username",
         passwordField: "password"
       },
       async function(req, email, password, done) {
