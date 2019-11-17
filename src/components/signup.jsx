@@ -127,7 +127,7 @@ export class Signup extends Component {
     console.log(this.state.email);
     e.preventDefault();
     axios
-      .post("http://localhost:5000/users/", {
+      .post("http://localhost:5000/user/", {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         email: this.state.email,

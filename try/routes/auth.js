@@ -3,6 +3,8 @@ const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const authMiddleware = require("../middleware");
+// const User = require("../database/models/user");
+const passport = require("../passport");
 
 // // Get Request For Login
 // router.get("/login", function(req, res) {
@@ -26,10 +28,14 @@ const authMiddleware = require("../middleware");
 //   res.render("auth/signup", data);
 // });
 
-// Get Request For logout
-router.get("/logout", function(req, res) {
-  req.logout();
-  res.redirect("/");
+router.post("/logout", (req, res) => {
+  console.log(req.user);
+  if (req.user) {
+    req.logout();
+    res.status(200).send;
+  } else {
+    res.status(400).send;
+  }
 });
 
 // Post Request For Signup

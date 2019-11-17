@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
+// import { Redirect } from "react-router";
 import axios from "axios";
 export class Login extends Component {
   state = {
@@ -9,7 +10,7 @@ export class Login extends Component {
   };
 
   render() {
-    if (this.state.redirectTo) {
+    if (this.state.redirect) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else {
       return (
@@ -78,11 +79,10 @@ export class Login extends Component {
   }
 
   handelLogin = e => {
-    this.props.handelIsLoggedIn(true);
     console.log();
     e.preventDefault();
     axios
-      .post("http://localhost:5000/auth/login", {
+      .post("http://localhost:5000/user/login", {
         username: this.state.username,
         password: this.state.password
       })
@@ -92,9 +92,15 @@ export class Login extends Component {
         if (response.status === 200) {
           // update App.js state
           // update the state to redirect to home
-          this.setState({
-            redirect: "/"
-          });
+          this.setState(
+            {
+              redirect: "/"
+            },
+            () => {
+              console.log(this.state);
+            }
+          );
+          this.props.handelIsLoggedIn(true);
         }
         //this.setState({ redirect: true });
       })
