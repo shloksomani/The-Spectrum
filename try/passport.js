@@ -14,13 +14,13 @@ passport.serializeUser(function(user, done) {
   return done(null, user.id);
 });
 
-/**
- * Called when we need the values of the
- *
- * It takes the id into the session then finds the user in the database
- * and returns it.
- *
- */
+// /**
+//  * Called when we need the values of the
+//  *
+//  * It takes the id into the session then finds the user in the database
+//  * and returns it.
+//  *
+//  */
 passport.deserializeUser(async function(id, done) {
   try {
     //return done(null, User.getUserById(id));
@@ -34,14 +34,14 @@ try {
     new LocalStrategy(
       {
         passReqToCallback: true,
-        usernameField: "email",
+        usernameField: "username",
         passwordField: "password"
       },
       async function(req, email, password, done) {
         console.log(email + " in passport.js 82");
 
         const emailExist = User.findEmail(email);
-        // console.log(userExist + " in passport.js 83");
+        // console.log(emailExist + " in passport.js 83");
         let match = false;
         const user = User.getUserObj(email);
         if (emailExist) {
@@ -58,6 +58,7 @@ try {
           }
 
           if (match) {
+            // console.log(match + "in passport.js 61");
             /** All Set */
             return done(null, {
               id: user.id
@@ -117,3 +118,80 @@ module.exports = passport;
 // 		}
 // 	)
 // );
+
+// const passport = require("passport");
+// const User = require("./models/User");
+// const bcrypt = require("bcryptjs");
+
+// const LocalStrategy = require("passport-local").Strategy;
+
+// /**
+//  * Called when user is added into the session.
+//  *
+//  * It stores only the unique id of the user into the session.
+//  *
+//  */
+// passport.serializeUser(function(user, done) {
+//   return done(null, user.id);
+// });
+
+// /**
+//  * Called when we need the values of the
+//  *
+//  * It takes the id into the session then finds the user in the database
+//  * and returns it.
+//  *
+//  * You can store whole user data into the session to avoid calling database for user.
+//  */
+// passport.deserializeUser(async function(id, done) {
+//   try {
+//     const userObj = await User.findById(id, "-password");
+//     return done(null, userObj);
+//   } catch (error) {
+//     done(error);
+//   }
+// });
+
+// /**
+//  * Passport Local Strategey
+//  *
+//  * 'passReqToCallback' is set to true to access req object and to set some flash messages
+//  * in case of any errors.
+//  */
+// passport.use(
+//   new LocalStrategy(
+//     {
+//       passReqToCallback: true,
+//       usernameField: "email", // the desired username field you have defaults to 'username'
+//       passwordField: "password" // the desired password field you have defaults to 'password'
+//     },
+//     async function(req, email, password, done) {
+//       /**
+//        * Find User
+//        */
+//       const userObj = await User.findOne({ email: email });
+
+//       if (userObj && userObj._id) {
+//         /**
+//          * Match Password
+//          */
+//         const match = await bcrypt.compare(password, userObj.password);
+
+//         if (match) {
+//           /** All Set */
+//           return done(null, {
+//             id: userObj._id
+//           });
+//         }
+//       }
+
+//       /**
+//        * Set error message in flash and call the callback.
+//        */
+//       req.flash("error", "Wrong Credentials");
+//       return done(null, false);
+//     }
+//   )
+// );
+
+// module.exports = passport;

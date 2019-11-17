@@ -53,24 +53,20 @@ router.post("/", async function(req, res, next) {
 
 router.post(
   "/login",
-<<<<<<< Updated upstream
   passport.authenticate(
     "local"
     //   failureRedirect: "/auth/logout",
     //   successRedirect: "/"
   ),
   async function(req, res) {
-=======
-  passport.authenticate("local", async function(req, res) {
->>>>>>> Stashed changes
     //res.redirect("/dash");
     var userInfo = {
       username: req.user.username
     };
-    res.send(userInfo);
-    console.log(req.body);
-    // res.status(200).send();
-  })
+    // res.send(userInfo);
+    // console.log(req.body);
+    res.status(200).send();
+  }
 );
 
 module.exports = router;

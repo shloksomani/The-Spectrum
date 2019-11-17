@@ -69,17 +69,26 @@ router.post("/signup", async function(req, res, next) {
   }
 });
 
+router.get("/dash", (req, res, next) => {
+  console.log("===== user!!======");
+  console.log(req.user);
+  if (req.user) {
+    res.json({ user: req.user });
+  } else {
+    res.json({ user: null });
+  }
+});
+
 // exporting the passport to use in the routes
 module.exports = function(passport) {
   router.post(
     "/login",
-    passport.authenticate(
-      "local"
-      // failureRedirect: "/auth/login"
-      // successRedirect: "/dash"
-    ),
+    passport.authenticate("local", {
+      successRedirect: "/"
+    }),
     async function(req, res) {
       // res.redirect("/dash");
+
       res.status(200).send;
     }
   );

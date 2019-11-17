@@ -26,46 +26,46 @@ export class Login extends Component {
                 <h1 className="text-center mb-3">
                   <i className="fas fa-sign-in-alt"></i> Login
                 </h1>
-                {/* <form action="/login" method="POST"> */}
-                <div className="form-group">
-                  <label>Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    className="form-control"
-                    placeholder="Enter Email"
-                    onChange={event =>
-                      this.setState({ username: event.target.value })
-                    }
-                    required
-                  />
-                  <small id="emailHelp" className="form-text text-muted">
-                    We'll never share your email with anyone else.
-                  </small>
-                </div>
-                <div className="form-group">
-                  <label>Password</label>
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    className="form-control"
-                    placeholder="Enter Password"
-                    onChange={event =>
-                      this.setState({ password: event.target.value })
-                    }
-                    required
-                  />
-                </div>
-                <button
-                  type="submit"
-                  onClick={this.handelLogin}
-                  className="btn btn-primary btn-block"
-                >
-                  Login
-                </button>
-                {/* </form> */}
+                <form>
+                  <div className="form-group">
+                    <label>Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      className="form-control"
+                      placeholder="Enter Email"
+                      onChange={event =>
+                        this.setState({ username: event.target.value })
+                      }
+                      required
+                    />
+                    <small id="emailHelp" className="form-text text-muted">
+                      We'll never share your email with anyone else.
+                    </small>
+                  </div>
+                  <div className="form-group">
+                    <label>Password</label>
+                    <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      className="form-control"
+                      placeholder="Enter Password"
+                      onChange={event =>
+                        this.setState({ password: event.target.value })
+                      }
+                      required
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    onClick={this.handelLogin}
+                    className="btn btn-primary btn-block"
+                  >
+                    Login
+                  </button>
+                </form>
                 <p className="lead mt-4">
                   No Account? <Link to="/auth/signup">Signup</Link>
                 </p>
