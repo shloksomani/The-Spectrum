@@ -24,7 +24,7 @@ export class BiasPage extends Component {
       //   console.log(bias);
       // }
       // Todo - object is not getting parsed
-      if (this.props.parsed_data.length > 0) {
+      if (!Array.isArray(this.props.parsed_data)) {
         v = this.props.parsed_data[this.props.match.params.id];
         this.props.shuffle(v);
         return v.map((article, index) => {
