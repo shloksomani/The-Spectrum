@@ -18,22 +18,29 @@ export class BiasPage extends Component {
     console.log(this.props.match.params.id);
     if (p) {
       console.log("at line 17");
-      v = this.props.parsed_data.left_bias;
-      console.log(v);
+      // v = this.props.parsed_data[];
+      // console.log(v);
+      // for (let bias in this.props.parsed_data) {
+      //   console.log(bias);
+      // }
+      // Todo - object is not getting parsed
+      if (this.props.parsed_data.length > 0) {
+        v = this.props.parsed_data[this.props.match.params.id];
+        this.props.shuffle(v);
+        return v.map((article, index) => {
+          return <Container key={index} news={article}></Container>;
+        });
+      }
     } else {
       return <Error></Error>;
     }
     // console.log(v);
-    this.props.shuffle(v);
-    return v.map((article, index) => {
-      return <Container key={index} news={article}></Container>;
-    });
   };
 
   handelNavRouting = () => {
-    console.log(this.props.match.params.id);
+    // console.log(this.props.match.params.id);
     let v = this.props.match.params.id;
-    console.log(v);
+    // console.log(v);
     if (v) {
       let storedBiases = [
         "left_bias",
