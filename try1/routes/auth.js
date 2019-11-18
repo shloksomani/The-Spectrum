@@ -3,39 +3,33 @@ const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const authMiddleware = require("../middleware");
-// const User = require("../database/models/user");
-const passport = require("../passport");
 
-// // Get Request For Login
-// router.get("/login", function(req, res) {
-//   const data = {};
+// Get Request For Login
+router.get("/login", authMiddleware.notAuthenticate, function(req, res) {
+  const data = {};
 
-//   data.title = "Login";
-//   data.errors = req.flash("error");
-//   data.user = req.user;
+  data.title = "Login";
+  data.errors = req.flash("error");
+  data.user = req.user;
 
-//   // res.render("auth/login", data);
-// });
+  res.render("auth/login", data);
+});
 
 // Get Request For Sign up
-// router.get("/signup", authMiddleware.notAuthenticate, function(req, res) {
-//   const data = {};
+router.get("/signup", authMiddleware.notAuthenticate, function(req, res) {
+  const data = {};
 
-//   data.title = "Signup";
-//   data.errors = req.flash("error");
-//   data.user = req.user;
+  data.title = "Signup";
+  data.errors = req.flash("error");
+  data.user = req.user;
 
-//   res.render("auth/signup", data);
-// });
+  res.render("auth/signup", data);
+});
 
-router.post("/logout", (req, res) => {
-  console.log(req.user);
-  if (req.user) {
-    req.logout();
-    res.status(200).send;
-  } else {
-    res.status(400).send;
-  }
+// Get Request For logout
+router.get("/logout", function(req, res) {
+  req.logout();
+  res.redirect("/");
 });
 
 // Post Request For Signup
@@ -75,27 +69,16 @@ router.post("/signup", async function(req, res, next) {
   }
 });
 
-router.get("/dash", (req, res, next) => {
-  console.log("===== user!!======");
-  console.log(req.user);
-  if (req.user) {
-    res.json({ user: req.user });
-  } else {
-    res.json({ user: null });
-  }
-});
-
 // exporting the passport to use in the routes
 module.exports = function(passport) {
   router.post(
     "/login",
     passport.authenticate("local", {
-      successRedirect: "/"
+      failureRedirect: "/auth/login"
+      // successRedirect: "/dash"
     }),
     async function(req, res) {
-      // res.redirect("/dash");
-
-      res.status(200).send;
+      res.redirect("/dash");
     }
   );
   return router;

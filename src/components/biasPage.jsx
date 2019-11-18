@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import parsed_data from "../assets/data/data";
+// import parsed_data from "../assets/data/data";
 import Container from "./container";
 import Error from "./error";
 
@@ -15,13 +15,15 @@ export class BiasPage extends Component {
   handleBias = () => {
     let v = [];
     let p = this.handelNavRouting();
-    console.log(p);
+    console.log(this.props.match.params.id);
     if (p) {
       console.log("at line 17");
-      v = this.props.parsed_data[this.props.match.params.id];
+      v = this.props.parsed_data.left_bias;
+      console.log(v);
     } else {
       return <Error></Error>;
     }
+    // console.log(v);
     this.props.shuffle(v);
     return v.map((article, index) => {
       return <Container key={index} news={article}></Container>;

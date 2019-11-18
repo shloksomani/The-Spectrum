@@ -82,7 +82,7 @@ export class Login extends Component {
     console.log();
     e.preventDefault();
     axios
-      .post("http://localhost:5000/user/login", {
+      .post("/user/login", {
         username: this.state.username,
         password: this.state.password
       })
@@ -100,7 +100,7 @@ export class Login extends Component {
               console.log(this.state);
             }
           );
-          this.props.handelIsLoggedIn(true);
+          this.props.handelIsLoggedIn(true, this.state.username);
         }
         //this.setState({ redirect: true });
       })

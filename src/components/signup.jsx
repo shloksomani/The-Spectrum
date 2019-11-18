@@ -122,12 +122,10 @@ export class Signup extends Component {
   }
 
   handleLogin = e => {
-    this.props.handelIsLoggedIn(true);
     console.log("sign up handle login, email: ");
-    console.log(this.state.email);
     e.preventDefault();
     axios
-      .post("http://localhost:5000/user/", {
+      .post("/user/signup", {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         email: this.state.email,
@@ -138,6 +136,7 @@ export class Signup extends Component {
         console.log("signup success!");
         console.log(response);
         this.setState({ redirect: true });
+        this.props.handelIsLoggedIn(true, this.state.email);
       })
       .catch(error => {
         console.log("signup error!");
