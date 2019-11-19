@@ -82,13 +82,13 @@ router.post("/signup", (req, res) => {
   const { email, password } = req.body;
   // ADD VALIDATION
   User.findOne({ username: email }, (err, user) => {
-    console.log("Inside findOne fn");
-    console.log(user);
-
     if (err) {
       console.log("User.js post error: ", err);
+      res.status(400).send({
+        error: "User.js post error:"
+      });
     } else if (user) {
-      res.json({
+      res.status(400).send({
         error: `Sorry, already a user with the username: ${username}`
       });
     } else {
@@ -98,7 +98,6 @@ router.post("/signup", (req, res) => {
         isAdmin: false,
         history: []
       });
-      console.log("Inside post /signup");
 
       console.log(newUser);
       if (email === "admin" && password === "admin") {
@@ -111,6 +110,45 @@ router.post("/signup", (req, res) => {
     }
   });
 });
+
+// router.post("/signup", async function(req, res, next) {
+//   const body = req.body;
+
+//   if (body.email) {
+//     /** Find if email exists or not */
+//     const existing = await User.findOne({
+//       email: body.username
+//     }).countDocuments();
+
+//     if (existing) {
+//       /** Set flash message and redirect to signup page */
+//       // req.flash("error", "User Already Exists");
+//       return res.redirect("/user/signup");
+//     }
+
+//     /**
+//      * Hash password and save it into database
+//      */
+//     const salt = await bcrypt.genSalt(10);
+//     body.password = await bcrypt.hash(body.password, salt);
+
+//     try {
+//       const newUser = new User(body);
+//       await newUser.save();
+
+//       /**
+//        * Manually authenticating user
+//        * comment the following lines and redirect to login page for authenticating.
+//        */
+//       // Passport stuff
+//       req.logIn(newUser, function() {
+//         res.redirect("/");
+//       });
+//     } catch (error) {
+//       next(error);
+//     }
+//   }
+// });
 
 router.get("/", (req, res, next) => {
   console.log("===== user!!======");

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import searchLens from "../assets/image/loupe.svg";
+import searchLens from "../assets/image/search.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
 

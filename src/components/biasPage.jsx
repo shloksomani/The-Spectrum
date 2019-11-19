@@ -18,8 +18,8 @@ export class BiasPage extends Component {
     console.log(this.props.match.params.id);
     if (p) {
       console.log("at line 17");
-      // v = this.props.parsed_data[];
-      // console.log(v);
+      v = [this.props.parsed_data];
+      console.log(v);
       // for (let bias in this.props.parsed_data) {
       //   console.log(bias);
       // }
@@ -34,6 +34,10 @@ export class BiasPage extends Component {
     } else {
       return <Error></Error>;
     }
+    // this.props.shuffle(v);
+    return v.map((article, index) => {
+      return <Container key={index} news={article}></Container>;
+    });
     // console.log(v);
   };
 

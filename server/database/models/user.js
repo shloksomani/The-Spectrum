@@ -20,6 +20,18 @@ userSchema.methods = {
     return bcrypt.hashSync(plainTextPassword, 10);
   }
 };
+//   },
+//   password: {
+//     type: String,
+//     required: true
+//   },
+//   date_created: {
+//     type: Date,
+//     default: Date.now()
+//   }
+// });
+
+// module.exports = mongoose.model(model_name, schmea, model_name);
 
 // Define hooks for pre-saving
 // userSchema.pre("save", function(next) {
