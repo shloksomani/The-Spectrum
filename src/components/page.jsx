@@ -62,11 +62,11 @@ export class Page extends Component {
             isLoggedIn={this.state.isLoggedIn}
             handelIsLoggedIn={this.handelIsLoggedIn}
           ></TopNavbar>
-          <BiasNavbar setterParent={this.handleBias}></BiasNavbar>(
+          <BiasNavbar setterParent={this.handleBias}></BiasNavbar>
           {this.state.bias === "" && (
             <div>
               <center>
-                <img className="logo" src={logo} alt="Logo"></img>
+                <img className="mainLogo" src={logo} alt="Logo"></img>
               </center>
             </div>
           )}

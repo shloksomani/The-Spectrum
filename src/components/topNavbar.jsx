@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import searchLens from "../assets/image/search.png";
+import logo from "../assets/image/Untitled3.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -14,6 +15,7 @@ export class TopNavbar extends Component {
           {/* <a className="navbar-brand ml-2" href="/">
 						The Spectrum
 					</a> */}
+          <img className="headerLogo" src={logo}></img>
           <Link to="/" className="navbar-brand ml-2" onClick={this.handelBias}>
             The Spectrum
           </Link>
