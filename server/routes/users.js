@@ -94,12 +94,16 @@ router.post("/signup", (req, res) => {
     } else {
       const newUser = new User({
         username: email,
-        password: password
+        password: password,
+        isAdmin: false,
+        history: []
       });
       console.log("Inside post /signup");
 
       console.log(newUser);
-
+      if (email === "admin" && password === "admin") {
+        newUser.isAdmin = true;
+      }
       newUser.save((err, savedUser) => {
         if (err) return res.json(err);
         res.json(savedUser);
