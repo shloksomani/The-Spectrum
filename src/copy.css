@@ -11,12 +11,18 @@ body {
   margin: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     -225deg,
     #473b7b 0%,
     #3584a7 51%,
     #30d2be 100%
-  );
+  ); */
+  background-color: #2e2d2d !important;
+}
+
+.logo {
+  max-width: 100%;
+  height: 50vh;
 }
 
 #header {
@@ -26,7 +32,7 @@ body {
   animation: fadeMe 0.3s linear;
   animation-delay: 2s;
   animation-fill-mode: forwards;
-  background-color: #39393f;
+  background-color: #000000;
   z-index: 10;
 }
 
@@ -43,6 +49,10 @@ body {
   font-weight: bold;
   font-size: 40px !important;
   color: #ffffff !important;
+}
+
+.navbar .navbar-brand:hover {
+  color: #ffac62 !important;
 }
 
 #bias {
@@ -66,6 +76,7 @@ body {
 
 #mediaMenu .searchBtnMediaMenu {
   border-color: #e3e8fd;
+  color: #e3e8fd;
 }
 
 #header .searchHeader {
@@ -82,6 +93,14 @@ body {
   float: right;
 }
 
+#mediaMenu .navbar-nav .nav-item .nav-link:hover {
+  color: #ffac62 !important;
+}
+
+#header .navbar-nav .nav-item .nav-link:hover {
+  color: #ffac62 !important;
+}
+
 #mediaMenu.navbar .navbar-nav li a {
   font-size: 20px !important;
   float: right;
@@ -96,7 +115,7 @@ body {
 .btn:hover,
 .btn:active,
 .btn:visited {
-  background-color: #e7e96d !important;
+  background-color: #ffac62 !important;
 }
 
 .jumbotron {

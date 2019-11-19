@@ -8,6 +8,7 @@ import Signup from "./signup";
 import Admin from "./admin";
 import History from "./history";
 import axios from "axios";
+import logo from "../assets/image/Capture1.PNG";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 export class Page extends Component {
   state = {
@@ -61,7 +62,14 @@ export class Page extends Component {
             isLoggedIn={this.state.isLoggedIn}
             handelIsLoggedIn={this.handelIsLoggedIn}
           ></TopNavbar>
-          <BiasNavbar setterParent={this.handleBias}></BiasNavbar>
+          <BiasNavbar setterParent={this.handleBias}></BiasNavbar>(
+          {this.state.bias === "" && (
+            <div>
+              <center>
+                <img className="logo" src={logo} alt="Logo"></img>
+              </center>
+            </div>
+          )}
           <Switch>
             <Route exact path="/">
               <Home parsed_data={this.state.data} shuffle={this.shuffle} />
