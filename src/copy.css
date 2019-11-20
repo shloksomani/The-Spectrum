@@ -88,9 +88,8 @@ body {
   border-color: #e3e8fd;
 }
 
-.searchBar {
+/* .searchBar {
   /* justify-content: space-evenly !important; */
-}
 
 #header.navbar .navbar-nav li a {
   color: #ffffff !important;
