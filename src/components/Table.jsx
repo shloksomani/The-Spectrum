@@ -20,8 +20,8 @@ export default class Table extends Component {
 
   getTHeads = () => {
     const head = this.props.head;
-    return head.map(header => {
-      return <th>{header}</th>;
+    return head.map((header, index) => {
+      return <th key={index}>{header}</th>;
     });
   };
 }

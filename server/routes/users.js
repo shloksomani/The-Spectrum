@@ -1,6 +1,6 @@
 // var express = require("express");
 // var router = express.Router();
-// const bcrypt = require("bcryptjs");
+const bcrypt = require("bcryptjs");
 // const User = require("../models/User");
 // var passport = require("../passport");
 // /* GET users listing. */
@@ -49,7 +49,7 @@
 
 //     next(error);
 //   }
-// });
+//  });
 
 // // router.post(
 // //   "/login",
@@ -76,12 +76,12 @@ const router = express.Router();
 const User = require("../database/models/user");
 const passport = require("../passport");
 
-router.post("/signup", (req, res) => {
+router.post("/signup", async function(req, res) {
   console.log("user signup");
 
   const { email, password } = req.body;
   // ADD VALIDATION
-  User.findOne({ username: email }, (err, user) => {
+  User.findOne({ username: email }, async function(err, user) {
     if (err) {
       console.log("User.js post error: ", err);
       res.status(400).send({
@@ -92,9 +92,11 @@ router.post("/signup", (req, res) => {
         error: `Sorry, already a user with the username: ${username}`
       });
     } else {
+      const salt = await bcrypt.genSalt(10);
+      const passwd = await bcrypt.hash(req.body.password, salt);
       const newUser = new User({
         username: email,
-        password: password,
+        password: passwd,
         isAdmin: false,
         history: []
       });

@@ -1,14 +1,19 @@
 import React, { Component } from "react";
 import searchLens from "../assets/image/search.png";
 import logo from "../assets/image/Untitled3.png";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
 export class TopNavbar extends Component {
   // componentWillReceiveProps() {
   //   this.handelLoginNav();
   // }
+  state = { redirect: null };
   render() {
+    // if (this.props.isLoggedOut) {
+    //   this.props.handleIsLoggedOut(false);
+    //   return <Redirect to={{ pathname: this.state.redirectTo }} />;
+    // } else {
     return (
       <React.Fragment>
         <nav id="header" className="navbar navbar-expand-lg navbar-dark">
@@ -93,8 +98,12 @@ export class TopNavbar extends Component {
             </ul>
           </div>
         </nav>
+        {/* if (this.state.redirect) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />;
+    } */}
       </React.Fragment>
     );
+    //}
   }
 
   handelBias = event => {
@@ -199,6 +208,13 @@ export class TopNavbar extends Component {
         console.log(response.data);
         if (response.status === 200) {
           this.props.handelIsLoggedIn(false, null);
+
+          //this.props.handleIsLoggedOut(true);
+
+          // this.setState({ redirect: "/" }, () => {
+          //   console.log(this.state);
+          //   this.props.handelIsLoggedIn(false, null);
+          // });
         }
       })
       .catch(error => {

@@ -4,11 +4,11 @@ export class History extends Component {
   render() {
     return (
       <div>
-        <h1 class="title">User History</h1>
-        <div class="smth title">
+        <h1 className="title">User History</h1>
+        <div className="smth title">
           <p>Look at your media diet</p>
         </div>
-        <div class="container">
+        <div className="container">
           {/* <table id="userTable">
 						<tbody>
 							<tr>

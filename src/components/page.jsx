@@ -10,13 +10,15 @@ import History from "./history";
 import axios from "axios";
 import logo from "../assets/image/Capture1.PNG";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+//import { browserHistory } from "react-router";
 export class Page extends Component {
   state = {
     bias: "",
     isLoggedIn: false,
     data: [],
     username: null,
-    users: []
+    users: [],
+    isLoggedOut: false
   };
 
   shuffle = array => {
@@ -89,6 +91,8 @@ export class Page extends Component {
             isLoggedIn={this.state.isLoggedIn}
             handelIsLoggedIn={this.handelIsLoggedIn}
             username={this.state.username}
+            isLoggedOut={this.state.isLoggedOut}
+            handleIsLoggedOut={this.handleIsLoggedOut}
           ></TopNavbar>
           <BiasNavbar setterParent={this.handleBias}></BiasNavbar>
           {this.state.bias === "" && (
@@ -156,6 +160,10 @@ export class Page extends Component {
     );
 
     this.setState({ isLoggedIn: bool, username: username });
+  };
+
+  handleIsLoggedOut = bool => {
+    this.setState({ isLoggedOut: bool });
   };
 }
 
