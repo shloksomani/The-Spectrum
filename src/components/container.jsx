@@ -2,6 +2,43 @@ import React, { Component } from "react";
 import { Media } from "react-bootstrap";
 
 class Container extends Component {
+  state = {
+    showMore: false,
+    isMobile: false
+  };
+
+  componentDidMount() {
+    window.addEventListener("resize", this.handelBadge);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.handelBadge);
+  }
+
+  toggle = () => {
+    this.setState({ showMore: !this.state.showMore }, () =>
+      console.log("toggle change")
+    );
+  };
+
+  getRenderedItems() {
+    if (this.state.showMore) {
+      return this.props.news.summary;
+    } else if (this.state.isMobile) {
+      return;
+    }
+    return this.props.news.summary.substring(0, 200);
+  }
+
+  showButton = () => {
+    return this.props.news.summary.length > 200 ? true : false;
+  };
+  handelBadge = () => {
+    this.setState({
+      isMobile: window.innerWidth < 700
+    });
+  };
+
   render() {
     return (
       <div>
@@ -28,8 +65,16 @@ class Container extends Component {
                   position: "relative"
                 }}
               >
-                {this.props.news.summary}
+                {this.getRenderedItems()}
               </p>
+              {this.showButton() && (
+                <button
+                  onClick={this.toggle}
+                  className="btn my-2 my-sm-0 readMoreLess"
+                >
+                  {this.state.showMore ? "Read Less" : "Read More"}
+                </button>
+              )}
               <div>
                 <strong>Bias: {this.props.news.bias}</strong>
               </div>

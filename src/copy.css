@@ -123,6 +123,15 @@ body {
   background-color: #ffac62 !important;
 }
 
+.readMoreLess {
+  background-color: rgb(255, 255, 255) !important;
+  border-color: #556297 !important;
+}
+
+.readMoreLess:hover {
+  background-color: #ffac62 !important;
+}
+
 .jumbotron {
   padding-left: 100px !important;
   padding-right: 100px !important;
@@ -141,6 +150,7 @@ body {
   background-color: #ffffff;
   color: black;
 }
+
 @media screen and (min-width: 991px) {
   .sticky {
     position: fixed !important;
@@ -209,7 +219,7 @@ body {
   }
 }
 
-@media screen and (max-width: 395px) {
+@media screen and (max-width: 420px) {
   #header .navbar-brand {
     font-weight: bold;
     font-size: 30px !important;
