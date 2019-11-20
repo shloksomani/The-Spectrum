@@ -138,18 +138,20 @@ export class TopNavbar extends Component {
               History
             </Link>
           </li>
-          <li className="nav-item" id="Admin">
-            {/* <a className="nav-link" href="#">
+          {this.props.username === "admin" && (
+            <li className="nav-item" id="Admin">
+              {/* <a className="nav-link" href="#">
 									Admin
 								</a> */}
-            <Link
-              to="/auth/admin"
-              className="nav-link"
-              onClick={this.handelLogin}
-            >
-              Admin
-            </Link>
-          </li>
+              <Link
+                to="/auth/admin"
+                className="nav-link"
+                onClick={this.handelLogin}
+              >
+                Admin
+              </Link>
+            </li>
+          )}
         </React.Fragment>
       );
     } else {

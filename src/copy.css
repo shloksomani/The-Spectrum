@@ -295,10 +295,12 @@ body {
 
 #userTable {
   margin: auto;
+  color: #ffffff;
 }
 
 .title {
   text-align: center;
+  color: #ffffff;
 }
 
 #userTable,
@@ -306,6 +308,7 @@ td,
 th {
   border-collapse: collapse;
   border: 1px solid black;
+  color: #ffffff;
 }
 
 td,

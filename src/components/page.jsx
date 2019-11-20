@@ -15,7 +15,8 @@ export class Page extends Component {
     bias: "",
     isLoggedIn: false,
     data: [],
-    username: null
+    username: null,
+    users: []
   };
 
   shuffle = array => {
@@ -29,8 +30,12 @@ export class Page extends Component {
 
   componentDidMount() {
     this.getDataFromDb();
-    // this.getUser();
+    this.getAllUsers();
   }
+
+  // updateUser(userObject) {
+  //   this.setState(userObject);
+  // }
 
   getDataFromDb = () => {
     axios.get("/data").then(res => {
@@ -53,6 +58,28 @@ export class Page extends Component {
     });
   };
 
+  getAllUsers() {
+    axios.get("/user/all").then(response => {
+      console.log("Get all users");
+      console.log(response.data);
+      this.setState({ users: response.data });
+      // if (response.data.user) {
+      //   console.log("Get User: There is a user saved in the server session: ");
+
+      //   this.setState({
+      //     isLoggedIn: true,
+      //     username: response.data.user.username
+      //   });
+      // } else {
+      //   console.log("Get user: no user");
+      //   this.setState({
+      //     loggedIn: false,
+      //     username: null
+      //   });
+      // }
+    });
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -61,6 +88,7 @@ export class Page extends Component {
             setterParent={this.handleBias}
             isLoggedIn={this.state.isLoggedIn}
             handelIsLoggedIn={this.handelIsLoggedIn}
+            username={this.state.username}
           ></TopNavbar>
           <BiasNavbar setterParent={this.handleBias}></BiasNavbar>
           {this.state.bias === "" && (
@@ -90,21 +118,20 @@ export class Page extends Component {
               <Login
                 isLoggedIn={this.state.isLoggedIn}
                 handelIsLoggedIn={this.handelIsLoggedIn}
-                updateUser={this.updateUser}
+                updateUser={this.getUser}
               />
             </Route>
             <Route exact path="/auth/signup">
               <Signup
                 isLoggedIn={this.state.isLoggedIn}
                 handelIsLoggedIn={this.handelIsLoggedIn}
-                updateUser={this.updateUser}
               />
             </Route>
             <Route exact path="/auth/admin">
-              <Admin />
+              <Admin users={this.state.users} />
             </Route>
             <Route exact path="/auth/history">
-              <History />
+              <History users={this.state.users} />
             </Route>
           </Switch>
         </Router>
@@ -124,6 +151,10 @@ export class Page extends Component {
   };
 
   handelIsLoggedIn = (bool, username) => {
+    console.log(
+      "inside handleIsLoggedIn after login calls fn, should set state"
+    );
+
     this.setState({ isLoggedIn: bool, username: username });
   };
 }

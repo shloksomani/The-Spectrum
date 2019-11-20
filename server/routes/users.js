@@ -188,4 +188,19 @@ router.post("/logout", (req, res) => {
   }
 });
 
+router.get("/all", (req, res) => {
+  User.find({}, (err, users) => {
+    if (err) {
+      console.log("User.js post error: ", err);
+      res.status(400).send({
+        error: "User.js post error:"
+      });
+    } else {
+      console.log(users);
+
+      res.json(users);
+    }
+  });
+});
+
 module.exports = router;

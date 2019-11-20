@@ -89,18 +89,24 @@ export class Login extends Component {
       .then(response => {
         console.log("login success!");
         console.log(response);
+        console.log(response.data);
+
         if (response.status === 200) {
           // update App.js state
           // update the state to redirect to home
+          console.log("status code 200");
+
+          console.log(this.state.username);
+
           this.setState(
             {
               redirect: "/"
             },
             () => {
               console.log(this.state);
+              this.props.handelIsLoggedIn(true, this.state.username);
             }
           );
-          this.props.handelIsLoggedIn(true, this.state.username);
         }
         //this.setState({ redirect: true });
       })
