@@ -27,8 +27,8 @@ class Container extends Component {
     } else if (this.state.isMobile) {
       return;
     }
-    if (this.props.news.length > 0) {
-      console.log(this.props.news);
+    if (this.props.news.summary.length > 0) {
+      console.log("here");
       return this.props.news.summary.substring(0, 200);
     }
   }
@@ -45,7 +45,7 @@ class Container extends Component {
   render() {
     return (
       <div>
-        <div className="col-10 offset-1 d-flex align-items-stretch mb-2">
+        <div className="col-10 offset-1 d-flex flex-column flex-grow align-items-stretch mb-2">
           <div
             className="row no-gutters bg-light position-relative mt-4"
             id="firstNews"
@@ -53,7 +53,7 @@ class Container extends Component {
             <div className="col-md-4 mb-md-0 p-md-4">
               <img
                 src={this.props.news.top_image}
-                className="w-100 rounded"
+                className="w-100 rounded articleImages"
                 alt=""
               />
             </div>
@@ -86,12 +86,17 @@ class Container extends Component {
                   href={this.props.news.url}
                   className="stretched-link check history"
                   style={{ position: "relative" }}
+                  target="_blank"
                 >
                   Link to news
                 </a>
 
                 <p style={{ transform: "rotate(0)" }}>
-                  <a href="+ mbfc + " className="text-warning stretched-link">
+                  <a
+                    href="+ mbfc + "
+                    className="text-warning stretched-link"
+                    target="_blank"
+                  >
                     {" "}
                     Bias Breakdown
                   </a>

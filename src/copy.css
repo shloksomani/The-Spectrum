@@ -26,6 +26,11 @@ body {
   background-color: black;
 }
 
+.articleImages {
+  max-height: 250px;
+  max-width: 350px;
+}
+
 #header {
   position: -webkit-sticky;
   position: sticky;
