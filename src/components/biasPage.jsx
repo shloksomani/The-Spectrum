@@ -15,9 +15,10 @@ export class BiasPage extends Component {
   handleBias = () => {
     let v = [];
     let p = this.handelNavRouting();
-    console.log(this.props.match.params.id);
+    // console.log(p);
+    // console.log(this.props.match.params.id)
     if (p) {
-      console.log("at line 17");
+      // console.log("at line 17");
       v = [this.props.parsed_data];
       console.log(v);
       // for (let bias in this.props.parsed_data) {

@@ -183,7 +183,7 @@ router.post("/logout", (req, res) => {
   if (req.user) {
     console.log("in logout req.user is true");
     req.logout();
-    res.send({ msg: "logging out" });
+    res.status(200).send({ msg: "logging out" });
   } else {
     console.log("in logout req.user is false");
     res.send({ msg: "no user to log out" });

@@ -27,7 +27,10 @@ class Container extends Component {
     } else if (this.state.isMobile) {
       return;
     }
-    return this.props.news.summary.substring(0, 200);
+    if (this.props.news.length > 0) {
+      console.log(this.props.news);
+      return this.props.news.summary.substring(0, 200);
+    }
   }
 
   showButton = () => {

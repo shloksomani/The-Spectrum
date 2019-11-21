@@ -7,6 +7,7 @@ import Login from "./login";
 import Signup from "./signup";
 import Admin from "./admin";
 import History from "./history";
+import Dashboard from "./dashboard";
 import axios from "axios";
 import logo from "../assets/image/Capture1.PNG";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -136,6 +137,9 @@ export class Page extends Component {
             </Route>
             <Route exact path="/auth/history">
               <History users={this.state.users} />
+            </Route>
+            <Route exact path="/auth/dashboard">
+              <Dashboard users={this.state.users} />
             </Route>
           </Switch>
         </Router>

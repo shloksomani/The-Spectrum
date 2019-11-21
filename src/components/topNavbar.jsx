@@ -131,7 +131,11 @@ export class TopNavbar extends Component {
             {/* <a className="nav-link" href="#">
 									Logout
 								</a> */}
-            <Link to="/" className="nav-link" onClick={this.handelLogout}>
+            <Link
+              to="/auth/login"
+              className="nav-link"
+              onClick={this.handelLogout}
+            >
               Logout
             </Link>
           </li>
@@ -208,13 +212,7 @@ export class TopNavbar extends Component {
         console.log(response.data);
         if (response.status === 200) {
           this.props.handelIsLoggedIn(false, null);
-
-          //this.props.handleIsLoggedOut(true);
-
-          // this.setState({ redirect: "/" }, () => {
-          //   console.log(this.state);
-          //   this.props.handelIsLoggedIn(false, null);
-          // });
+          document.location.href = "/auth/login";
         }
       })
       .catch(error => {
