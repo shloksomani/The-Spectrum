@@ -14,9 +14,9 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 //import { browserHistory } from "react-router";
 export class Page extends Component {
   state = {
-    bias: "",
+    // bias: "",
     isLoggedIn: false,
-    data: [],
+    // data: [],
     username: null,
     users: [],
     isLoggedOut: false
@@ -32,7 +32,7 @@ export class Page extends Component {
   };
 
   componentDidMount() {
-    this.getDataFromDb();
+    // this.getDataFromDb();
     this.getAllUsers();
   }
 
@@ -40,26 +40,26 @@ export class Page extends Component {
   //   this.setState(userObject);
   // }
 
-  getDataFromDb = () => {
-    axios.get("/data").then(res => {
-      // this.setState({ data: res.data });
-      if (res.data.user) {
-        console.log("Get User: There is a user saved in the server session: ");
-        this.setState({
-          isLoggedIn: true,
-          username: res.data.user.username,
-          data: res.data.data
-        });
-        console.log(res.data.data);
-      } else {
-        console.log("Get user: no user");
-        this.setState({
-          data: res.data.data
-        });
-      }
-      console.log(res);
-    });
-  };
+  // getDataFromDb = () => {
+  //   axios.get("/data").then(res => {
+  //     // this.setState({ data: res.data });
+  //     if (res.data.user) {
+  //       console.log("Get User: There is a user saved in the server session: ");
+  //       this.setState({
+  //         isLoggedIn: true,
+  //         username: res.data.user.username,
+  //         data: res.data.data
+  //       });
+  //       console.log(res.data.data);
+  //     } else {
+  //       console.log("Get user: no user");
+  //       this.setState({
+  //         data: res.data.data
+  //       });
+  //     }
+  //     console.log(res);
+  //   });
+  // };
 
   getAllUsers() {
     axios.get("/user/all").then(response => {
@@ -88,15 +88,15 @@ export class Page extends Component {
       <React.Fragment>
         <Router>
           <TopNavbar
-            setterParent={this.handleBias}
+            setterParent={this.props.handleBias}
             isLoggedIn={this.state.isLoggedIn}
             handelIsLoggedIn={this.handelIsLoggedIn}
             username={this.state.username}
             isLoggedOut={this.state.isLoggedOut}
             handleIsLoggedOut={this.handleIsLoggedOut}
           ></TopNavbar>
-          <BiasNavbar setterParent={this.handleBias}></BiasNavbar>
-          {this.state.bias === "" && (
+          <BiasNavbar setterParent={this.props.handleBias}></BiasNavbar>
+          {this.props.bias === "" && (
             <div>
               <center>
                 <img className="mainLogo" src={logo} alt="Logo"></img>
@@ -105,7 +105,7 @@ export class Page extends Component {
           )}
           <Switch>
             <Route exact path="/">
-              <Home parsed_data={this.state.data} shuffle={this.shuffle} />
+              <Home parsed_data={this.props.data} shuffle={this.shuffle} />
             </Route>
             <Route
               exact
@@ -113,8 +113,8 @@ export class Page extends Component {
               render={props => (
                 <BiasPage
                   {...props}
-                  bias={this.state.bias}
-                  parsed_data={this.state.data}
+                  bias={this.props.bias}
+                  parsed_data={this.props.data}
                   shuffle={this.shuffle}
                 />
               )}
@@ -147,16 +147,16 @@ export class Page extends Component {
     );
   }
 
-  handleBias = biasGet => {
-    if (biasGet === "") {
-      this.setState({ bias: "" }, () => console.log(this.state));
-    } else {
-      let i = biasGet.toLowerCase().split(" ");
-      let k = i.join("_");
-      console.log(k);
-      this.setState({ bias: k }, () => console.log(this.state));
-    }
-  };
+  // handleBias = biasGet => {
+  //   if (biasGet === "") {
+  //     this.setState({ bias: "" }, () => console.log(this.state));
+  //   } else {
+  //     let i = biasGet.toLowerCase().split(" ");
+  //     let k = i.join("_");
+  //     console.log(k);
+  //     this.setState({ bias: k }, () => console.log(this.state));
+  //   }
+  // };
 
   handelIsLoggedIn = (bool, username) => {
     console.log(
