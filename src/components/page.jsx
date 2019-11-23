@@ -14,9 +14,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 //import { browserHistory } from "react-router";
 export class Page extends Component {
   state = {
-    // bias: "",
     isLoggedIn: false,
-    // data: [],
     username: null,
     users: [],
     isLoggedOut: false
@@ -32,54 +30,14 @@ export class Page extends Component {
   };
 
   componentDidMount() {
-    // this.getDataFromDb();
     this.getAllUsers();
   }
-
-  // updateUser(userObject) {
-  //   this.setState(userObject);
-  // }
-
-  // getDataFromDb = () => {
-  //   axios.get("/data").then(res => {
-  //     // this.setState({ data: res.data });
-  //     if (res.data.user) {
-  //       console.log("Get User: There is a user saved in the server session: ");
-  //       this.setState({
-  //         isLoggedIn: true,
-  //         username: res.data.user.username,
-  //         data: res.data.data
-  //       });
-  //       console.log(res.data.data);
-  //     } else {
-  //       console.log("Get user: no user");
-  //       this.setState({
-  //         data: res.data.data
-  //       });
-  //     }
-  //     console.log(res);
-  //   });
-  // };
 
   getAllUsers() {
     axios.get("/user/all").then(response => {
       console.log("Get all users");
       console.log(response.data);
       this.setState({ users: response.data });
-      // if (response.data.user) {
-      //   console.log("Get User: There is a user saved in the server session: ");
-
-      //   this.setState({
-      //     isLoggedIn: true,
-      //     username: response.data.user.username
-      //   });
-      // } else {
-      //   console.log("Get user: no user");
-      //   this.setState({
-      //     loggedIn: false,
-      //     username: null
-      //   });
-      // }
     });
   }
 

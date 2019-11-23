@@ -8,28 +8,35 @@ class App extends React.Component {
   };
   componentDidMount() {
     this.getDataFromDb();
-    // this.getAllUsers();
   }
 
   getDataFromDb = () => {
-    axios.get("/data").then(res => {
-      // this.setState({ data: res.data });
-      if (res.data.user) {
-        console.log("Get User: There is a user saved in the server session: ");
-        this.setState({
-          isLoggedIn: true,
-          username: res.data.user.username,
-          data: res.data.data
-        });
-        console.log(res.data.data);
-      } else {
-        console.log("Get user: no user");
-        this.setState({
-          data: res.data.data
-        });
-      }
-      console.log(res);
-    });
+    const request = axios
+      .get("/data", {
+        params: {
+          name: this.state.bias
+        }
+      })
+      .then(res => {
+        // this.setState({ data: res.data });
+        if (res.data.user) {
+          console.log(
+            "Get User: There is a user saved in the server session: "
+          );
+          this.setState({
+            isLoggedIn: true,
+            username: res.data.user.username,
+            data: res.data.data
+          });
+          // console.log(res.data.data);
+        } else {
+          // console.log("Get user: no user");
+          this.setState({
+            data: res.data.data
+          });
+        }
+      });
+    // this.getAllUsers();;
   };
 
   handleBias = biasGet => {
@@ -49,6 +56,7 @@ class App extends React.Component {
         data={this.state.data}
         handleBias={this.handleBias}
         bias={this.state.bias}
+        getArticles={this.getDataFromDb}
       ></Page>
     );
   }

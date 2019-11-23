@@ -19,18 +19,22 @@ export class BiasPage extends Component {
     // console.log(this.props.match.params.id)
     if (p) {
       // console.log("at line 17");
-      v = [this.props.parsed_data];
-      console.log(v);
-      // for (let bias in this.props.parsed_data) {
-      //   console.log(bias);
-      // }
-      // Todo - object is not getting parsed
-      if (!Array.isArray(this.props.parsed_data)) {
-        v = this.props.parsed_data[this.props.match.params.id];
-        this.props.shuffle(v);
-        return v.map((article, index) => {
-          return <Container key={index} news={article}></Container>;
-        });
+      if (this.props.parsed_data.length > 0) {
+        v = [this.props.parsed_data];
+        console.log(this.props.parsed_data);
+        // for (let bias in this.props.parsed_data) {
+        //   console.log(bias);
+        // }
+        // Todo - object is not getting parsed
+        if (!Array.isArray(this.props.parsed_data)) {
+          v = this.props.parsed_data[this.props.match.params.id];
+          this.props.shuffle(v);
+          return v.map((article, index) => {
+            return <Container key={index} news={article}></Container>;
+          });
+        }
+      } else {
+        /// Todo
       }
     } else {
       return <Error></Error>;

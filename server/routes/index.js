@@ -4,28 +4,17 @@ var data = require("../data");
 
 /* GET home page. */
 router.get("/data", function(req, res, next) {
-  //console.log(data);
-  console.log(req.user);
-  // if (req.user) {
-  //   return res.status(200).send({ user: req.user, data: data });
-  // } else {
-  //   return res.status(200).send({ user: null, data: data });
-  // }
-  if (req.user) {
-    return res.status(200).send({ data: data, user: req.user });
+  console.log(req.url);
+  console.log(req.body);
+  let bias = req.url.split("=")[1];
+  if (find_bias(req.url)) {
+    if (req.user) {
+      return res.status(200).send({ data: data, user: req.user });
+    }
+    return res.status(200).send({ data: data[bias], user: null });
   } else {
     return res.status(200).send({ data: data, user: null });
   }
-  // res.render("index", { title: "Express" });
-
-  //  try {
-  //    axios
-  //      .get("https://api.neoscan.io/api/main_net/v1/get_all_nodes")
-  //      .then(data => res.status(200).send(data))
-  //      .catch(err => res.send(err));
-  //  } catch (err) {
-  //    console.error("GG", err);
-  //  }
 });
 
 router.get("/", (req, res, next) => {
@@ -37,5 +26,22 @@ router.get("/", (req, res, next) => {
     res.json({ user: null });
   }
 });
+
+find_bias = url => {
+  let biasToFind = url.split("=")[1];
+  let storedBiases = [
+    "left_bias",
+    "left_center_bias",
+    "least_bias",
+    "right_center_bias",
+    "right_bias",
+    "pro_science",
+    "questionable_sources"
+  ];
+  let found = storedBiases.find(function(element) {
+    return element === biasToFind;
+  });
+  return found ? true : false;
+};
 
 module.exports = router;

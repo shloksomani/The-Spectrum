@@ -16,9 +16,7 @@ class Container extends Component {
   }
 
   toggle = () => {
-    this.setState({ showMore: !this.state.showMore }, () =>
-      console.log("toggle change")
-    );
+    this.setState({ showMore: !this.state.showMore });
   };
 
   getRenderedItems() {
@@ -28,7 +26,7 @@ class Container extends Component {
       return;
     }
     if (this.props.news.summary.length > 0) {
-      console.log("here");
+      // console.log("here");
       return this.props.news.summary.substring(0, 200);
     }
   }
