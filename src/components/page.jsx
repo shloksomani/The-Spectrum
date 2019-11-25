@@ -10,7 +10,12 @@ import History from "./history";
 import Dashboard from "./dashboard";
 import axios from "axios";
 import logo from "../assets/image/Capture1.PNG";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 //import { browserHistory } from "react-router";
 export class Page extends Component {
   state = {
@@ -33,13 +38,13 @@ export class Page extends Component {
     this.getAllUsers();
   }
 
-  getAllUsers() {
+  getAllUsers = () => {
     axios.get("/user/all").then(response => {
       console.log("Get all users");
       console.log(response.data);
       this.setState({ users: response.data });
     });
-  }
+  };
 
   render() {
     return (
@@ -91,13 +96,21 @@ export class Page extends Component {
               />
             </Route>
             <Route exact path="/auth/admin">
-              <Admin users={this.state.users} />
+              <Admin users={this.state.users} getUsers={this.getAllUsers} />
             </Route>
             <Route exact path="/auth/history">
-              <History users={this.state.users} />
+              {this.state.isLoggedIn ? (
+                <History users={this.state.users} />
+              ) : (
+                <Redirect to="/auth/login"></Redirect>
+              )}
             </Route>
             <Route exact path="/auth/dashboard">
-              <Dashboard users={this.state.users} />
+              {this.state.isLoggedIn ? (
+                <Dashboard users={this.state.users} />
+              ) : (
+                <Redirect to="/auth/login"></Redirect>
+              )}
             </Route>
           </Switch>
         </Router>

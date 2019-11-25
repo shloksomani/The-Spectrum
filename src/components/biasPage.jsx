@@ -17,25 +17,33 @@ export class BiasPage extends Component {
     let p = this.handelNavRouting();
     // console.log(p);
     // console.log(this.props.match.params.id)
+    console.log("inside handleBias");
+
     if (p) {
+      console.log("handleNavRouting is true");
+      console.log(this.props.parsed_data);
+      console.log(this.props.parsed_data.length);
+
       // console.log("at line 17");
-      if (this.props.parsed_data.length > 0) {
-        v = [this.props.parsed_data];
-        console.log(this.props.parsed_data);
-        // for (let bias in this.props.parsed_data) {
-        //   console.log(bias);
-        // }
-        // Todo - object is not getting parsed
-        if (!Array.isArray(this.props.parsed_data)) {
-          v = this.props.parsed_data[this.props.match.params.id];
-          this.props.shuffle(v);
-          return v.map((article, index) => {
-            return <Container key={index} news={article}></Container>;
-          });
-        }
-      } else {
-        /// Todo
+      //if (this.props.parsed_data.length > 0) {
+      v = [this.props.parsed_data];
+      console.log(this.props.parsed_data);
+      // for (let bias in this.props.parsed_data) {
+      //   console.log(bias);
+      // }
+      // Todo - object is not getting parsed
+      if (!Array.isArray(this.props.parsed_data)) {
+        v = this.props.parsed_data[this.props.match.params.id];
+        console.log(v);
+
+        this.props.shuffle(v);
+        return v.map((article, index) => {
+          return <Container key={index} news={article}></Container>;
+        });
       }
+      // } else {
+      //   /// Todo
+      // }
     } else {
       return <Error></Error>;
     }

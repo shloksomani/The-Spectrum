@@ -1,6 +1,7 @@
 // var express = require("express");
 // var router = express.Router();
 const bcrypt = require("bcryptjs");
+const mongoose = require("mongoose");
 // const User = require("../models/User");
 // var passport = require("../passport");
 // /* GET users listing. */
@@ -205,4 +206,27 @@ router.get("/all", (req, res) => {
   });
 });
 
+router.post("/admin", (req, res) => {
+  console.log("inside server post admin");
+  console.log(req.body);
+  const id = mongoose.mongo.ObjectID(req.body.id);
+  console.log(id);
+  res.status(200).send();
+  // User.findById({ _id: id })
+  //   .then(user => {
+  //     console.log(user);
+  //     res.status(200).send();
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   });
+  User.deleteOne({ _id: id })
+    .then(user => {
+      console.log(user);
+      res.status(200).send();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
 module.exports = router;

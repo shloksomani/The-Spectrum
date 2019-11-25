@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import Table from "./Table";
+import axios from "axios";
 export class Admin extends Component {
   componentDidMount() {
     if (this.props.users.length > 0) {
       this.manipulateTable();
+      this.props.getUsers();
     }
   }
+
   render() {
     return (
       <div>
@@ -14,38 +17,60 @@ export class Admin extends Component {
           <p>Admin is allowed to remove users</p>
         </div>
         {/* <Table head={["User Name", "Email", "Action: id"]} /> */}
-        <Table head={["User Name", "Action: id"]} />
+        <Table head={["User Name", "Remove: id"]} />
       </div>
     );
   }
 
-  manipulateTable = () => {
+  addUserToTable = user => {
     const userTable = document.querySelector("#userTable");
-    var userCheck = "something";
-    this.props.users.forEach(function(user) {
-      addUserToTable(user);
-    });
-    function addUserToTable(user) {
-      if (user.username !== "admin") {
-        const nameOfUser = document.createElement("td");
-        nameOfUser.appendChild(document.createTextNode(user.username));
-        const bold = document.createElement("strong");
-        // bold.appendChild(document.createTextNode(user.email));
-        // const email = document.createElement("td");
-        // email.appendChild(bold);
-        const action = document.createElement("td");
-        action.innerHTML =
-          '<form action="/admin" method="POST"> <input className= "return" name="id" value ="remove: ' +
-          user._id +
-          '" type="submit"> </form>';
-        const row = document.createElement("tr");
-        row.appendChild(nameOfUser);
-        //row.appendChild(email);
-        row.appendChild(action);
-        const tablebody = userTable.querySelector("tbody");
-        tablebody.appendChild(row);
-      }
+    if (user.username !== "admin") {
+      const nameOfUser = document.createElement("td");
+      nameOfUser.appendChild(document.createTextNode(user.username));
+      const bold = document.createElement("strong");
+      // bold.appendChild(document.createTextNode(user.email));
+      // const email = document.createElement("td");
+      // email.appendChild(bold);
+      const action = document.createElement("td");
+      const rem = document.createElement("button");
+      const id = document.createTextNode(user._id);
+      rem.appendChild(id);
+      rem.classList.add("return");
+      rem.addEventListener("click", this.removeUser);
+
+      action.appendChild(rem);
+      const row = document.createElement("tr");
+      row.appendChild(nameOfUser);
+      //row.appendChild(email);
+      row.appendChild(action);
+      const tablebody = userTable.querySelector("tbody");
+      tablebody.appendChild(row);
     }
+  };
+
+  removeUser = e => {
+    console.log("inside removeUser");
+    console.log(e.target.innerText);
+    console.log(e.target.parentElement.parentElement.rowIndex);
+    document
+      .querySelector("#userTable")
+      .deleteRow(e.target.parentElement.parentElement.rowIndex);
+    axios
+      .post("/user/admin", { id: e.target.innerText })
+      .then(res => {
+        console.log("post admin sucessful!");
+        this.props.getUsers();
+        //this.setState({ isRemoved: true });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  manipulateTable = () => {
+    this.props.users.forEach(user => {
+      this.addUserToTable(user);
+    });
   };
 }
 

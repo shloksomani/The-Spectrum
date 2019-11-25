@@ -13,8 +13,8 @@ export class BiasNavbar extends Component {
             <ul className="navbar-nav mr-auto">
               <li
                 className="nav-item"
-                dataToggle="collapse"
-                dataTarget=".navbar-collapse.show"
+                datatoggle="collapse"
+                datatarget=".navbar-collapse.show"
               >
                 <Link
                   to="/left_bias"
