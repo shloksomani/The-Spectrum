@@ -37,8 +37,17 @@ export class BiasPage extends Component {
         console.log(v);
 
         this.props.shuffle(v);
+        console.log("logging this.props.isLoggedIn");
+        console.log(this.props.isLoggedIn);
+
         return v.map((article, index) => {
-          return <Container key={index} news={article}></Container>;
+          return (
+            <Container
+              key={index}
+              news={article}
+              isLoggedIn={this.props.isLoggedIn}
+            ></Container>
+          );
         });
       }
       // } else {

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Media } from "react-bootstrap";
+import axios from "axios";
 
 class Container extends Component {
   state = {
@@ -38,6 +39,23 @@ class Container extends Component {
     this.setState({
       isMobile: window.innerWidth < 700
     });
+  };
+
+  addToHistory = () => {
+    console.log("inside addToHistory");
+
+    if (this.props.isLoggedIn) {
+      axios
+        .post("/user/history", { article: this.props.news })
+        .then(res => {
+          if (res.status == 200) {
+            console.log("Successfully added history to user");
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   };
 
   render() {
@@ -85,6 +103,7 @@ class Container extends Component {
                   className="stretched-link check history"
                   style={{ position: "relative" }}
                   target="_blank"
+                  onClick={this.addToHistory}
                 >
                   Link to news
                 </a>

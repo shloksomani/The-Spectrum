@@ -23,7 +23,13 @@ export class Home extends Component {
     let v = data1.dummy_data;
     this.props.shuffle(v);
     return v.map((article, index) => {
-      return <Container key={index} news={article}></Container>;
+      return (
+        <Container
+          key={index}
+          news={article}
+          isLoggedIn={this.props.isLoggedIn}
+        ></Container>
+      );
     });
   };
 }

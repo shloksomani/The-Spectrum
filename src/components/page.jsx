@@ -68,7 +68,11 @@ export class Page extends Component {
           )}
           <Switch>
             <Route exact path="/">
-              <Home parsed_data={this.props.data} shuffle={this.shuffle} />
+              <Home
+                parsed_data={this.props.data}
+                shuffle={this.shuffle}
+                isLoggedIn={this.state.isLoggedIn}
+              />
             </Route>
             <Route
               exact
@@ -79,6 +83,7 @@ export class Page extends Component {
                   bias={this.props.bias}
                   parsed_data={this.props.data}
                   shuffle={this.shuffle}
+                  isLoggedIn={this.state.isLoggedIn}
                 />
               )}
             />
@@ -100,7 +105,7 @@ export class Page extends Component {
             </Route>
             <Route exact path="/auth/history">
               {this.state.isLoggedIn ? (
-                <History users={this.state.users} />
+                <History users={this.state.users} getUsers={this.getAllUsers} />
               ) : (
                 <Redirect to="/auth/login"></Redirect>
               )}

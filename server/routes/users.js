@@ -211,19 +211,44 @@ router.post("/admin", (req, res) => {
   console.log(req.body);
   const id = mongoose.mongo.ObjectID(req.body.id);
   console.log(id);
-  res.status(200).send();
-  // User.findById({ _id: id })
-  //   .then(user => {
-  //     console.log(user);
-  //     res.status(200).send();
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   });
+  //res.status(200).send();
+
   User.deleteOne({ _id: id })
     .then(user => {
       console.log(user);
       res.status(200).send();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+router.post("/history", (req, res) => {
+  console.log("inside history post");
+  User.findById({ _id: req.user._id })
+    .then(user => {
+      user.history.push(req.body);
+      user.save((err, savedUser) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(savedUser);
+        }
+      });
+
+      res.status(200).send();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+router.get("/history", (req, res) => {
+  console.log("inside history get");
+  User.findById({ _id: req.user._id })
+    .then(user => {
+      //res.send(user.history);
+      res.json({ history: user.history });
     })
     .catch(err => {
       console.log(err);
