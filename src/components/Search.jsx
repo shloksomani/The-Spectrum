@@ -1,21 +1,20 @@
 import React, { Component } from "react";
-//import parsed_data from "../assets/data/data";
 import Container from "./container";
 
-export class Home extends Component {
+export class Search extends Component {
   render() {
-    return <React.Fragment>{this.getData()}</React.Fragment>;
+    return <React.Fragment>{this.getSearchData()}</React.Fragment>;
   }
 
-  getData = () => {
+  getSearchData = () => {
     const data1 = {};
     data1.dummy_data = [];
-    let data = this.props.parsed_data;
-    if (this.props.searchData) {
-      console.log("setting search data");
+    console.log(this.props.searchData);
 
+    if (this.props.searchData.length > 0) {
       data1.dummy_data = this.props.searchData;
     } else {
+      const data = this.props.parsed_data;
       for (let bias in data) {
         // List of articles that have the bias
         const bias_list = data[bias];
@@ -45,4 +44,4 @@ export class Home extends Component {
   };
 }
 
-export default Home;
+export default Search;

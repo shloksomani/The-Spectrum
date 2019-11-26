@@ -1,7 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, Redirect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export class BiasNavbar extends Component {
+  state = { keywords: "", redirect: false };
   render() {
     return (
       <React.Fragment>
@@ -101,8 +103,9 @@ export class BiasNavbar extends Component {
             <span className="navbar-text d-none d-lg-block d-xl-block">
               <form
                 className="form-inline"
-                action="/index/keywords"
-                method="GET"
+                onSubmit={this.handleSearch}
+                //action="/index/keywords"
+                //method="GET"
               >
                 <input
                   className="form-control mr-sm-2"
@@ -110,6 +113,9 @@ export class BiasNavbar extends Component {
                   name="user_search"
                   placeholder="Search"
                   aria-label="Search"
+                  onChange={event => {
+                    this.setState({ keywords: event.target.value });
+                  }}
                 />
                 <button
                   className="btn my-2 my-sm-0 searchBtnMediaMenu"
@@ -124,6 +130,22 @@ export class BiasNavbar extends Component {
       </React.Fragment>
     );
   }
+
+  handleSearch = e => {
+    e.preventDefault();
+    axios
+      .post("/keywords", { keywords: this.state.keywords })
+      .then(res => {
+        if (res.status === 200) {
+          console.log("search successful!");
+          console.log(res.data.data);
+          this.props.setSearchData(res.data.data);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   handelBias = event => {
     this.props.setterParent(event.target.innerHTML);

@@ -48,8 +48,8 @@ export class TopNavbar extends Component {
               <span className="navbar-text d-lg-none d-xl-none searchBar">
                 <form
                   className="form-inline"
-                  action="/index/keywords"
-                  method="GET"
+                  //action="/index/keywords"
+                  //method="GET"
                 >
                   <input
                     className="form-control mr-sm-2"
