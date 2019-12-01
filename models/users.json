@@ -1,0 +1,1 @@
+[{"name":"user","email":"user","password":"user","isAdmin":false,"id":"1","history":[]},{"name":"user2","email":"user2","password":"user2","isAdmin":false,"id":"2","history":[]},{"name":"user3","email":"admin","password":"admin","isAdmin":true,"id":"0","history":[]}]
