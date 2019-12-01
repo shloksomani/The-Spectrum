@@ -1,22 +1,16 @@
 import React, { Component } from "react";
-// import parsed_data from "../assets/data/data";
 import Container from "./container";
 import Error from "./error";
 
 export class BiasPage extends Component {
   render() {
-    return (
-      // <React.Fragment>
-      <React.Fragment>{this.handleBias()}</React.Fragment>
-      // </React.Fragment>
-    );
+    return <React.Fragment>{this.handleBias()}</React.Fragment>;
   }
 
   handleBias = () => {
     let v = [];
     let p = this.handelNavRouting();
-    // console.log(p);
-    // console.log(this.props.match.params.id)
+
     console.log("inside handleBias");
 
     if (p) {
@@ -24,14 +18,9 @@ export class BiasPage extends Component {
       console.log(this.props.parsed_data);
       console.log(this.props.parsed_data.length);
 
-      // console.log("at line 17");
-      //if (this.props.parsed_data.length > 0) {
       v = [this.props.parsed_data];
       console.log(this.props.parsed_data);
-      // for (let bias in this.props.parsed_data) {
-      //   console.log(bias);
-      // }
-      // Todo - object is not getting parsed
+
       if (!Array.isArray(this.props.parsed_data)) {
         v = this.props.parsed_data[this.props.match.params.id];
         console.log(v);
@@ -50,23 +39,18 @@ export class BiasPage extends Component {
           );
         });
       }
-      // } else {
-      //   /// Todo
-      // }
     } else {
       return <Error></Error>;
     }
-    // this.props.shuffle(v);
+
     return v.map((article, index) => {
       return <Container key={index} news={article}></Container>;
     });
-    // console.log(v);
   };
 
   handelNavRouting = () => {
-    // console.log(this.props.match.params.id);
     let v = this.props.match.params.id;
-    // console.log(v);
+
     if (v) {
       let storedBiases = [
         "left_bias",

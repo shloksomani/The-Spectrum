@@ -8,6 +8,7 @@ import Signup from "./signup";
 import Admin from "./admin";
 import History from "./history";
 import Dashboard from "./dashboard";
+import Search from "./Search";
 import axios from "axios";
 import logo from "../assets/image/Capture1.PNG";
 import {
@@ -16,13 +17,14 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-//import { browserHistory } from "react-router";
+
 export class Page extends Component {
   state = {
     isLoggedIn: false,
     username: null,
     users: [],
-    isLoggedOut: false
+    isLoggedOut: false,
+    searchData: null
   };
 
   shuffle = array => {
@@ -47,92 +49,128 @@ export class Page extends Component {
   };
 
   render() {
-    return (
-      <React.Fragment>
-        <Router>
-          <TopNavbar
-            setterParent={this.props.handleBias}
-            isLoggedIn={this.state.isLoggedIn}
-            handelIsLoggedIn={this.handelIsLoggedIn}
-            username={this.state.username}
-            isLoggedOut={this.state.isLoggedOut}
-            handleIsLoggedOut={this.handleIsLoggedOut}
-          ></TopNavbar>
-          <BiasNavbar setterParent={this.props.handleBias}></BiasNavbar>
-          {this.props.bias === "" && (
-            <div>
-              <center>
-                <img className="mainLogo" src={logo} alt="Logo"></img>
-              </center>
-            </div>
-          )}
-          <Switch>
-            <Route exact path="/">
-              <Home
-                parsed_data={this.props.data}
-                shuffle={this.shuffle}
-                isLoggedIn={this.state.isLoggedIn}
-              />
-            </Route>
-            <Route
-              exact
-              path="/:id"
-              render={props => (
-                <BiasPage
-                  {...props}
-                  bias={this.props.bias}
+    if (this.props.redirect) {
+      return (
+        <React.Fragment>
+          <Router>
+            <TopNavbar
+              setterParent={this.props.handleBias}
+              isLoggedIn={this.state.isLoggedIn}
+              handelIsLoggedIn={this.handelIsLoggedIn}
+              username={this.state.username}
+              isLoggedOut={this.state.isLoggedOut}
+              handleIsLoggedOut={this.handleIsLoggedOut}
+            ></TopNavbar>
+            <BiasNavbar
+              setterParent={this.props.handleBias}
+              setSearchData={this.setSearchData}
+            ></BiasNavbar>
+            {this.props.bias === "" && (
+              <div>
+                <center>
+                  <img className="mainLogo" src={logo} alt="Logo"></img>
+                </center>
+              </div>
+            )}
+            <Search
+              searchData={this.state.searchData}
+              parsed_data={this.props.data}
+              shuffle={this.shuffle}
+              isLoggedIn={this.state.isLoggedIn}
+            />
+          </Router>
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <React.Fragment>
+          <Router>
+            <TopNavbar
+              setterParent={this.props.handleBias}
+              isLoggedIn={this.state.isLoggedIn}
+              handelIsLoggedIn={this.handelIsLoggedIn}
+              username={this.state.username}
+              isLoggedOut={this.state.isLoggedOut}
+              handleIsLoggedOut={this.handleIsLoggedOut}
+            ></TopNavbar>
+            <BiasNavbar
+              setterParent={this.props.handleBias}
+              setSearchData={this.setSearchData}
+            ></BiasNavbar>
+            {this.props.bias === "" && (
+              <div>
+                <center>
+                  <img className="mainLogo" src={logo} alt="Logo"></img>
+                </center>
+              </div>
+            )}
+            <Switch>
+              <Route exact path="/">
+                <Home
                   parsed_data={this.props.data}
                   shuffle={this.shuffle}
                   isLoggedIn={this.state.isLoggedIn}
                 />
-              )}
-            />
-            <Route exact path="/auth/login">
-              <Login
-                isLoggedIn={this.state.isLoggedIn}
-                handelIsLoggedIn={this.handelIsLoggedIn}
-                updateUser={this.getUser}
+              </Route>
+              <Route
+                exact
+                path="/:id"
+                render={props => (
+                  <BiasPage
+                    {...props}
+                    bias={this.props.bias}
+                    parsed_data={this.props.data}
+                    shuffle={this.shuffle}
+                    isLoggedIn={this.state.isLoggedIn}
+                  />
+                )}
               />
-            </Route>
-            <Route exact path="/auth/signup">
-              <Signup
-                isLoggedIn={this.state.isLoggedIn}
-                handelIsLoggedIn={this.handelIsLoggedIn}
-              />
-            </Route>
-            <Route exact path="/auth/admin">
-              <Admin users={this.state.users} getUsers={this.getAllUsers} />
-            </Route>
-            <Route exact path="/auth/history">
-              {this.state.isLoggedIn ? (
-                <History users={this.state.users} getUsers={this.getAllUsers} />
-              ) : (
-                <Redirect to="/auth/login"></Redirect>
-              )}
-            </Route>
-            <Route exact path="/auth/dashboard">
-              {this.state.isLoggedIn ? (
-                <Dashboard users={this.state.users} />
-              ) : (
-                <Redirect to="/auth/login"></Redirect>
-              )}
-            </Route>
-          </Switch>
-        </Router>
-      </React.Fragment>
-    );
+              <Route exact path="/auth/login">
+                <Login
+                  isLoggedIn={this.state.isLoggedIn}
+                  handelIsLoggedIn={this.handelIsLoggedIn}
+                  updateUser={this.getUser}
+                />
+              </Route>
+              <Route exact path="/auth/signup">
+                <Signup
+                  isLoggedIn={this.state.isLoggedIn}
+                  handelIsLoggedIn={this.handelIsLoggedIn}
+                />
+              </Route>
+              <Route exact path="/auth/admin">
+                <Admin users={this.state.users} getUsers={this.getAllUsers} />
+              </Route>
+              <Route exact path="/auth/history">
+                {this.state.isLoggedIn ? (
+                  <History
+                    users={this.state.users}
+                    getUsers={this.getAllUsers}
+                  />
+                ) : (
+                  <Redirect to="/auth/login"></Redirect>
+                )}
+              </Route>
+              <Route exact path="/auth/dashboard">
+                {this.state.isLoggedIn ? (
+                  <Dashboard users={this.state.users} />
+                ) : (
+                  <Redirect to="/auth/login"></Redirect>
+                )}
+              </Route>
+            </Switch>
+          </Router>
+        </React.Fragment>
+      );
+    }
   }
 
-  // handleBias = biasGet => {
-  //   if (biasGet === "") {
-  //     this.setState({ bias: "" }, () => console.log(this.state));
-  //   } else {
-  //     let i = biasGet.toLowerCase().split(" ");
-  //     let k = i.join("_");
-  //     console.log(k);
-  //     this.setState({ bias: k }, () => console.log(this.state));
-  //   }
-  // };
+  setSearchData = data => {
+    console.log("inside setSearchData");
+
+    this.setState({ searchData: data });
+    this.props.setRedirect(true);
+  };
 
   handelIsLoggedIn = (bool, username) => {
     console.log(

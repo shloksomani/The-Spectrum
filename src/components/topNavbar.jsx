@@ -10,16 +10,9 @@ export class TopNavbar extends Component {
   // }
   state = { redirect: null };
   render() {
-    // if (this.props.isLoggedOut) {
-    //   this.props.handleIsLoggedOut(false);
-    //   return <Redirect to={{ pathname: this.state.redirectTo }} />;
-    // } else {
     return (
       <React.Fragment>
         <nav id="header" className="navbar navbar-expand-lg navbar-dark">
-          {/* <a className="navbar-brand ml-2" href="/">
-						The Spectrum
-					</a> */}
           <img className="headerLogo" src={logo}></img>
           <Link to="/" className="navbar-brand ml-2" onClick={this.handelBias}>
             The Spectrum
@@ -46,11 +39,7 @@ export class TopNavbar extends Component {
             </span>
             <div className="d-flex justify-content-center overlay-content">
               <span className="navbar-text d-lg-none d-xl-none searchBar">
-                <form
-                  className="form-inline"
-                  action="/index/keywords"
-                  method="GET"
-                >
+                <form className="form-inline">
                   <input
                     className="form-control mr-sm-2"
                     type="search"
@@ -86,9 +75,6 @@ export class TopNavbar extends Component {
           >
             <ul className="navbar-nav ml-auto mt-2 mt-lg-0 ">
               <li className="nav-item">
-                {/* <a className="nav-link" href="/">
-									Home
-								</a> */}
                 <Link to="/" className="nav-link" onClick={this.handelBias}>
                   Home
                 </Link>
@@ -98,12 +84,8 @@ export class TopNavbar extends Component {
             </ul>
           </div>
         </nav>
-        {/* if (this.state.redirect) {
-      return <Redirect to={{ pathname: this.state.redirectTo }} />;
-    } */}
       </React.Fragment>
     );
-    //}
   }
 
   handelBias = event => {
@@ -116,9 +98,6 @@ export class TopNavbar extends Component {
       return (
         <React.Fragment>
           <li className="nav-item" id="Dash">
-            {/* <a className="nav-link" href="#">
-									Dashboard
-								</a> */}
             <Link
               to="/auth/dashboard"
               className="nav-link"
@@ -128,9 +107,6 @@ export class TopNavbar extends Component {
             </Link>
           </li>
           <li className="nav-item" id="logout">
-            {/* <a className="nav-link" href="#">
-									Logout
-								</a> */}
             <Link
               to="/auth/login"
               className="nav-link"
@@ -140,9 +116,6 @@ export class TopNavbar extends Component {
             </Link>
           </li>
           <li className="nav-item" id="logout">
-            {/* <a className="nav-link" href="#">
-									History
-								</a> */}
             <Link
               to="/auth/history"
               className="nav-link"
@@ -153,9 +126,6 @@ export class TopNavbar extends Component {
           </li>
           {this.props.username === "admin" && (
             <li className="nav-item" id="Admin">
-              {/* <a className="nav-link" href="#">
-									Admin
-								</a> */}
               <Link
                 to="/auth/admin"
                 className="nav-link"
@@ -171,9 +141,6 @@ export class TopNavbar extends Component {
       return (
         <React.Fragment>
           <li className="nav-item" id="login">
-            {/* <a className="nav-link" href="#">
-									Log In
-								</a> */}
             <Link
               to="/auth/login"
               className="nav-link"
@@ -183,9 +150,6 @@ export class TopNavbar extends Component {
             </Link>
           </li>
           <li className="nav-item" id="signup">
-            {/* <a className="nav-link" href="#">
-									Sign Up
-								</a> */}
             <Link
               to="/auth/signup"
               className="nav-link"

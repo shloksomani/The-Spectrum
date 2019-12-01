@@ -4,7 +4,8 @@ import axios from "axios";
 class App extends React.Component {
   state = {
     data: [],
-    bias: ""
+    bias: "",
+    redirect: false
   };
   componentDidMount() {
     this.getDataFromDb();
@@ -18,7 +19,6 @@ class App extends React.Component {
         }
       })
       .then(res => {
-        // this.setState({ data: res.data });
         if (res.data.user) {
           console.log(
             "Get User: There is a user saved in the server session: "
@@ -28,25 +28,32 @@ class App extends React.Component {
             username: res.data.user.username,
             data: res.data.data
           });
-          // console.log(res.data.data);
         } else {
-          // console.log("Get user: no user");
           this.setState({
             data: res.data.data
           });
         }
       });
-    // this.getAllUsers();;
+  };
+
+  setRedirect = bool => {
+    console.log("inside setRedirect");
+
+    this.setState({ redirect: bool });
   };
 
   handleBias = biasGet => {
     if (biasGet === "") {
-      this.setState({ bias: "" }, () => console.log(this.state));
+      this.setState({ bias: "", redirect: false }, () =>
+        console.log(this.state)
+      );
     } else {
       let i = biasGet.toLowerCase().split(" ");
       let k = i.join("_");
       console.log(k);
-      this.setState({ bias: k }, () => console.log(this.state));
+      this.setState({ bias: k, redirect: false }, () =>
+        console.log(this.state)
+      );
     }
   };
 
@@ -57,6 +64,8 @@ class App extends React.Component {
         handleBias={this.handleBias}
         bias={this.state.bias}
         getArticles={this.getDataFromDb}
+        redirect={this.state.redirect}
+        setRedirect={this.setRedirect}
       ></Page>
     );
   }

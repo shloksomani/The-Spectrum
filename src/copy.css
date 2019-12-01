@@ -298,6 +298,12 @@ body {
   margin-right: auto;
 }
 
+/* #dash {
+  color: #ffffff;
+} */
+.dash {
+  color: #ffffff !important;
+}
 #userTable {
   margin: auto;
   color: #ffffff;
