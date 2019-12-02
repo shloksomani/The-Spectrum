@@ -1,0 +1,8 @@
+//TODO -- 
+1) Remove the JSON files from the server 
+2) Deserializating the user after sign up
+3) have a perfect flow of the data for fetching
+    - Fix the routes 
+4) when a user shares a links the another user should be able to land on the same exact news  (I think this will be very challenging)
+5) Having all the re-routing in backend handled 
+6) 
