@@ -60,6 +60,7 @@ export class Page extends Component {
               username={this.state.username}
               isLoggedOut={this.state.isLoggedOut}
               handleIsLoggedOut={this.handleIsLoggedOut}
+              setRedirect={this.props.setRedirect}
             ></TopNavbar>
             <BiasNavbar
               setterParent={this.props.handleBias}
@@ -92,6 +93,7 @@ export class Page extends Component {
               username={this.state.username}
               isLoggedOut={this.state.isLoggedOut}
               handleIsLoggedOut={this.handleIsLoggedOut}
+              setRedirect={this.props.setRedirect}
             ></TopNavbar>
             <BiasNavbar
               setterParent={this.props.handleBias}

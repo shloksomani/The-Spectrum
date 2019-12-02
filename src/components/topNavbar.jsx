@@ -164,7 +164,7 @@ export class TopNavbar extends Component {
   };
 
   handelLogin = e => {
-    console.log("here");
+    this.props.setRedirect(false);
   };
 
   handelLogout = e => {
