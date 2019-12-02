@@ -53,7 +53,11 @@ export class History extends Component {
       const title = document.createElement("td");
       title.appendChild(document.createTextNode(article.article.title));
       const bold = document.createElement("strong");
-      bold.appendChild(document.createTextNode(article.article.bias));
+      const totalBias = article.article.bias.split("_");
+      // bold.appendChild(document.createTextNode(article.article.bias));
+      bold.appendChild(
+        document.createTextNode(totalBias[0] + " " + totalBias[1])
+      );
       const bias = document.createElement("td");
       bias.appendChild(bold);
       // const action = document.createElement("td")
