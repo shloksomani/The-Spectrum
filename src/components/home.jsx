@@ -32,8 +32,6 @@ export class Home extends Component {
 
     this.props.shuffle(v);
     return v.map((article, index) => {
-      //console.log(article);
-
       return (
         <Container
           key={index}

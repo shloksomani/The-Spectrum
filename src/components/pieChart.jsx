@@ -38,12 +38,6 @@ class PieChart extends React.Component {
     this.chartRef = React.createRef();
   }
 
-  //   componentDidUpdate() {
-  //     this.myChart.data.labels = this.props.data.map(d => d.label);
-  //     this.myChart.data.datasets[0].data = this.props.data.map(d => d.value);
-  //     this.myChart.update();
-  //   }
-
   componentDidMount() {
     this.init();
     this.setListeners();
@@ -64,15 +58,6 @@ class PieChart extends React.Component {
           }
         }
       }
-      //   data: {
-      //     labels: this.props.data.map(d => d.label),
-      //     datasets: [
-      //       {
-      //         data: this.props.data.map(d => d.value),
-      //         backgroundColor: this.props.colors
-      //       }
-      //     ]
-      //   }
     });
     // this.myChart.defaults.global.defaultFontFamily = "Lato";
     // this.myChart.defaults.global.defaultFontSize = 18;
@@ -102,7 +87,6 @@ class PieChart extends React.Component {
     }
     this.myChart.data.datasets[0].data = dataToBe;
     this.init();
-    //this.props.changeState(true);
   };
 
   render() {

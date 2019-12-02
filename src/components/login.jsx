@@ -17,12 +17,6 @@ export class Login extends Component {
         <div className="container">
           <div className="row mt-5">
             <div className="col-md-4 m-auto">
-              {/* <div className="container-fluid bg-3 text-center">
-							<div
-								className="alert alert-warning alert-dismissible fade show"
-								role="alert"
-							></div>
-						</div> */}
               <div className="card card-body">
                 <h1 className="text-center mb-3">
                   <i className="fas fa-sign-in-alt"></i> Login
@@ -108,7 +102,6 @@ export class Login extends Component {
             }
           );
         }
-        //this.setState({ redirect: true });
       })
       .catch(error => {
         console.log("login error!");

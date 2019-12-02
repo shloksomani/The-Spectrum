@@ -56,8 +56,6 @@ export class History extends Component {
       bold.appendChild(document.createTextNode(article.article.bias));
       const bias = document.createElement("td");
       bias.appendChild(bold);
-      // const action = document.createElement("td")
-      // action.innerHTML = "<form action=\"/admin\" method=\"POST\"> <input class= \"return\" name=\"id\" value =\"remove: "+user.id+ "\" type=\"submit\"> </form>"
       const row = document.createElement("tr");
       row.appendChild(title);
       row.appendChild(bias);

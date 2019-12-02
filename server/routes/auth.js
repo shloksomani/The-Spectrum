@@ -3,30 +3,7 @@ const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const authMiddleware = require("../middleware");
-// const User = require("../database/models/user");
 const passport = require("../passport");
-
-// // Get Request For Login
-// router.get("/login", function(req, res) {
-//   const data = {};
-
-//   data.title = "Login";
-//   data.errors = req.flash("error");
-//   data.user = req.user;
-
-//   // res.render("auth/login", data);
-// });
-
-// Get Request For Sign up
-// router.get("/signup", authMiddleware.notAuthenticate, function(req, res) {
-//   const data = {};
-
-//   data.title = "Signup";
-//   data.errors = req.flash("error");
-//   data.user = req.user;
-
-//   res.render("auth/signup", data);
-// });
 
 router.post("/logout", (req, res) => {
   console.log(req.user);

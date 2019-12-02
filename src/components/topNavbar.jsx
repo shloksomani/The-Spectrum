@@ -5,9 +5,6 @@ import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
 export class TopNavbar extends Component {
-  // componentWillReceiveProps() {
-  //   this.handelLoginNav();
-  // }
   state = { redirect: null };
   render() {
     return (

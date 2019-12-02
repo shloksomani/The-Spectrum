@@ -27,7 +27,6 @@ class Container extends Component {
       return;
     }
     if (this.props.news.summary.length > 0) {
-      // console.log("here");
       return this.props.news.summary.substring(0, 200);
     }
   }
@@ -42,8 +41,6 @@ class Container extends Component {
   };
 
   addToHistory = () => {
-    console.log("inside addToHistory");
-
     if (this.props.isLoggedIn) {
       axios
         .post("/user/history", { article: this.props.news })

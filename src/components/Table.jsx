@@ -6,12 +6,7 @@ export default class Table extends Component {
       <div>
         <table id="userTable">
           <tbody>
-            <tr>
-              {/* <th>User Name</th>
-                            <th>Email</th>
-                            <th>Action: id</th> */}
-              {this.getTHeads()}
-            </tr>
+            <tr>{this.getTHeads()}</tr>
           </tbody>
         </table>
       </div>

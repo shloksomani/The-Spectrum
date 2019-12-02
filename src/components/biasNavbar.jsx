@@ -27,9 +27,6 @@ export class BiasNavbar extends Component {
                 </Link>
               </li>
               <li className="nav-item">
-                {/* <a className="nav-link LCB" href="#" onClick={this.handelBias}>
-									Left Center Bias
-								</a> */}
                 <Link
                   to="/left_center_bias"
                   className="nav-link"
@@ -39,9 +36,6 @@ export class BiasNavbar extends Component {
                 </Link>
               </li>
               <li className="nav-item">
-                {/* <a className="nav-link LeastB" onClick={this.handelBias}>
-									Least Biased
-								</a> */}
                 <Link
                   to="/least_bias"
                   className="nav-link"
@@ -51,9 +45,6 @@ export class BiasNavbar extends Component {
                 </Link>
               </li>
               <li className="nav-item">
-                {/* <a className="nav-link RCB" href="#" onClick={this.handelBias}>
-									Right Center Bias
-								</a> */}
                 <Link
                   to="/right_center_bias"
                   className="nav-link"
@@ -63,9 +54,6 @@ export class BiasNavbar extends Component {
                 </Link>
               </li>
               <li className="nav-item">
-                {/* <a className="nav-link RB" href="#" onClick={this.handelBias}>
-									Right Bias
-								</a> */}
                 <Link
                   to="/right_bias"
                   className="nav-link"
@@ -75,9 +63,6 @@ export class BiasNavbar extends Component {
                 </Link>
               </li>
               <li className="nav-item">
-                {/* <a className="nav-link PS" href="#" onClick={this.handelBias}>
-									Pro Science
-								</a> */}
                 <Link
                   to="/pro_science"
                   className="nav-link"
@@ -87,9 +72,6 @@ export class BiasNavbar extends Component {
                 </Link>
               </li>
               <li className="nav-item">
-                {/* <a className="nav-link QS" href="#" onClick={this.handelBias}>
-									Questionable Sources
-								</a> */}
                 <Link
                   to="/questionable_sources"
                   className="nav-link"
@@ -101,12 +83,7 @@ export class BiasNavbar extends Component {
             </ul>
 
             <span className="navbar-text d-none d-lg-block d-xl-block">
-              <form
-                className="form-inline"
-                onSubmit={this.handleSearch}
-                //action="/index/keywords"
-                //method="GET"
-              >
+              <form className="form-inline" onSubmit={this.handleSearch}>
                 <input
                   className="form-control mr-sm-2"
                   type="search"
@@ -137,8 +114,8 @@ export class BiasNavbar extends Component {
       .post("/keywords", { keywords: this.state.keywords })
       .then(res => {
         if (res.status === 200) {
-          console.log("search successful!");
-          console.log(res.data.data);
+          // console.log("search successful!");
+          // console.log(res.data.data);
           this.props.setSearchData(res.data.data);
         }
       })

@@ -22,12 +22,6 @@ export class Signup extends Component {
     return (
       <div className="row mt-5">
         <div className="col-md-4 m-auto col-8 offset-2">
-          {/* <div className="container-fluid bg-3 text-center">
-						<div
-							className="alert alert-warning alert-dismissible fade show"
-							role="alert"
-						></div>
-					</div> */}
           <div className="card card-body">
             <h1 className="text-center mb-3">
               <i className="fas fa-user-plus"></i> Register
@@ -41,7 +35,6 @@ export class Signup extends Component {
                 name="name"
                 className="form-control"
                 placeholder="First Name"
-                // onChange={event => (a = event.target.value)}
                 onChange={event =>
                   this.setState({ firstName: event.target.value })
                 }

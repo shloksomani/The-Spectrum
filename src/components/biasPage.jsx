@@ -9,25 +9,15 @@ export class BiasPage extends Component {
 
   handleBias = () => {
     let v = [];
-    let p = this.handelNavRouting();
-
-    console.log("inside handleBias");
+    let p = this.handleNavRouting();
 
     if (p) {
-      console.log("handleNavRouting is true");
-      console.log(this.props.parsed_data);
-      console.log(this.props.parsed_data.length);
-
       v = [this.props.parsed_data];
-      console.log(this.props.parsed_data);
 
       if (!Array.isArray(this.props.parsed_data)) {
         v = this.props.parsed_data[this.props.match.params.id];
-        console.log(v);
 
         this.props.shuffle(v);
-        console.log("logging this.props.isLoggedIn");
-        console.log(this.props.isLoggedIn);
 
         return v.map((article, index) => {
           return (
@@ -48,7 +38,7 @@ export class BiasPage extends Component {
     });
   };
 
-  handelNavRouting = () => {
+  handleNavRouting = () => {
     let v = this.props.match.params.id;
 
     if (v) {

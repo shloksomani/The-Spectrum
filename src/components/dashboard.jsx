@@ -35,9 +35,6 @@ export class Dashboard extends Component {
           </div>
         </div>
         {this.getChart()}
-        {/* <canvas id="Schart" width="800" height="450"> */}
-
-        {/* </canvas> */}
 
         <div className="container">
           <form action="/dash" method="POST" className="mt-5">

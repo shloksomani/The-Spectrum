@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Table from "./Table";
 import axios from "axios";
 export class Admin extends Component {
+  
+  //Once table is created in DOM
   componentDidMount() {
     if (this.props.users.length > 0) {
       this.manipulateTable();
@@ -16,7 +18,7 @@ export class Admin extends Component {
         <div className="smth title">
           <p>Admin is allowed to remove users</p>
         </div>
-        <Table head={["User Name", "Remove: id"]} />
+        <Table head={["User Name", "Remove User"]} />
       </div>
     );
   }
@@ -44,9 +46,6 @@ export class Admin extends Component {
   };
 
   removeUser = e => {
-    console.log("inside removeUser");
-    console.log(e.target.innerText);
-    console.log(e.target.parentElement.parentElement.rowIndex);
     document
       .querySelector("#userTable")
       .deleteRow(e.target.parentElement.parentElement.rowIndex);
@@ -55,13 +54,13 @@ export class Admin extends Component {
       .then(res => {
         console.log("post admin sucessful!");
         this.props.getUsers();
-        //this.setState({ isRemoved: true });
       })
       .catch(err => {
         console.log(err);
       });
   };
 
+  //adds users to tables
   manipulateTable = () => {
     this.props.users.forEach(user => {
       this.addUserToTable(user);

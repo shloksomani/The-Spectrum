@@ -166,17 +166,12 @@ export class Page extends Component {
   }
 
   setSearchData = data => {
-    console.log("inside setSearchData");
-
     this.setState({ searchData: data });
     this.props.setRedirect(true);
   };
 
   handelIsLoggedIn = (bool, username) => {
-    console.log(
-      "inside handleIsLoggedIn after login calls fn, should set state"
-    );
-
+    //inside handleIsLoggedIn after login calls fn, should set state
     this.setState({ isLoggedIn: bool, username: username });
   };
 

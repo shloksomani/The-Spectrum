@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 var data = require("../data");
 
-/* GET home page. */
+/* GET data */
 router.get("/data", function(req, res, next) {
   console.log(req.url);
   console.log(req.body);
@@ -17,6 +17,7 @@ router.get("/data", function(req, res, next) {
   }
 });
 
+//recieves search keywords and sends parsed data back
 router.post("/keywords", (req, res) => {
   console.log("inside get/keywords");
 
@@ -80,6 +81,7 @@ router.post("/keywords", (req, res) => {
   }
 });
 
+//sends user 
 router.get("/", (req, res, next) => {
   console.log("===== user!!======");
   console.log(req.user);
