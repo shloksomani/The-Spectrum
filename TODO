@@ -5,4 +5,6 @@
     - Fix the routes 
 4) when a user shares a links the another user should be able to land on the same exact news  (I think this will be very challenging)
 5) Having all the re-routing in backend handled 
-6) 
+6) the button css 
+7) take care of images on smaller screen 
+

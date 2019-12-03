@@ -110,11 +110,10 @@ class Container extends Component {
 
                 <p style={{ transform: "rotate(0)" }}>
                   <a
-                    href="+ mbfc + "
+                    href={this.props.news.mbfc}
                     className="text-warning stretched-link"
                     target="_blank"
                   >
-                    {" "}
                     Bias Breakdown
                   </a>
                 </p>

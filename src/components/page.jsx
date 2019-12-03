@@ -8,7 +8,7 @@ import Signup from "./signup";
 import Admin from "./admin";
 import History from "./history";
 import Dashboard from "./dashboard";
-import Search from "./Search";
+import Search from "./search";
 import axios from "axios";
 import logo from "../assets/image/Capture1.PNG";
 import {
