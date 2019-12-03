@@ -66,7 +66,8 @@ const MongoStore = require("connect-mongo")(session);
 const passport = require("./passport");
 const cors = require("cors");
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
+app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(cors());
 // Route requires
 const user = require("./routes/users");

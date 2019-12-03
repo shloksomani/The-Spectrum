@@ -22,11 +22,9 @@
     "passport-local": "^1.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "dev": "concurrently \"react-scripts start\" \"nodemon server/app.js\""
+    "start": "node server/app.js",
+    "dev": "concurrently \"react-scripts start\" \"nodemon server/app.js\"",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "devDependencies": {
     "nodemon": "^1.17.5",
