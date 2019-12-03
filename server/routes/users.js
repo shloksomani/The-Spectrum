@@ -118,7 +118,14 @@ router.post("/admin", (req, res) => {
 router.post("/history", (req, res) => {
   User.findById({ _id: req.user._id })
     .then(user => {
-      user.history.push(req.body);
+      const currentDate = new Date();
+
+      console.log(currentDate.toString());
+      console.log(currentDate.getDate());
+
+      const article = req.body;
+      const hist = { article: article, date: currentDate };
+      user.history.push(hist);
       user.save((err, savedUser) => {
         if (err) {
           console.log(err);

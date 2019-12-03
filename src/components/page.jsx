@@ -15,17 +15,22 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
+  Redirect,
+  useHistory
 } from "react-router-dom";
 
 export class Page extends Component {
-  state = {
-    isLoggedIn: false,
-    username: null,
-    users: [],
-    isLoggedOut: false,
-    searchData: null
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedIn: false,
+      username: null,
+      users: [],
+      isLoggedOut: false,
+      searchData: null
+    };
+    //this.history = useHistory();
+  }
 
   shuffle = array => {
     for (var i = array.length - 1; i > 0; i--) {
@@ -112,19 +117,7 @@ export class Page extends Component {
                   isLoggedIn={this.state.isLoggedIn}
                 />
               </Route>
-              <Route
-                exact
-                path="/:id"
-                render={props => (
-                  <BiasPage
-                    {...props}
-                    bias={this.props.bias}
-                    parsed_data={this.props.data}
-                    shuffle={this.shuffle}
-                    isLoggedIn={this.state.isLoggedIn}
-                  />
-                )}
-              />
+
               <Route exact path="/auth/login">
                 <Login
                   isLoggedIn={this.state.isLoggedIn}
@@ -158,6 +151,27 @@ export class Page extends Component {
                   <Redirect to="/auth/login"></Redirect>
                 )}
               </Route>
+              <Route exact path="/search">
+                <Search
+                  searchData={this.state.searchData}
+                  parsed_data={this.props.data}
+                  shuffle={this.shuffle}
+                  isLoggedIn={this.state.isLoggedIn}
+                />
+              </Route>
+              <Route
+                exact
+                path="/:id"
+                render={props => (
+                  <BiasPage
+                    {...props}
+                    bias={this.props.bias}
+                    parsed_data={this.props.data}
+                    shuffle={this.shuffle}
+                    isLoggedIn={this.state.isLoggedIn}
+                  />
+                )}
+              />
             </Switch>
           </Router>
         </React.Fragment>
@@ -166,7 +180,12 @@ export class Page extends Component {
   }
 
   setSearchData = data => {
-    this.setState({ searchData: data });
+    this.setState({ searchData: data }, () => {
+      //document.location.href = "/search";
+      //this.context.history.push("/search");
+      //this.props.history.location
+      //his.props.history.push("/search");
+    });
     this.props.setRedirect(true);
   };
 

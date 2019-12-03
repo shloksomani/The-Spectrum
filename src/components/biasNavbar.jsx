@@ -117,6 +117,7 @@ export class BiasNavbar extends Component {
           // console.log("search successful!");
           // console.log(res.data.data);
           this.props.setSearchData(res.data.data);
+          //this.props.history.push("/search");
         }
       })
       .catch(err => {
