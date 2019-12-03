@@ -29,12 +29,11 @@
     "react-scripts": "3.2.0"
   },
   "scripts": {
-    "start": "node server/app.js",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "concurrently \"react-scripts start\" \"nodemon server/app.js\"",
-    "heroku-postbuild": "npm install && npm run build"
+    "dev": "concurrently \"react-scripts start\" \"nodemon server/app.js\""
   },
   "devDependencies": {
     "nodemon": "^1.17.5",
