@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import Container from "./container";
 
 export class Search extends Component {
+  componentDidMount(){
+    this.setListeners();
+  }
   render() {
     return (
       <React.Fragment>
@@ -20,25 +23,25 @@ export class Search extends Component {
             Filter Bias
           </button>
           <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <button className="dropdown-item" id="today" type="button">
+            <button className="dropdown-item" id="leftTog" type="button">
               Left Bias
             </button>
-            <button className="dropdown-item" id="thisWeek" type="button">
+            <button className="dropdown-item" id="leftCenTog" type="button">
               Left Center Bias
             </button>
-            <button className="dropdown-item" id="thisWeek" type="button">
+            <button className="dropdown-item" id="leastTog" type="button">
               Least Bias
             </button>
-            <button className="dropdown-item" id="thisMonth" type="button">
+            <button className="dropdown-item" id="rightTog" type="button">
               Right Bias
             </button>
-            <button className="dropdown-item" id="eternity" type="button">
+            <button className="dropdown-item" id="rightCenTog" type="button">
               Right Center Bias
             </button>
-            <button className="dropdown-item" id="thisMonth" type="button">
+            <button className="dropdown-item" id="sciTog" type="button">
               Pro Science
             </button>
-            <button className="dropdown-item" id="eternity" type="button">
+            <button className="dropdown-item" id="qTog" type="button">
               Questionable Sources
             </button>
           </div>
@@ -81,6 +84,21 @@ export class Search extends Component {
         ></Container>
       );
     });
+  };
+  setListeners = () => {
+    console.log(document.getElementById("leftTog"));
+    document.getElementById("leftTog").addEventListener("click", this.toggle);
+    document.getElementById("leftCenTog").addEventListener("click", this.toggle);
+    document.getElementById("rightTog").addEventListener("click", this.toggle);
+    document.getElementById("sciTog").addEventListener("click", this.toggle);
+    document.getElementById("qTog").addEventListener("click", this.toggle);
+    document.getElementById("rightCenTog").addEventListener("click", this.toggle);
+    document.getElementById("leastTog").addEventListener("click", this.toggle);
+  };
+
+  toggle = e => {
+    console.log("inside toggle");
+    document.querySelector("#dropdownMenu2").innerHTML = e.target.innerHTML;
   };
 }
 
