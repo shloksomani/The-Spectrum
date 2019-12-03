@@ -1,8 +1,4 @@
 //TODO -- 
-1) Remove the JSON files from the server 
 3) have a perfect flow of the data for fetching
     - Fix the routes 
-5) Having all the re-routing in backend handled 
 7) take care of images on smaller screen 
-8) Protected routes 
-

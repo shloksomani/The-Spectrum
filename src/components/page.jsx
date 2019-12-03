@@ -37,7 +37,7 @@ export class Page extends Component {
   };
 
   componentDidMount() {
-    this.getAllUsers();
+    // this.getAllUsers();
   }
 
   getAllUsers = () => {
@@ -66,13 +66,7 @@ export class Page extends Component {
               setterParent={this.props.handleBias}
               setSearchData={this.setSearchData}
             ></BiasNavbar>
-            {this.props.bias === "" && (
-              <div>
-                <center>
-                  <img className="mainLogo" src={logo} alt="Logo"></img>
-                </center>
-              </div>
-            )}
+
             <Search
               searchData={this.state.searchData}
               parsed_data={this.props.data}
@@ -99,15 +93,22 @@ export class Page extends Component {
               setterParent={this.props.handleBias}
               setSearchData={this.setSearchData}
             ></BiasNavbar>
-            {this.props.bias === "" && (
+            {/* {this.props.bias === "" && (
               <div>
                 <center>
                   <img className="mainLogo" src={logo} alt="Logo"></img>
                 </center>
               </div>
-            )}
+            )} */}
             <Switch>
               <Route exact path="/">
+                {this.props.bias === "" && (
+                  <div>
+                    <center>
+                      <img className="mainLogo" src={logo} alt="Logo"></img>
+                    </center>
+                  </div>
+                )}
                 <Home
                   parsed_data={this.props.data}
                   shuffle={this.shuffle}

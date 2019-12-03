@@ -12,9 +12,10 @@ module.exports = {
 
   isAdmin(req, res, next) {
     if (req.user) {
-      if (req.user[0].id == "0") {
+      if (req.user.username === "admin") {
         return next();
       }
+      console.log(req.user);
       return res.status(400).send("Not authorized");
     }
     return res.status(400).send("Please Login First");

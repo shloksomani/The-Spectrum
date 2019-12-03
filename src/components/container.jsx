@@ -77,23 +77,19 @@ class Container extends Component {
               <h5 id="newsTitle" className="mt-0">
                 {this.props.news.title}
               </h5>
-              <p
-                href="url"
-                className="stretched-link hereContent"
-                style={{
-                  position: "relative"
-                }}
-              >
+              <p href="url" className="stretched-link hereContent">
                 {this.getRenderedItems()}
               </p>
-              {this.showButton() && (
-                <button
-                  onClick={this.toggle}
-                  className="btn my-2 my-sm-0 readMoreLess"
-                >
-                  {this.state.showMore ? "Read Less" : "Read More"}
-                </button>
-              )}
+              <div style={{ position: "relative", zIndex: "5" }}>
+                {this.showButton() && (
+                  <button
+                    onClick={this.toggle}
+                    className="btn my-2 my-sm-0 readMoreLess"
+                  >
+                    {this.state.showMore ? "Read Less" : "Read More"}
+                  </button>
+                )}
+              </div>
               <div>
                 <strong>Bias: {this.props.news.bias}</strong>
               </div>
@@ -101,7 +97,6 @@ class Container extends Component {
                 <a
                   href={this.props.news.url}
                   className="stretched-link check history"
-                  style={{ position: "relative" }}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={this.addToHistory}
@@ -109,7 +104,7 @@ class Container extends Component {
                   Link to news
                 </a>
 
-                <p style={{ transform: "rotate(0)" }}>
+                <p style={{ position: "relative" }}>
                   <a
                     href={this.props.news.mbfc}
                     className="text-warning stretched-link"
@@ -124,6 +119,34 @@ class Container extends Component {
           </div>
         </div>
       </div>
+      // <React.Fragment>
+      //   <div class="row no-gutters bg-light position-relative">
+      //     <div class="col-md-6 mb-md-0 p-md-4">
+      //       <img src={this.props.news.top_image} class="w-100" alt="..." />
+      //     </div>
+      //     <div class="col-md-6 position-static p-4 pl-md-0">
+      //       <h5 class="mt-0">Columns with stretched link</h5>
+      //       <p>
+      //         Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
+      //         scelerisque ante sollicitudin. Cras purus odio, vestibulum in
+      //         vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
+      //         nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+      //       </p>
+      //       {/* <a href="#" class="stretched-link">
+      //         Go somewhere
+      //       </a> */}
+      //       <a
+      //         href={this.props.news.url}
+      //         className="stretched-link check history"
+      //         target="_blank"
+      //         rel="noopener noreferrer"
+      //         onClick={this.addToHistory}
+      //       >
+      //         Link to news
+      //       </a>
+      //     </div>
+      //   </div>
+      // </React.Fragment>
     );
   }
 }
