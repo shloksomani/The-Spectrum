@@ -41,7 +41,7 @@ router.post("/signup", middleware.notAuthenticate, async function(req, res) {
         //   res.status(200).send(savedUser);
         // });
         req.login(newUser, function() {
-          return res.status(200).send(savedUser);
+          return res.status(200).send();
         });
       });
     }
@@ -49,8 +49,6 @@ router.post("/signup", middleware.notAuthenticate, async function(req, res) {
 });
 
 router.get("/", (req, res, next) => {
-  console.log("===== user!!======");
-  console.log(req.user);
   if (req.user) {
     res.json({ user: req.user });
   } else {
@@ -61,7 +59,7 @@ router.get("/", (req, res, next) => {
 router.post(
   "/login",
   middleware.notAuthenticate,
-  function(req, res, next) {
+  (req, res, next) => {
     console.log("routes/user.js, login, req.body: ");
     console.log(req.body);
     next();
@@ -72,7 +70,7 @@ router.post(
     var userInfo = {
       username: req.user.username
     };
-    res.send(userInfo);
+    res.status(200).send();
   }
 );
 
@@ -88,7 +86,7 @@ router.post("/logout", (req, res) => {
   }
 });
 
-router.get("/all", (req, res) => {
+router.get("/all", middleware.isAdmin, (req, res) => {
   User.find({}, (err, users) => {
     if (err) {
       console.log("User.js post error: ", err);
@@ -97,13 +95,12 @@ router.get("/all", (req, res) => {
       });
     } else {
       console.log(users);
-
       res.json(users);
     }
   });
 });
 
-router.post("/admin", (req, res) => {
+router.post("/admin", middleware.isAdmin, (req, res) => {
   console.log("inside server post admin");
   console.log(req.body);
   const id = mongoose.mongo.ObjectID(req.body.id);
