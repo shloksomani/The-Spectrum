@@ -68,7 +68,6 @@ const cors = require("cors");
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 5000;
-app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(cors());
 // Route requires
 const user = require("./routes/users");
@@ -117,7 +116,10 @@ app.use("/user", user);
 // });
 
 // module.exports = app;
-
+app.use(express.static(__dirname + 'client/build'));
+app.get("*", (req, res)=>{
+  res.sendFile(__dirname + "client/build/index.html");
+})
 // Starting Server
 app.listen(PORT, () => {
   console.log(`App listening on PORT: ${PORT}`);
