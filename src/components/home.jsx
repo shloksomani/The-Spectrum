@@ -28,19 +28,25 @@ export class Home extends Component {
     }
     // for each bias
     let v = data1.dummy_data;
-    console.log(v);
+    //console.log(v);
 
     this.props.shuffle(v);
     return v.map((article, index) => {
       //console.log(article);
-
-      return (
-        <Container
-          key={index}
-          news={article}
-          isLoggedIn={this.props.isLoggedIn}
-        ></Container>
-      );
+      try {
+        if (article.top_image) {
+          return (
+            <Container
+              key={index}
+              news={article}
+              isLoggedIn={this.props.isLoggedIn}
+            ></Container>
+          );
+        }
+      } catch (Exception) {
+        //console.log("error");
+        //continue;
+      }
     });
   };
 }

@@ -2,32 +2,57 @@ var express = require("express");
 var router = express.Router();
 var data1 = require("../data");
 const mongoose = require("mongoose");
-const { left, least_bias,left_center, right_center, daniel } = require("../database/models/article")
+const {
+  left,
+  least_bias,
+  left_center,
+  right_center,
+  daniel
+} = require("../database/models/article");
 mongoose.promise = Promise;
-
 
 /* GET home page. */
 router.get("/data", function(req, res, next) {
   console.log(req.url);
   let bias = req.url.split("=")[1];
-  let data = {}
-  daniel.find().then(response=>{
-    console.log("found daniel");
-     
-    console.log(response);
-      
-  }).catch(err=>{console.log(err);
-  })
+  let data = {};
+  least_bias
+    .find({})
+    .then(response => {
+      console.log("found daniel");
+
+      //console.log(response);
+      data.left_bias = response;
+      data.right_bias = response;
+      data.left_center_bias = response;
+      data.right_center_bias = response;
+      data.least_biased = response;
+      data.pro_science = response;
+      data.questionable_sources = response;
+      //console.log(data);
+      //res.status(200).send({ data: data, user: null });
+      if (find_bias(req.url)) {
+        if (req.user) {
+          return res.status(200).send({ data: data, user: req.user });
+        }
+        return res.status(200).send({ data: data, user: null });
+      } else {
+        return res.status(200).send({ data: data, user: null });
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
   // least_bias.find({}).then((response)=>{
   //   //console.log(res);
   //   //data["least_bias"] = res;
   //    res.status(200).send({ data: response, user: null });
   // }).catch((err)=>{
-  //   console.log(err);   
+  //   console.log(err);
   // })
   // // Fetching articles from DB from past 3 days
   // for (collection1 in mongoose.connection.collections){
-    
+
   //   // check if it is a bias collection
   //   if (collection1 == 'user') {continue}
   //   mongoose.connection.collection(collection1, function(collection) {
@@ -46,22 +71,14 @@ router.get("/data", function(req, res, next) {
   //     ).catch(err=>{
   //         console.log("error in getting collections");
   //         console.log(err);
-          
+
   //     })
   //   })
   // }
-  
-  console.log("DATATATA")
-  console.log(data)
-  // if (find_bias(req.url)) {
-  //   if (req.user) {
-  //     return res.status(200).send({ data: data, user: req.user });
-  //   }
-  //   return res.status(200).send({ data: data[bias], user: null });
-  // } else {
-  //   return res.status(200).send({ data: data, user: null });
-  // }
-  res.status(404).send()
+
+  // console.log("DATATATA");
+  // console.log(data);
+  // res.status(404).send();
 });
 
 router.post("/keywords", (req, res) => {
