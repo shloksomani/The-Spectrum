@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 var data1 = require("../data");
 const mongoose = require("mongoose");
-const { left, least_bias,left_center, right_center } = require("../database/models/article")
+const { left, least_bias,left_center, right_center, daniel } = require("../database/models/article")
 mongoose.promise = Promise;
 
 
@@ -10,50 +10,58 @@ mongoose.promise = Promise;
 router.get("/data", function(req, res, next) {
   console.log(req.url);
   let bias = req.url.split("=")[1];
-  const data = {}
-  
-  least_bias.find({}).then((res)=>{
-    console.log(res);
-  }).catch((err)=>{
-    console.log(err);
-    
+  let data = {}
+  daniel.find().then(response=>{
+    console.log("found daniel");
+     
+    console.log(response);
+      
+  }).catch(err=>{console.log(err);
   })
-  // Fetching articles from DB from past 3 days
-  for (collection1 in mongoose.connection.collections){
+  // least_bias.find({}).then((response)=>{
+  //   //console.log(res);
+  //   //data["least_bias"] = res;
+  //    res.status(200).send({ data: response, user: null });
+  // }).catch((err)=>{
+  //   console.log(err);   
+  // })
+  // // Fetching articles from DB from past 3 days
+  // for (collection1 in mongoose.connection.collections){
     
-    // check if it is a bias collection
-    if (collection1 == 'user') {continue}
-    mongoose.connection.collection(collection1, function(collection) {
-      data[collection1] = collection.find({})
-   // .toArray()
-    .then(
-        documents => {
+  //   // check if it is a bias collection
+  //   if (collection1 == 'user') {continue}
+  //   mongoose.connection.collection(collection1, function(collection) {
+  //     data[collection1] = collection.find({})
+  //  // .toArray()
+  //   .then(
+  //       documents => {
 
-          // get docs from past 3 days
-          data.collection = documents;
-          console.log(documents);
-        },
-        error => {
-          log("Can't fetch articles for left bias", error);
-        }
-      ).catch(err=>{
-          console.log("error in getting collections");
-          console.log(err);
+  //         // get docs from past 3 days
+  //         data.collection = documents;
+  //         console.log(documents);
+  //       },
+  //       error => {
+  //         log("Can't fetch articles for left bias", error);
+  //       }
+  //     ).catch(err=>{
+  //         console.log("error in getting collections");
+  //         console.log(err);
           
-      })
-    })
-  }
+  //     })
+  //   })
+  // }
   
   console.log("DATATATA")
   console.log(data)
-  if (find_bias(req.url)) {
-    if (req.user) {
-      return res.status(200).send({ data: data, user: req.user });
-    }
-    return res.status(200).send({ data: data[bias], user: null });
-  } else {
-    return res.status(200).send({ data: data, user: null });
-  }
+  // if (find_bias(req.url)) {
+  //   if (req.user) {
+  //     return res.status(200).send({ data: data, user: req.user });
+  //   }
+  //   return res.status(200).send({ data: data[bias], user: null });
+  // } else {
+  //   return res.status(200).send({ data: data, user: null });
+  // }
+  res.status(404).send()
 });
 
 router.post("/keywords", (req, res) => {
