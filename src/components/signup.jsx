@@ -16,7 +16,7 @@ export class Signup extends Component {
     if (this.state.redirect) {
       console.log("inside redirect");
 
-      return <Redirect to="/auth/dash" />;
+      return <Redirect to="/auth/dashboard" />;
     }
     let a = "";
     return (

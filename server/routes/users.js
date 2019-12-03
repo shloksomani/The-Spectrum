@@ -108,7 +108,9 @@ router.post("/signup", async function(req, res) {
       }
       newUser.save((err, savedUser) => {
         if (err) return res.json(err);
-        res.json(savedUser);
+        req.logIn(newUser, function() {
+          res.status(200).send(savedUser);
+        });
       });
     }
   });
@@ -183,8 +185,9 @@ router.post(
 router.post("/logout", (req, res) => {
   if (req.user) {
     console.log("in logout req.user is true");
-    req.logout();
-    res.status(200).send({ msg: "logging out" });
+    req.session.destroy(function(err) {
+      res.status(200).send({ msg: "logging out" });
+    });
   } else {
     console.log("in logout req.user is false");
     res.send({ msg: "no user to log out" });
