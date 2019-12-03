@@ -29,13 +29,12 @@ router.get("/data", function(req, res, next) {
       data.least_biased = response;
       data.pro_science = response;
       data.questionable_sources = response;
-      //console.log(data);
       //res.status(200).send({ data: data, user: null });
       if (find_bias(req.url)) {
         if (req.user) {
           return res.status(200).send({ data: data, user: req.user });
         }
-        return res.status(200).send({ data: data, user: null });
+        return res.status(200).send({ data: data[bias], user: null });
       } else {
         return res.status(200).send({ data: data, user: null });
       }
