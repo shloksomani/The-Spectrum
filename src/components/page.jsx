@@ -157,7 +157,7 @@ export class Page extends Component {
                 {this.state.isLoggedIn ? (
                   <Dashboard users={this.state.users} />
                 ) : (
-                  <Redirect to="/auth/login"></Redirect>
+                  <Redirect to="/"></Redirect>
                 )}
               </Route>
             </Switch>
@@ -166,6 +166,14 @@ export class Page extends Component {
       );
     }
   }
+
+  // handelDashboardRouting = () => {
+  //   if (this.state.isLoggedIn) {
+  //     return <Dashboard user={this.state.users}></Dashboard>;
+  //   } else {
+  //     return <Redirect to="/auth/login"></Redirect>;
+  //   }
+  // };
 
   setSearchData = data => {
     console.log("inside setSearchData");

@@ -103,6 +103,7 @@ class Container extends Component {
                   className="stretched-link check history"
                   style={{ position: "relative" }}
                   target="_blank"
+                  rel="noopener noreferrer"
                   onClick={this.addToHistory}
                 >
                   Link to news
@@ -113,6 +114,7 @@ class Container extends Component {
                     href={this.props.news.mbfc}
                     className="text-warning stretched-link"
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     Bias Breakdown
                   </a>

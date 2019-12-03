@@ -23,7 +23,7 @@ module.exports = {
 
   notAuthenticate(req, res, next) {
     if (req.user) {
-      return res.redirect("/dash");
+      return res.status(200);
     }
     next();
   },

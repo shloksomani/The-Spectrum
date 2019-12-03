@@ -14,11 +14,9 @@ export class Signup extends Component {
 
   render() {
     if (this.state.redirect) {
-      console.log("inside redirect");
-
-      return <Redirect to="/auth/dashboard" />;
+      // console.log("inside redirect");
+      return <Redirect to={{ pathname: this.state.redirect }} />;
     }
-    let a = "";
     return (
       <div className="row mt-5">
         <div className="col-md-4 m-auto col-8 offset-2">
@@ -134,8 +132,8 @@ export class Signup extends Component {
       })
       .then(response => {
         console.log("signup success!");
-        console.log(response);
-        this.setState({ redirect: true });
+        // console.log(response);
+        this.setState({ redirect: "/auth/dashboard" });
         this.props.handelIsLoggedIn(true, this.state.email);
       })
       .catch(error => {
