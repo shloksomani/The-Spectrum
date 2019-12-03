@@ -1,12 +1,73 @@
 var express = require("express");
 var router = express.Router();
-var data = require("../data");
+var data1 = require("../data");
+const mongoose = require("mongoose");
+const left = require("../database/models/article");
+mongoose.promise = Promise;
 
 /* GET home page. */
 router.get("/data", function(req, res, next) {
   console.log(req.url);
-  console.log(req.body);
   let bias = req.url.split("=")[1];
+  const data = {}
+
+  left.find({}).then((res)=>{
+    console.log(res);
+    data["left"] = res
+  }).catch(err=>{
+    console.log(err);
+  })
+
+  left.find({}, (err, res)=>{
+    if(err){
+      console.log(err);
+      
+    }
+    if(res){
+      console.log(res);
+      
+    }
+  })
+  // least_bias
+  //   .find({})
+  //   .then(res => {
+  //     console.log(res);
+  //     data.least_bias = res;
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   });
+  // left_center
+  //   .find({})
+  //   .then(res => {
+  //     console.log(res);
+  //     data.left_center = res;
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   });
+  //   right_center
+  //     .find({})
+  //     .then(res => {
+  //       console.log(res);
+  //       data.right_center = res;
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+    // for (collection in collection_schemas){
+  //   collection_schemas[collection].find({
+  //     })
+  //     .then(res => {
+  //       console.log(res);
+  //       data = res
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // }
+  console.log("DATATATA")
+  console.log(data)
   if (find_bias(req.url)) {
     if (req.user) {
       return res.status(200).send({ data: data, user: req.user });

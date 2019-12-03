@@ -76,12 +76,22 @@ const express = require("express");
 const router = express.Router();
 const User = require("../database/models/user");
 const passport = require("../passport");
-
+pro_science = require("../database/models/article")
 router.post("/signup", async function(req, res) {
   console.log("user signup");
 
   const { email, password } = req.body;
   // ADD VALIDATION
+  pro_science.find({}).then((res)=>{
+    if(res){
+      console.log(res);
+      
+    }
+  }).catch((err)=>{
+    console.log("Error in getting pro science");
+    console.log(err);
+  })
+  
   User.findOne({ username: email }, async function(err, user) {
     if (err) {
       console.log("User.js post error: ", err);

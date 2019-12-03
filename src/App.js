@@ -19,6 +19,10 @@ class App extends React.Component {
         }
       })
       .then(res => {
+        console.log("got response in getDB");
+        
+        console.log(res);
+        
         if (res.data.user) {
           console.log(
             "Get User: There is a user saved in the server session: "
@@ -32,7 +36,13 @@ class App extends React.Component {
           this.setState({
             data: res.data.data
           });
+          console.log(this.setState);
+          
         }
+      }).catch(err=>{
+        console.log("error in fetching data from server");
+        console.log(err);
+        
       });
   };
 
