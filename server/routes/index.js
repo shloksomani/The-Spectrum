@@ -2,70 +2,48 @@ var express = require("express");
 var router = express.Router();
 var data1 = require("../data");
 const mongoose = require("mongoose");
-const left = require("../database/models/article");
+const { left, least_bias,left_center, right_center } = require("../database/models/article")
 mongoose.promise = Promise;
+
 
 /* GET home page. */
 router.get("/data", function(req, res, next) {
   console.log(req.url);
   let bias = req.url.split("=")[1];
   const data = {}
-
-  left.find({}).then((res)=>{
+  
+  least_bias.find({}).then((res)=>{
     console.log(res);
-    data["left"] = res
-  }).catch(err=>{
+  }).catch((err)=>{
     console.log(err);
+    
   })
+  // Fetching articles from DB from past 3 days
+  for (collection1 in mongoose.connection.collections){
+    
+    // check if it is a bias collection
+    if (collection1 == 'user') {continue}
+    mongoose.connection.collection(collection1, function(collection) {
+      data[collection1] = collection.find({})
+   // .toArray()
+    .then(
+        documents => {
 
-  left.find({}, (err, res)=>{
-    if(err){
-      console.log(err);
-      
-    }
-    if(res){
-      console.log(res);
-      
-    }
-  })
-  // least_bias
-  //   .find({})
-  //   .then(res => {
-  //     console.log(res);
-  //     data.least_bias = res;
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   });
-  // left_center
-  //   .find({})
-  //   .then(res => {
-  //     console.log(res);
-  //     data.left_center = res;
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   });
-  //   right_center
-  //     .find({})
-  //     .then(res => {
-  //       console.log(res);
-  //       data.right_center = res;
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-    // for (collection in collection_schemas){
-  //   collection_schemas[collection].find({
-  //     })
-  //     .then(res => {
-  //       console.log(res);
-  //       data = res
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }
+          // get docs from past 3 days
+          data.collection = documents;
+          console.log(documents);
+        },
+        error => {
+          log("Can't fetch articles for left bias", error);
+        }
+      ).catch(err=>{
+          console.log("error in getting collections");
+          console.log(err);
+          
+      })
+    })
+  }
+  
   console.log("DATATATA")
   console.log(data)
   if (find_bias(req.url)) {

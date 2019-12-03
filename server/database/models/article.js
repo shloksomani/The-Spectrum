@@ -57,4 +57,4 @@ const least_bias = mongoose.model("least_bias", articleSchema);
 const left_center = mongoose.model("left_center", articleSchema);
 const right_center = mongoose.model("right_center", articleSchema);
 //const pro_science = mongoose.model("pro_science", articleSchema);
-module.exports = left//{ left, least_bias,left_center, right_center };
+module.exports ={ left, least_bias,left_center, right_center };
