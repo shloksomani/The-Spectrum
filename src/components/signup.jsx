@@ -9,7 +9,8 @@ export class Signup extends Component {
     email: "",
     password: "",
     password2: "",
-    redirect: false
+    redirect: false,
+    error: ""
   };
 
   render() {
@@ -20,12 +21,14 @@ export class Signup extends Component {
     return (
       <div className="row mt-5">
         <div className="col-md-4 m-auto col-8 offset-2">
-          {/* <div className="container-fluid bg-3 text-center">
-						<div
-							className="alert alert-warning alert-dismissible fade show"
-							role="alert"
-						></div>
-					</div> */}
+          {this.state.error !== "" && (
+            <div className="container-fluid bg-3 text-center">
+              <div
+                className="alert alert-warning alert-dismissible fade show"
+                role="alert"
+              ></div>
+            </div>
+          )}
           <div className="card card-body">
             <h1 className="text-center mb-3">
               <i className="fas fa-user-plus"></i> Register
@@ -131,10 +134,11 @@ export class Signup extends Component {
         password2: this.state.password2
       })
       .then(response => {
-        console.log("signup success!");
         // console.log(response);
-        this.setState({ redirect: "/auth/dashboard" });
-        this.props.handelIsLoggedIn(true, this.state.email);
+        if (response.status === 200) {
+          this.setState({ redirect: "/auth/dashboard" });
+          this.props.handelIsLoggedIn(true, this.state.email);
+        }
       })
       .catch(error => {
         console.log("signup error!");

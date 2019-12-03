@@ -37,9 +37,6 @@ router.post("/signup", middleware.notAuthenticate, async function(req, res) {
       }
       newUser.save((err, savedUser) => {
         if (err) return res.json(err);
-        // req.logIn(newUser, function() {
-        //   res.status(200).send(savedUser);
-        // });
         req.login(newUser, function() {
           return res.status(200).send();
         });
@@ -117,7 +114,7 @@ router.post("/admin", middleware.isAdmin, (req, res) => {
     });
 });
 
-router.post("/history", (req, res) => {
+router.post("/history", middleware.loginRequired, (req, res) => {
   console.log("inside history post");
   User.findById({ _id: req.user._id })
     .then(user => {
@@ -137,7 +134,7 @@ router.post("/history", (req, res) => {
     });
 });
 
-router.get("/history", (req, res) => {
+router.get("/history", middleware.loginRequired, (req, res) => {
   console.log("inside history get");
   User.findById({ _id: req.user._id })
     .then(user => {
@@ -149,7 +146,7 @@ router.get("/history", (req, res) => {
     });
 });
 
-router.get("/dash", (req, res, next) => {
+router.get("/dash", middleware.loginRequired, (req, res, next) => {
   console.log("===== user!!======");
   console.log(req.user);
   if (req.user) {
