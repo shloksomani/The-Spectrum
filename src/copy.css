@@ -291,6 +291,11 @@ body {
   outline: white;
 }
 
+#dropdownMenu2 {
+  border-color: #e3e8fd;
+  color: #e3e8fd;
+}
+
 #Schart {
   max-width: 800px;
   max-height: 500px;
