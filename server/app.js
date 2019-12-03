@@ -67,6 +67,7 @@ const passport = require("./passport");
 const cors = require("cors");
 const app = express();
 const PORT = 5000;
+app.use(express.static(path.join(__dirname, 'build')));
 app.use(cors());
 // Route requires
 const user = require("./routes/users");
