@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Container from "./container";
 
 export class Search extends Component {
-  componentDidMount(){
+  componentDidMount() {
     //this.setListeners();
   }
   render() {
@@ -74,7 +74,7 @@ export class Search extends Component {
     let v = data1.dummy_data;
     console.log(v);
 
-    this.props.shuffle(v);
+    //this.props.shuffle(v);
     return v.map((article, index) => {
       return (
         <Container
@@ -88,11 +88,15 @@ export class Search extends Component {
   setListeners = () => {
     console.log(document.getElementById("leftTog"));
     document.getElementById("leftTog").addEventListener("click", this.toggle);
-    document.getElementById("leftCenTog").addEventListener("click", this.toggle);
+    document
+      .getElementById("leftCenTog")
+      .addEventListener("click", this.toggle);
     document.getElementById("rightTog").addEventListener("click", this.toggle);
     document.getElementById("sciTog").addEventListener("click", this.toggle);
     document.getElementById("qTog").addEventListener("click", this.toggle);
-    document.getElementById("rightCenTog").addEventListener("click", this.toggle);
+    document
+      .getElementById("rightCenTog")
+      .addEventListener("click", this.toggle);
     document.getElementById("leastTog").addEventListener("click", this.toggle);
   };
 

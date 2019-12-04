@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var data = require("../data");
+//var data = require("../data");
 const mongoose = require("mongoose");
 let parsed_data = {};
 const {
@@ -52,6 +52,7 @@ router.get("/data", function(req, res, next) {
         questionable_sources: results[7]
       };
       parsed_data = data;
+
       let bias = req.url.split("=")[1];
       if (find_bias(req.url)) {
         if (req.user) {
@@ -74,36 +75,44 @@ router.get("/data", function(req, res, next) {
 
 router.post("/keywords", (req, res) => {
   console.log("inside get/keywords");
+  // function random_dummy_data() {
+  //   data.dummy_data = [];
 
-  function random_dummy_data() {
-    data.dummy_data = [];
+  //   // for each bias
+  //   for (let bias in parsed_data) {
+  //     // List of articles that have the bias
+  //     const bias_list = parsed_data[bias];
+  //     for (let i = 0; i < 2; i++) {
+  //       // each article in the article list
+  //       const article = bias_list[i];
 
-    // for each bias
-    for (let bias in parsed_data) {
-      // List of articles that have the bias
-      const bias_list = parsed_data[bias];
-      for (let i = 0; i < 2; i++) {
-        // each article in the article list
-        const article = bias_list[i];
-
-        data.dummy_data.push(article);
-      }
-    }
-  }
-  parsed_data = data;
+  //       data.dummy_data.push(article);
+  //     }
+  //   }
+  // }
   // get the query from url
-  if (req.body) {
-    console.log(req.body);
 
+  // My Algo:
+  // get keywords I am looking for.
+  // Search data, bias by bias. If the keywords match, add it to a list.
+  // add list to search results
+  // return search_results
+
+  if (req.body) {
     let keywords_string = req.body.keywords.split(" ");
     console.log(keywords_string);
-
+    let search_results = {
+      results: []
+    };
     if (keywords_string.length > 0) {
-      parsed_data.keywords = keywords_string.filter(function(el) {
+      let search_words = keywords_string.filter(function(el) {
         return el !== "";
       });
       // for strings that are not empty, search through keywords in dummy data. If keyword in it. Add to array
-      parsed_data.dummy_data = [];
+      const data = parsed_data;
+      // console.log("logging data in /keywords");
+
+      // console.log(data);
 
       // for each bias
       for (let bias in data) {
@@ -112,21 +121,29 @@ router.post("/keywords", (req, res) => {
         for (let i = 0; i < bias_list.length; i++) {
           // each article in the article list
           const article = bias_list[i];
+
           for (let j = 0; j < article.keywords.length; j++) {
             // each keyword attributed to the article
             let keyword = article.keywords[j];
+            console.log("keyword");
+            console.log(keyword);
             // compare the users searched words to the articles keywords
-            for (let k = 0; k < parsed_data.keywords.length; k++) {
-              let search_word = parsed_data.keywords[k].toLowerCase();
+            for (let k = 0; k < search_words.length; k++) {
+              let search_word = search_words[k].toLowerCase();
+              console.log("search_word");
+              console.log(search_word);
+
               if (keyword == search_word) {
                 // if they match, add the article to dummy data
-                parsed_data.dummy_data.push(article);
+                search_results.results.push(article);
               }
             }
           }
         }
       }
-      res.status(200).send({ data: parsed_data.dummy_data });
+      console.log(search_results.results);
+
+      res.status(200).send({ data: search_results.results });
     } else {
       res.status(404).send();
     }
