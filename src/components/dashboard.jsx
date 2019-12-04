@@ -1,7 +1,26 @@
 import React, { Component } from "react";
 import PieChart from "./pieChart";
+import axios from "axios";
 export class Dashboard extends Component {
-  state = { rerender: null };
+  state = { history: null, rerender: null };
+
+  componentDidMount() {
+    //if (this.props.users.length > 0) {
+    this.getUser();
+    //}
+  }
+
+  getUser = () => {
+    console.log("inside getUser History");
+
+    axios.get("/user/history").then(res => {
+      if (res.status === 200) {
+        console.log(res.data.history);
+        this.setState({ history: res.data.history });
+        console.log(this.state);
+      }
+    });
+  };
   render() {
     return (
       <React.Fragment>
@@ -17,7 +36,7 @@ export class Dashboard extends Component {
             aria-haspopup="true"
             aria-expanded="false"
           >
-            Filter
+            Choose First
           </button>
           <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
             <button className="dropdown-item" id="today" type="button">
@@ -70,8 +89,7 @@ export class Dashboard extends Component {
   getChart = () => {
     return (
       <React.Fragment>
-        {" "}
-        <PieChart changeState={this.changeState} />{" "}
+        <PieChart history={this.state.history} changeState={this.changeState} />
       </React.Fragment>
     );
   };

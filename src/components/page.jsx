@@ -152,7 +152,7 @@ export class Page extends Component {
                 )}
               </Route>
               <Route exact path="/auth/dashboard">
-                {this.state.isLoggedIn ? (
+                {this.props.isLoggedIn ? (
                   <Dashboard users={this.state.users} />
                 ) : (
                   <Redirect to="/"></Redirect>
