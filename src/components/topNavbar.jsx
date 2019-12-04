@@ -8,7 +8,7 @@ export class TopNavbar extends Component {
   // componentWillReceiveProps() {
   //   this.handelLoginNav();
   // }
-  state = { redirect: null };
+  state = { redirect: null, keywords: "" };
   render() {
     return (
       <React.Fragment>
@@ -39,13 +39,16 @@ export class TopNavbar extends Component {
             </span>
             <div className="d-flex justify-content-center overlay-content">
               <span className="navbar-text d-lg-none d-xl-none searchBar">
-                <form className="form-inline">
+                <form className="form-inline" onSubmit={this.handleSearch}>
                   <input
                     className="form-control mr-sm-2"
                     type="search"
                     name="user_search"
                     placeholder="Search"
                     aria-label="Search"
+                    onChange={event => {
+                      this.setState({ keywords: event.target.value });
+                    }}
                   />
                   <button
                     className="btn my-2 my-sm-0 searchHeader"
@@ -181,6 +184,22 @@ export class TopNavbar extends Component {
       })
       .catch(error => {
         console.log("Logout error");
+      });
+  };
+
+  handleSearch = e => {
+    e.preventDefault();
+    axios
+      .post("/keywords", { keywords: this.state.keywords })
+      .then(res => {
+        if (res.status === 200) {
+          console.log("search successful!");
+          console.log(res.data.data);
+          this.props.setSearchData(res.data.data);
+        }
+      })
+      .catch(err => {
+        console.log(err);
       });
   };
 

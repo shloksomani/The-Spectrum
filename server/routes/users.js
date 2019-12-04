@@ -118,7 +118,22 @@ router.post("/history", middleware.loginRequired, (req, res) => {
   console.log("inside history post");
   User.findById({ _id: req.user._id })
     .then(user => {
-      user.history.push(req.body);
+      const currentDate = new Date();
+
+      console.log(currentDate.toString());
+      console.log(currentDate.getDate());
+
+      const article = req.body.article;
+      console.log(article);
+
+      const hist = {
+        article: { title: article.title, bias: article.bias },
+        date: currentDate
+      };
+      console.log("history:");
+      console.log(hist);
+      user.history.push(hist);
+      //user.history.push(req.body);
       user.save((err, savedUser) => {
         if (err) {
           console.log(err);

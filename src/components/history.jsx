@@ -5,9 +5,9 @@ export class History extends Component {
   state = { history: null };
 
   componentDidMount() {
-    if (this.props.users.length > 0) {
-      this.getUser();
-    }
+    //if (this.props.users.length > 0) {
+    this.getUser();
+    //}
   }
 
   getUser = () => {
@@ -45,15 +45,17 @@ export class History extends Component {
 
     if (this.state.history) {
       this.state.history.forEach(function(article) {
-        addUserToTable(article);
+        console.log(article.article);
+
+        addUserToTable(article.article);
       });
     }
 
     function addUserToTable(article) {
       const title = document.createElement("td");
-      title.appendChild(document.createTextNode(article.article.title));
+      title.appendChild(document.createTextNode(article.title));
       const bold = document.createElement("strong");
-      const totalBias = article.article.bias.split("_");
+      const totalBias = article.bias.split("_");
       // bold.appendChild(document.createTextNode(article.article.bias));
       bold.appendChild(
         document.createTextNode(totalBias[0] + " " + totalBias[1])
