@@ -9,20 +9,20 @@ const articleSchema = new Schema({
     trim: true
   },
   authors: {
-      type: Array,
-      required: false
+    type: Array,
+    required: false
   },
   text: {
     type: String,
     required: false
   },
   summary: {
-      type:String,
-      required: false
+    type: String,
+    required: false
   },
   top_image: {
-      type: String,
-      required: false
+    type: String,
+    required: false
   },
   url: {
     type: String,
@@ -50,11 +50,20 @@ const articleSchema = new Schema({
     type: Array,
     required: true
     // default: 1
+  },
+  bias: {
+    type: String,
+    required: true
   }
 });
-const left = mongoose.model("left_bias", articleSchema);
-const least_bias = mongoose.model("least_bias", articleSchema);
-const left_center = mongoose.model("left_center", articleSchema);
-const right_center = mongoose.model("right_center", articleSchema);
-const daniel = mongoose.model("daniel", articleSchema);
-module.exports ={ left, least_bias,left_center, right_center, daniel };
+const Article = mongoose.model("Article", articleSchema);
+// const Left = mongoose.model("Left", articleSchema);
+// const least_bias = mongoose.model("least_bias", articleSchema);
+// const left_center = mongoose.model("left_center", articleSchema);
+// const right_center = mongoose.model("right_center", articleSchema);
+//const daniel = mongoose.model("daniel", articleSchema);
+//const one_collection = mongoose.model("one_collection", articleSchema);
+module.exports = {
+  Article
+  //one_collection
+};
