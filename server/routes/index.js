@@ -30,15 +30,42 @@ router.get("/data", function(req, res, next) {
   console.log("inside /data");
 
   let query = [
-    Article.find({ bias: "left_bias" }).limit(30), //0
-    Article.find({ bias: "left_center_bias" }).limit(30), //1
-    Article.find({ bias: "least_bias" }).limit(30), // 2
-    Article.find({ bias: "right_center_bias" }).limit(30), //3
-    Article.find({ bias: "right_bias" }).limit(30), // 4
-    Article.find({ bias: "pro_science" }).limit(30), // 5
-    Article.find({ bias: "conspiracy_pseudoscience" }).limit(30), //6
-    Article.find({ bias: "questionable_sources" }).limit(30), // 7
-    Article.find({ bias: "satire" }).limit(30) // 8
+    Article.find({
+      bias: "left_bias",
+      published: { $gt: new Date(new Date() - 24 * 60 * 60 * 1000) }
+    }).limit(30), //0
+    Article.find({
+      bias: "left_center_bias",
+      published: { $gt: new Date(new Date() - 24 * 60 * 60 * 1000) }
+    }).limit(30), //1
+    Article.find({
+      bias: "least_bias",
+      published: { $gt: new Date(new Date() - 24 * 60 * 60 * 1000) }
+    }).limit(30), // 2
+    Article.find({
+      bias: "right_center_bias",
+      published: { $gt: new Date(new Date() - 24 * 60 * 60 * 1000) }
+    }).limit(30), //3
+    Article.find({
+      bias: "right_bias",
+      published: { $gt: new Date(new Date() - 24 * 60 * 60 * 1000) }
+    }).limit(30), // 4
+    Article.find({
+      bias: "pro_science",
+      published: { $gt: new Date(new Date() - 24 * 60 * 60 * 1000) }
+    }).limit(30), // 5
+    Article.find({
+      bias: "conspiracy_pseudoscience",
+      published: { $gt: new Date(new Date() - 24 * 60 * 60 * 1000) }
+    }).limit(30), //6
+    Article.find({
+      bias: "questionable_sources",
+      published: { $gt: new Date(new Date() - 24 * 60 * 60 * 1000) }
+    }).limit(30), // 7
+    Article.find({
+      bias: "satire",
+      published: { $gt: new Date(new Date() - 24 * 60 * 60 * 1000) }
+    }).limit(30) // 8
   ];
   Promise.all(query)
     .then(results => {
@@ -76,7 +103,6 @@ router.get("/data", function(req, res, next) {
 router.post("/keywords", (req, res) => {
   if (req.body) {
     let keywords_string = req.body.keywords.split(" ");
-    console.log(keywords_string);
     let search_results = {
       results: []
     };
@@ -84,11 +110,7 @@ router.post("/keywords", (req, res) => {
       let search_words = keywords_string.filter(function(el) {
         return el !== "";
       });
-      // for strings that are not empty, search through keywords in dummy data. If keyword in it. Add to array
       const data = parsed_data;
-      // console.log("logging data in /keywords");
-
-      // console.log(data);
 
       // for each bias
       for (let bias in data) {
@@ -97,18 +119,12 @@ router.post("/keywords", (req, res) => {
         for (let i = 0; i < bias_list.length; i++) {
           // each article in the article list
           const article = bias_list[i];
-
           for (let j = 0; j < article.keywords.length; j++) {
             // each keyword attributed to the article
             let keyword = article.keywords[j];
-            console.log("keyword");
-            console.log(keyword);
             // compare the users searched words to the articles keywords
             for (let k = 0; k < search_words.length; k++) {
               let search_word = search_words[k].toLowerCase();
-              console.log("search_word");
-              console.log(search_word);
-
               if (keyword == search_word) {
                 // if they match, add the article to dummy data
                 search_results.results.push(article);
