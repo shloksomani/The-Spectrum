@@ -2,7 +2,7 @@
 
 This website helps users to see the whole spectrum of any global story by classifying which articles and news agencies are known to be biased.
 
-## Table of content
+## Table of contents
 
 - [Requirements](#Requirements)
 - [Installation](#Installation)
