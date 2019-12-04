@@ -9,7 +9,7 @@ router.get("/data", function(req, res, next) {
     if (req.user) {
       return res.status(200).send({ data: data, user: req.user });
     }
-    return res.status(200).send({ data: data[bias], user: null });
+    return res.status(200).send({ data: data, user: null });
   } else {
     return res.status(200).send({ data: data, user: null });
   }
