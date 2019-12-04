@@ -137,14 +137,14 @@ export class Signup extends Component {
         password2: this.state.password2
       })
       .then(response => {
-        // console.log(response);
+        console.log(response);
         if (response.status === 200) {
           this.setState({ redirect: "/auth/dashboard" });
           this.props.handelIsLoggedIn(true, this.state.email);
         }
       })
       .catch(error => {
-        this.setState({ error: "Wrong Input" });
+        this.setState({ error: error.response.data.error });
       });
   };
 }

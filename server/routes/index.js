@@ -4,15 +4,16 @@ var data = require("../data");
 
 /* GET home page. */
 router.get("/data", function(req, res, next) {
-  console.log(req.url);
-  console.log(req.body);
+  // console.log(req.body);
+  console.log(req.user);
   let bias = req.url.split("=")[1];
-  if (find_bias(req.url)) {
+  if (find_bias(req.url) || bias === "") {
     if (req.user) {
       return res.status(200).send({ data: data, user: req.user });
     }
     return res.status(200).send({ data: data[bias], user: null });
   } else {
+    console.log("fuck meeee");
     return res.status(200).send({ data: data, user: null });
   }
 });

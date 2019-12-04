@@ -20,10 +20,7 @@ import {
 
 export class Page extends Component {
   state = {
-    isLoggedIn: false,
-    username: null,
     users: [],
-    isLoggedOut: false,
     searchData: null
   };
 
@@ -55,11 +52,11 @@ export class Page extends Component {
           <Router>
             <TopNavbar
               setterParent={this.props.handleBias}
-              isLoggedIn={this.state.isLoggedIn}
-              handelIsLoggedIn={this.handelIsLoggedIn}
-              username={this.state.username}
-              isLoggedOut={this.state.isLoggedOut}
-              handleIsLoggedOut={this.handleIsLoggedOut}
+              isLoggedIn={this.props.isLoggedIn}
+              handelIsLoggedIn={this.props.handelIsLoggedIn}
+              username={this.props.username}
+              isLoggedOut={this.props.isLoggedOut}
+              handleIsLoggedOut={this.props.handleIsLoggedOut}
               setRedirect={this.props.setRedirect}
             ></TopNavbar>
             <BiasNavbar
@@ -71,7 +68,7 @@ export class Page extends Component {
               searchData={this.state.searchData}
               parsed_data={this.props.data}
               shuffle={this.shuffle}
-              isLoggedIn={this.state.isLoggedIn}
+              isLoggedIn={this.props.isLoggedIn}
             />
           </Router>
         </React.Fragment>
@@ -82,11 +79,11 @@ export class Page extends Component {
           <Router>
             <TopNavbar
               setterParent={this.props.handleBias}
-              isLoggedIn={this.state.isLoggedIn}
-              handelIsLoggedIn={this.handelIsLoggedIn}
-              username={this.state.username}
-              isLoggedOut={this.state.isLoggedOut}
-              handleIsLoggedOut={this.handleIsLoggedOut}
+              isLoggedIn={this.props.isLoggedIn}
+              handelIsLoggedIn={this.props.handelIsLoggedIn}
+              username={this.props.username}
+              isLoggedOut={this.props.isLoggedOut}
+              handleIsLoggedOut={this.props.handleIsLoggedOut}
               setRedirect={this.props.setRedirect}
             ></TopNavbar>
             <BiasNavbar
@@ -112,7 +109,7 @@ export class Page extends Component {
                 <Home
                   parsed_data={this.props.data}
                   shuffle={this.shuffle}
-                  isLoggedIn={this.state.isLoggedIn}
+                  isLoggedIn={this.props.isLoggedIn}
                 />
               </Route>
               <Route
@@ -124,28 +121,28 @@ export class Page extends Component {
                     bias={this.props.bias}
                     parsed_data={this.props.data}
                     shuffle={this.shuffle}
-                    isLoggedIn={this.state.isLoggedIn}
+                    isLoggedIn={this.props.isLoggedIn}
                   />
                 )}
               />
               <Route exact path="/auth/login">
                 <Login
-                  isLoggedIn={this.state.isLoggedIn}
-                  handelIsLoggedIn={this.handelIsLoggedIn}
+                  isLoggedIn={this.props.isLoggedIn}
+                  handelIsLoggedIn={this.props.handelIsLoggedIn}
                   updateUser={this.getUser}
                 />
               </Route>
               <Route exact path="/auth/signup">
                 <Signup
-                  isLoggedIn={this.state.isLoggedIn}
-                  handelIsLoggedIn={this.handelIsLoggedIn}
+                  isLoggedIn={this.props.isLoggedIn}
+                  handelIsLoggedIn={this.props.handelIsLoggedIn}
                 />
               </Route>
               <Route exact path="/auth/admin">
                 <Admin users={this.state.users} getUsers={this.getAllUsers} />
               </Route>
               <Route exact path="/auth/history">
-                {this.state.isLoggedIn ? (
+                {this.props.isLoggedIn ? (
                   <History
                     users={this.state.users}
                     getUsers={this.getAllUsers}
@@ -183,17 +180,17 @@ export class Page extends Component {
     this.props.setRedirect(true);
   };
 
-  handelIsLoggedIn = (bool, username) => {
-    console.log(
-      "inside handleIsLoggedIn after login calls fn, should set state"
-    );
+  // handelIsLoggedIn = (bool, username) => {
+  //   console.log(
+  //     "inside handleIsLoggedIn after login calls fn, should set state"
+  //   );
 
-    this.setState({ isLoggedIn: bool, username: username });
-  };
+  //   this.setState({ isLoggedIn: bool, username: username });
+  // };
 
-  handleIsLoggedOut = bool => {
-    this.setState({ isLoggedOut: bool });
-  };
+  // handleIsLoggedOut = bool => {
+  //   this.setState({ isLoggedOut: bool });
+  // };
 }
 
 export default Page;

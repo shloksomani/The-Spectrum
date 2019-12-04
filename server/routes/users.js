@@ -19,7 +19,7 @@ router.post("/signup", middleware.notAuthenticate, async function(req, res) {
       });
     } else if (user) {
       res.status(400).send({
-        error: `Sorry, already a user with the username: ${username}`
+        error: `Sorry, already a user with the username: ${email}`
       });
     } else {
       const salt = await bcrypt.genSalt(10);
