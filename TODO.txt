@@ -1,4 +1,0 @@
-//TODO -- 
-3) have a perfect flow of the data for fetching
-    - Fix the routes 
-7) take care of images on smaller screen 

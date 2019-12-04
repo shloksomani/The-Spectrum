@@ -344,3 +344,11 @@ h4 {
 .red {
   color: red;
 }
+
+@media screen and (max-width: 991px) {
+  .articleImages {
+    max-width: 100%;
+    height: auto;
+    /* max-width: ; */
+  }
+}

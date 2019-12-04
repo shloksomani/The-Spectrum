@@ -6,14 +6,7 @@ export class Admin extends Component {
     users: []
   };
   componentDidMount() {
-    //  if (this.props.users.length > 0) {
-    //    this.manipulateTable();
-    //    this.props.getUsers();
-    //  }
     this.getAllUsers();
-    // if (this.state.users.length > 0) {
-
-    // }
   }
 
   getAllUsers = () => {
