@@ -101,8 +101,6 @@ If the user is interested in seeing news on a certain topic they <strong>can use
 
 However you are welcome to test out your own words and see if we have any news on it!
 
-We can also filter search results by bias, in case a user wants to read articles with a particular bias.
-
 It is important to note that <strong>a user remains logged in, even if they cancel out of the page. The session is preserved. They can return back to http://localhost:3000 and still be logged in until they select 'Logout'. </strong>
 
 
