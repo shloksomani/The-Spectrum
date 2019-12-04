@@ -12,8 +12,9 @@ class App extends React.Component {
   }
 
   getDataFromDb = () => {
+   const dataDB = {} 
     const request = axios
-      .get("/data", {
+      .get("/data/left", {
         params: {
           name: this.state.bias
         }
@@ -27,17 +28,52 @@ class App extends React.Component {
           console.log(
             "Get User: There is a user saved in the server session: "
           );
-          this.setState({
-            isLoggedIn: true,
-            username: res.data.user.username,
-            data: res.data.data
-          });
+          // this.setState({
+          //   isLoggedIn: true,
+          //   username: res.data.user.username,
+          //   data: res.data.data
+          // });
         } else {
-          this.setState({
-            data: res.data.data
-          });
-          console.log(this.setState);
-          
+          // this.setState({
+          //   data: res.data.data
+          // });
+          // console.log(this.setState);
+          dataDB.left_bias = res.data.data
+           axios
+            .get("/data/least", {
+              params: {
+                name: this.state.bias
+              }
+            })
+            .then(res => {
+              console.log("got response in getDB");
+
+              console.log(res);
+
+              if (res.data.user) {
+                console.log(
+                  "Get User: There is a user saved in the server session: "
+                );
+                // this.setState({
+                //   isLoggedIn: true,
+                //   username: res.data.user.username,
+                //   data: res.data.data
+                // });
+              } else {
+                // this.setState({
+                //   data: res.data.data
+                // });
+                // console.log(this.setState);
+                dataDB.least_biased = res.data.data
+                this.setState({data: dataDB})
+                console.log(this.state);
+                
+              }
+            }).catch(err => {
+              console.log("error in fetching data from server");
+              console.log(err);
+
+            });
         }
       }).catch(err=>{
         console.log("error in fetching data from server");

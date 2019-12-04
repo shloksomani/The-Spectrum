@@ -12,36 +12,67 @@ const {
 mongoose.promise = Promise;
 
 /* GET home page. */
-router.get("/data", function(req, res, next) {
+router.get("/data/left", function(req, res, next) {
   console.log(req.url);
   let bias = req.url.split("=")[1];
   let data = {};
-  least_bias
+  left
     .find({})
     .then(response => {
       console.log("found daniel");
 
       //console.log(response);
-      data.left_bias = response;
-      data.right_bias = response;
-      data.left_center_bias = response;
-      data.right_center_bias = response;
-      data.least_biased = response;
-      data.pro_science = response;
-      data.questionable_sources = response;
+      // data.left_bias = response;
+      // data.right_bias = response;
+      // data.left_center_bias = response;
+      // data.right_center_bias = response;
+      // data.least_biased = response;
+      // data.pro_science = response;
+      // data.questionable_sources = response;
       //res.status(200).send({ data: data, user: null });
       if (find_bias(req.url)) {
         if (req.user) {
-          return res.status(200).send({ data: data, user: req.user });
+          return res.status(200).send({ data: response, user: req.user });
         }
-        return res.status(200).send({ data: data[bias], user: null });
+        return res.status(200).send({ data: response, user: null });
       } else {
-        return res.status(200).send({ data: data, user: null });
+        return res.status(200).send({ data: response, user: null });
       }
     })
     .catch(err => {
       console.log(err);
     });
+});
+  router.get("/data/least", function (req, res, next) {
+    console.log(req.url);
+    let bias = req.url.split("=")[1];
+    let data = {};
+    least_bias
+      .find({})
+      .then(response => {
+        console.log("found daniel");
+
+        //console.log(response);
+        // data.left_bias = response;
+        // data.right_bias = response;
+        // data.left_center_bias = response;
+        // data.right_center_bias = response;
+        // data.least_biased = response;
+        // data.pro_science = response;
+        // data.questionable_sources = response;
+        //res.status(200).send({ data: data, user: null });
+        if (find_bias(req.url)) {
+          if (req.user) {
+            return res.status(200).send({ data: response, user: req.user });
+          }
+          return res.status(200).send({ data: response, user: null });
+        } else {
+          return res.status(200).send({ data: response, user: null });
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
   // least_bias.find({}).then((response)=>{
   //   //console.log(res);
   //   //data["least_bias"] = res;
