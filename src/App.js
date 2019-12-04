@@ -5,7 +5,10 @@ class App extends React.Component {
   state = {
     data: [],
     bias: "",
-    redirect: false
+    redirect: false,
+    isLoggedIn: false,
+    username: null,
+    isLoggedOut: false
   };
   componentDidMount() {
     this.getDataFromDb();
@@ -60,6 +63,18 @@ class App extends React.Component {
     }
   };
 
+  handelIsLoggedIn = (bool, username) => {
+    console.log(
+      "inside handleIsLoggedIn after login calls fn, should set state"
+    );
+
+    this.setState({ isLoggedIn: bool, username: username });
+  };
+
+  handleIsLoggedOut = bool => {
+    this.setState({ isLoggedOut: bool });
+  };
+
   render() {
     return (
       <Page
@@ -69,6 +84,11 @@ class App extends React.Component {
         getArticles={this.getDataFromDb}
         redirect={this.state.redirect}
         setRedirect={this.setRedirect}
+        handelIsLoggedIn={this.handelIsLoggedIn}
+        handleIsLoggedOut={this.handleIsLoggedOut}
+        isLoggedIn={this.state.isLoggedIn}
+        isLoggedOut={this.state.isLoggedOut}
+        username={this.state.username}
       ></Page>
     );
   }

@@ -3,7 +3,7 @@ import Container from "./container";
 
 export class Search extends Component {
   componentDidMount(){
-    this.setListeners();
+    //this.setListeners();
   }
   render() {
     return (
@@ -12,7 +12,7 @@ export class Search extends Component {
           <h4 className="d-inline-block align-middle heading dash" id="dash">
             Search Results:
           </h4>
-          <button
+          {/* <button
             className="btn  dropdown-toggle smth dash"
             type="button"
             id="dropdownMenu2"
@@ -21,8 +21,8 @@ export class Search extends Component {
             aria-expanded="false"
           >
             Filter Bias
-          </button>
-          <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
+          </button> */}
+          {/* <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
             <button className="dropdown-item" id="leftTog" type="button">
               Left Bias
             </button>
@@ -44,7 +44,7 @@ export class Search extends Component {
             <button className="dropdown-item" id="qTog" type="button">
               Questionable Sources
             </button>
-          </div>
+          </div> */}
         </div>
         {this.getSearchData()}
       </React.Fragment>

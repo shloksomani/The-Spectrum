@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var data = require("../data");
 const mongoose = require("mongoose");
+const parsed_data = {}
 const {
   Article
   // daniel,
@@ -71,12 +72,12 @@ router.post("/keywords", (req, res) => {
   if (req.body) {
     console.log(req.body);
 
-    keywords_string = req.body.keywords.split(" ");
+    let keywords_string = req.body.keywords.split(" ");
     console.log(keywords_string);
 
     if (keywords_string.length > 0) {
       parsed_data.keywords = keywords_string.filter(function(el) {
-        return el != "";
+        return el !== "";
       });
       // for strings that are not empty, search through keywords in dummy data. If keyword in it. Add to array
       parsed_data.dummy_data = [];
@@ -90,10 +91,10 @@ router.post("/keywords", (req, res) => {
           const article = bias_list[i];
           for (let j = 0; j < article.keywords.length; j++) {
             // each keyword attributed to the article
-            keyword = article.keywords[j];
+            let keyword = article.keywords[j];
             // compare the users searched words to the articles keywords
             for (let k = 0; k < parsed_data.keywords.length; k++) {
-              search_word = parsed_data.keywords[k].toLowerCase();
+              let search_word = parsed_data.keywords[k].toLowerCase();
               if (keyword == search_word) {
                 // if they match, add the article to dummy data
                 parsed_data.dummy_data.push(article);
@@ -121,7 +122,7 @@ router.get("/", (req, res, next) => {
   }
 });
 
-find_bias = url => {
+find_bias = (url) => {
   let biasToFind = url.split("=")[1];
   let storedBiases = [
     "left_bias",

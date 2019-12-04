@@ -2,19 +2,29 @@ import React, { Component } from "react";
 import Table from "./Table";
 import axios from "axios";
 export class Admin extends Component {
+  state = {
+    users: []
+  };
   componentDidMount() {
-    if (this.props.users.length > 0) {
-      this.manipulateTable();
-      this.props.getUsers();
-    }
+    this.getAllUsers();
   }
+
+  getAllUsers = () => {
+    axios.get("/user/all").then(response => {
+      console.log("Get all users");
+      console.log(response.data);
+      this.setState({ users: response.data }, () => {
+        this.manipulateTable();
+      });
+    });
+  };
 
   render() {
     return (
       <div>
         <h1 className="title">Admin Page to manage Users</h1>
         <div className="smth title">
-          <p>Admin is allowed to remove users</p>
+          <p>Remove users</p>
         </div>
         <Table head={["User Name", "Remove: id"]} />
       </div>
@@ -54,7 +64,8 @@ export class Admin extends Component {
       .post("/user/admin", { id: e.target.classList[0] })
       .then(res => {
         console.log("post admin sucessful!");
-        this.props.getUsers();
+        //  this.props.getUsers();
+        this.getAllUsers();
         //this.setState({ isRemoved: true });
       })
       .catch(err => {
@@ -63,7 +74,7 @@ export class Admin extends Component {
   };
 
   manipulateTable = () => {
-    this.props.users.forEach(user => {
+    this.state.users.forEach(user => {
       this.addUserToTable(user);
     });
   };
