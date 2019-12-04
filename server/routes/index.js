@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var data1 = require("../data");
+var data = require("../data");
 const mongoose = require("mongoose");
 const {
   Article
@@ -9,158 +9,45 @@ const {
 } = require("../database/models/article");
 mongoose.promise = Promise;
 
-/* GET home page. */
-router.get("/data/left", function(req, res, next) {
-  console.log(req.url);
-  let bias = req.url.split("=")[1];
-  let data = {};
-  left
-    .find({})
-    .then(response => {
-      console.log("found daniel");
-      if (find_bias(req.url)) {
-        if (req.user) {
-          return res.status(200).send({ data: response, user: req.user });
-        }
-        return res.status(200).send({ data: response, user: null });
-      } else {
-        return res.status(200).send({ data: response, user: null });
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
-});
-router.get("/data/least", function(req, res, next) {
-  console.log(req.url);
-  let bias = req.url.split("=")[1];
-  let data = {};
-  least_bias
-    .find({})
-    .then(response => {
-      if (find_bias(req.url)) {
-        if (req.user) {
-          return res.status(200).send({ data: response, user: req.user });
-        }
-        return res.status(200).send({ data: response, user: null });
-      } else {
-        return res.status(200).send({ data: response, user: null });
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
-});
-router.get("/data/right_center", function(req, res, next) {
-  console.log(req.url);
-  let bias = req.url.split("=")[1];
-  let data = {};
-  right_center
-    .find({})
-    .then(response => {
-      if (find_bias(req.url)) {
-        if (req.user) {
-          return res.status(200).send({ data: response, user: req.user });
-        }
-        return res.status(200).send({ data: response, user: null });
-      } else {
-        return res.status(200).send({ data: response, user: null });
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
-});
-router.get("/data/left_center", function(req, res, next) {
-  console.log(req.url);
-  let bias = req.url.split("=")[1];
-  let data = {};
-  left_center
-    .find({})
-    .then(response => {
-      if (find_bias(req.url)) {
-        if (req.user) {
-          return res.status(200).send({ data: response, user: req.user });
-        }
-        return res.status(200).send({ data: response, user: null });
-      } else {
-        return res.status(200).send({ data: response, user: null });
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  least_bias
-    .find({})
-    .then(response => {
-      //console.log(res);
-      //data["least_bias"] = res;
-      res.status(200).send({ data: response, user: null });
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  // Fetching articles from DB from past 3 days
-  for (collection1 in mongoose.connection.collections) {
-    // check if it is a bias collection
-    if (collection1 == "user") {
-      continue;
-    }
-    mongoose.connection.collection(collection1, function(collection) {
-      data[collection1] = collection
-        .find({})
-        // .toArray()
-        .then(
-          documents => {
-            // get docs from past 3 days
-            data.collection = documents;
-            console.log(documents);
-          },
-          error => {
-            log("Can't fetch articles for left bias", error);
-          }
-        )
-        .catch(err => {
-          console.log("error in getting collections");
-          console.log(err);
-        });
-    });
-  }
-
-  console.log("DATATATA");
-  console.log(data);
-  res.status(404).send();
-});
-
 router.get("/data", function(req, res, next) {
   console.log("inside /data");
 
-  let query = [Article.find({})];
+  let query = [
+    Article.find({ bias: "left_bias" }), //0
+    Article.find({ bias: "left_center_bias" }), //1
+    Article.find({ bias: "least_bias" }), // 2
+    Article.find({ bias: "right_center_bias" }), //3
+    Article.find({ bias: "right_bias" }), // 4
+    Article.find({ bias: "pro_science" }), // 5
+    Article.find({ bias: "conspiracy_pseudoscience" }), //6
+    Article.find({ bias: "questionable_sources" }), // 7
+    Article.find({ bias: "satire" }) // 8
+  ];
   Promise.all(query).then(results => {
-    console.log(results[0]);
-    res.status(200).send({ data: results[0] });
+    const data = {
+      left_bias: results[0],
+      left_center_bias: results[1],
+      least_bias: results[2],
+      right_center_bias: results[3],
+      right_bias: results[4],
+      pro_science: results[5],
+      questionable_sources: results[7]
+    };
+    let bias = req.url.split("=")[1];
+    if (find_bias(req.url) || bias === "") {
+      if (req.user) {
+        return res.status(200).send({ data: data, user: req.user });
+      }
+      return res.status(200).send({ data: data, user: null });
+    } else {
+      return res.status(200).send({ data: data, user: null });
+    }
+    })
+    .catch(err => {
+      console.log(err);
+    });
   });
-  // console.log(req.url);
-  // console.log(req.body);
-  // let bias = req.url.split("=")[1];
-  // console.log(req.url);
-  // let bias = req.url.split("=")[1];
-  // one_collection
-  //   .find({})
-  //   .then(response => {
-  //     if (find_bias(req.url)) {
-  //       if (req.user) {
-  //         return res.status(200).send({ data: response, user: req.user });
-  //       }
-  //       return res.status(200).send({ data: response, user: null });
-  //     } else {
-  //       return res.status(200).send({ data: response, user: null });
-  //     }
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   });
-});
+
 router.post("/keywords", (req, res) => {
   console.log("inside get/keywords");
 
