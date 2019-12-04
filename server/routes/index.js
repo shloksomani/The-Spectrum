@@ -30,15 +30,15 @@ router.get("/data", function(req, res, next) {
   console.log("inside /data");
 
   let query = [
-    Article.find({ bias: "left_bias" }), //0
-    Article.find({ bias: "left_center_bias" }), //1
-    Article.find({ bias: "least_bias" }), // 2
-    Article.find({ bias: "right_center_bias" }), //3
-    Article.find({ bias: "right_bias" }), // 4
-    Article.find({ bias: "pro_science" }), // 5
-    Article.find({ bias: "conspiracy_pseudoscience" }), //6
-    Article.find({ bias: "questionable_sources" }), // 7
-    Article.find({ bias: "satire" }) // 8
+    Article.find({ bias: "left_bias" }).limit(30), //0
+    Article.find({ bias: "left_center_bias" }).limit(30), //1
+    Article.find({ bias: "least_bias" }).limit(30), // 2
+    Article.find({ bias: "right_center_bias" }).limit(30), //3
+    Article.find({ bias: "right_bias" }).limit(30), // 4
+    Article.find({ bias: "pro_science" }).limit(30), // 5
+    Article.find({ bias: "conspiracy_pseudoscience" }).limit(30), //6
+    Article.find({ bias: "questionable_sources" }).limit(30), // 7
+    Article.find({ bias: "satire" }).limit(30) // 8
   ];
   Promise.all(query)
     .then(results => {
@@ -74,30 +74,6 @@ router.get("/data", function(req, res, next) {
 });
 
 router.post("/keywords", (req, res) => {
-  console.log("inside get/keywords");
-  // function random_dummy_data() {
-  //   data.dummy_data = [];
-
-  //   // for each bias
-  //   for (let bias in parsed_data) {
-  //     // List of articles that have the bias
-  //     const bias_list = parsed_data[bias];
-  //     for (let i = 0; i < 2; i++) {
-  //       // each article in the article list
-  //       const article = bias_list[i];
-
-  //       data.dummy_data.push(article);
-  //     }
-  //   }
-  // }
-  // get the query from url
-
-  // My Algo:
-  // get keywords I am looking for.
-  // Search data, bias by bias. If the keywords match, add it to a list.
-  // add list to search results
-  // return search_results
-
   if (req.body) {
     let keywords_string = req.body.keywords.split(" ");
     console.log(keywords_string);
