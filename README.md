@@ -58,6 +58,10 @@ And then go to:
 http://localhost:3000/
 ```
 
+### Deployment
+Our application has been deployed to Heroku. It is currently live and hosted on: http://thespectrum.herokuapp.com/
+This is a fully functioning version of our application
+
 ### Specification
 We are using JSON files to store our hardcoded data. This data does not persist, whenever the server is restarted the data will revert back to the initial default data.
 
