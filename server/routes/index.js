@@ -81,11 +81,14 @@ router.get("/data", function(req, res, next) {
       parsed_data = data;
 
       let bias = req.url.split("=")[1];
+      console.log(bias);
+      console.log("fuck meeeeee");
+      console.log(data[bias]);
       if (find_bias(req.url)) {
         if (req.user) {
-          return res.status(200).send({ data: data[bias], user: req.user });
+          return res.status(200).send({ data: data.bias, user: req.user });
         }
-        return res.status(200).send({ data: data[bias], user: null });
+        return res.status(200).send({ data: data.bias, user: null });
       } else if (bias === "") {
         if (req.user) {
           return res.status(200).send({ data: data, user: req.user });

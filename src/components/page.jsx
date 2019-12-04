@@ -112,19 +112,22 @@ export class Page extends Component {
                   isLoggedIn={this.props.isLoggedIn}
                 />
               </Route>
-              <Route
-                exact
-                path="/:id"
-                render={props => (
-                  <BiasPage
-                    {...props}
-                    bias={this.props.bias}
-                    parsed_data={this.props.data}
-                    shuffle={this.shuffle}
-                    isLoggedIn={this.props.isLoggedIn}
-                  />
-                )}
-              />
+              {Object.keys(this.props.data).length > 0 && (
+                <Route
+                  exact
+                  path="/:id"
+                  render={props => (
+                    <BiasPage
+                      {...props}
+                      bias={this.props.bias}
+                      parsed_data={this.props.data}
+                      shuffle={this.shuffle}
+                      isLoggedIn={this.props.isLoggedIn}
+                    />
+                  )}
+                ></Route>
+              )}
+
               <Route exact path="/auth/login">
                 <Login
                   isLoggedIn={this.props.isLoggedIn}
