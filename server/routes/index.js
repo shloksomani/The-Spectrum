@@ -2,13 +2,29 @@ var express = require("express");
 var router = express.Router();
 var data = require("../data");
 const mongoose = require("mongoose");
-const parsed_data = {}
+let parsed_data = {};
 const {
   Article
   // daniel,
   //one_collection
 } = require("../database/models/article");
 mongoose.promise = Promise;
+function find_bias(url) {
+  let biasToFind = url.split("=")[1];
+  let storedBiases = [
+    "left_bias",
+    "left_center_bias",
+    "least_bias",
+    "right_center_bias",
+    "right_bias",
+    "pro_science",
+    "questionable_sources"
+  ];
+  let found = storedBiases.find(function(element) {
+    return element === biasToFind;
+  });
+  return found ? true : false;
+}
 
 router.get("/data", function(req, res, next) {
   console.log("inside /data");
@@ -24,30 +40,37 @@ router.get("/data", function(req, res, next) {
     Article.find({ bias: "questionable_sources" }), // 7
     Article.find({ bias: "satire" }) // 8
   ];
-  Promise.all(query).then(results => {
-    const data = {
-      left_bias: results[0],
-      left_center_bias: results[1],
-      least_bias: results[2],
-      right_center_bias: results[3],
-      right_bias: results[4],
-      pro_science: results[5],
-      questionable_sources: results[7]
-    };
-    let bias = req.url.split("=")[1];
-    if (find_bias(req.url) || bias === "") {
-      if (req.user) {
-        return res.status(200).send({ data: data, user: req.user });
+  Promise.all(query)
+    .then(results => {
+      const data = {
+        left_bias: results[0],
+        left_center_bias: results[1],
+        least_bias: results[2],
+        right_center_bias: results[3],
+        right_bias: results[4],
+        pro_science: results[5],
+        questionable_sources: results[7]
+      };
+      parsed_data = data;
+      let bias = req.url.split("=")[1];
+      if (find_bias(req.url)) {
+        if (req.user) {
+          return res.status(200).send({ data: data[bias], user: req.user });
+        }
+        return res.status(200).send({ data: data[bias], user: null });
+      } else if (bias === "") {
+        if (req.user) {
+          return res.status(200).send({ data: data, user: req.user });
+        }
+        return res.status(200).send({ data: data, user: null });
+      } else {
+        return res.status(200).send({ data: data, user: null });
       }
-      return res.status(200).send({ data: data, user: null });
-    } else {
-      return res.status(200).send({ data: data, user: null });
-    }
     })
     .catch(err => {
       console.log(err);
     });
-  });
+});
 
 router.post("/keywords", (req, res) => {
   console.log("inside get/keywords");
@@ -67,7 +90,7 @@ router.post("/keywords", (req, res) => {
       }
     }
   }
-  parsed_data = {};
+  parsed_data = data;
   // get the query from url
   if (req.body) {
     console.log(req.body);
@@ -121,22 +144,5 @@ router.get("/", (req, res, next) => {
     res.json({ user: null });
   }
 });
-
-find_bias = (url) => {
-  let biasToFind = url.split("=")[1];
-  let storedBiases = [
-    "left_bias",
-    "left_center_bias",
-    "least_bias",
-    "right_center_bias",
-    "right_bias",
-    "pro_science",
-    "questionable_sources"
-  ];
-  let found = storedBiases.find(function(element) {
-    return element === biasToFind;
-  });
-  return found ? true : false;
-};
 
 module.exports = router;
