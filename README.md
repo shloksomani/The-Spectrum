@@ -1,3 +1,4 @@
+Please mark the commits up until Dec 4th 10pm 
 # The Spectrum
 
 This website helps users to see the whole spectrum of any global story by classifying which articles and news agencies are known to be biased.
