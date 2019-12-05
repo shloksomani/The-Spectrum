@@ -54,6 +54,7 @@ export class TopNavbar extends Component {
                   <button
                     className="btn my-2 my-sm-0 searchHeader"
                     type="submit"
+                    onClick={this.closeSearch}
                   >
                     Search
                   </button>
