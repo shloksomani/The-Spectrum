@@ -32,39 +32,39 @@ router.get("/data", function(req, res, next) {
   let query = [
     Article.find({
       bias: "left_bias",
-      published: { $gt: new Date(new Date() - 24 * 60 * 60 * 1000) }
+      published: { $gt: new Date(new Date() - 24 * 3 * 60 * 60 * 1000) }
     }).limit(30), //0
     Article.find({
       bias: "left_center_bias",
-      published: { $gt: new Date(new Date() - 24 * 60 * 60 * 1000) }
+      published: { $gt: new Date(new Date() - 24 * 60 * 3 * 60 * 1000) }
     }).limit(30), //1
     Article.find({
       bias: "least_bias",
-      published: { $gt: new Date(new Date() - 24 * 60 * 60 * 1000) }
+      published: { $gt: new Date(new Date() - 24 * 60 * 60 * 3 * 1000) }
     }).limit(30), // 2
     Article.find({
       bias: "right_center_bias",
-      published: { $gt: new Date(new Date() - 24 * 60 * 60 * 1000) }
+      published: { $gt: new Date(new Date() - 24 * 60 * 3 * 60 * 1000) }
     }).limit(30), //3
     Article.find({
       bias: "right_bias",
-      published: { $gt: new Date(new Date() - 24 * 60 * 60 * 1000) }
+      published: { $gt: new Date(new Date() - 24 * 60 * 60 * 3 * 1000) }
     }).limit(30), // 4
     Article.find({
       bias: "pro_science",
-      published: { $gt: new Date(new Date() - 24 * 60 * 60 * 1000) }
+      published: { $gt: new Date(new Date() - 24 * 60 * 60 * 3 * 1000) }
     }).limit(30), // 5
     Article.find({
       bias: "conspiracy_pseudoscience",
-      published: { $gt: new Date(new Date() - 24 * 60 * 60 * 1000) }
+      published: { $gt: new Date(new Date() - 24 * 60 * 60 * 3 * 1000) }
     }).limit(30), //6
     Article.find({
       bias: "questionable_sources",
-      published: { $gt: new Date(new Date() - 24 * 60 * 60 * 1000) }
+      published: { $gt: new Date(new Date() - 24 * 60 * 60 * 3 * 1000) }
     }).limit(30), // 7
     Article.find({
       bias: "satire",
-      published: { $gt: new Date(new Date() - 24 * 60 * 60 * 1000) }
+      published: { $gt: new Date(new Date() - 24 * 60 * 3 * 60 * 1000) }
     }).limit(30) // 8
   ];
   Promise.all(query)
@@ -79,11 +79,7 @@ router.get("/data", function(req, res, next) {
         questionable_sources: results[7]
       };
       parsed_data = data;
-
       let bias = req.url.split("=")[1];
-      console.log(bias);
-      console.log("fuck meeeeee");
-      console.log(data[bias]);
       if (find_bias(req.url)) {
         if (req.user) {
           return res.status(200).send({ data: data.bias, user: req.user });

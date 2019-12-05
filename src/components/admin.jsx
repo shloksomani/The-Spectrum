@@ -3,10 +3,12 @@ import Table from "./Table";
 import axios from "axios";
 export class Admin extends Component {
   state = {
-    users: []
+    users: [],
+    urls: []
   };
   componentDidMount() {
     this.getAllUsers();
+    this.getSuggestedArticles();
   }
 
   getAllUsers = () => {
@@ -19,15 +21,32 @@ export class Admin extends Component {
     });
   };
 
+  getSuggestedArticles = () => {
+    axios.get("/user/suggested_articles").then(response => {
+      this.setState({ urls: response.data }, () => {
+        this.something();
+      });
+    });
+  };
+
   render() {
     return (
-      <div>
-        <h1 className="title">Admin Page to manage Users</h1>
-        <div className="smth title">
-          <p>Remove users</p>
+      <React.Fragment>
+        <div>
+          <h1 className="title">Admin Page to manage Users</h1>
+          <div className="smth title">
+            <p>Remove users</p>
+          </div>
+          <Table title="userTable" head={["User Name", "Remove: id"]} />
         </div>
-        <Table head={["User Name", "Remove: id"]} />
-      </div>
+        <div>
+          <h1 className="title">User Submitted Links</h1>
+          <div className="smth title">
+            <p>Suggestions</p>
+          </div>
+          <Table title="links" head={["User Name", "Links"]} />
+        </div>
+      </React.Fragment>
     );
   }
 
@@ -53,6 +72,21 @@ export class Admin extends Component {
     }
   };
 
+  addLinksToTable = user => {
+    const userTable = document.querySelector("#links");
+    let newRow = userTable.insertRow(1);
+
+    // Insert a cell in the row at index 0
+    let newCell0 = newRow.insertCell(0);
+    let newCell1 = newRow.insertCell(1);
+
+    // Append a text node to the cell
+    let newText0 = document.createTextNode(user.username);
+    let newText1 = document.createTextNode(user.url);
+    newCell0.appendChild(newText0);
+    newCell1.appendChild(newText1);
+  };
+
   removeUser = e => {
     console.log("inside removeUser");
     console.log(e.target.innerText);
@@ -73,7 +107,25 @@ export class Admin extends Component {
       });
   };
 
+  something = () => {
+    // const table = document.querySelector("#links");
+    // var tableHeaderRowCount = 1;
+    // var rowCount = table.rows.length;
+    // for (var i = tableHeaderRowCount; i < rowCount; i++) {
+    //   table.deleteRow(tableHeaderRowCount);
+    // }
+    this.state.urls.forEach(user => {
+      this.addLinksToTable(user);
+    });
+  };
+
   manipulateTable = () => {
+    const table = document.querySelector("#userTable");
+    var tableHeaderRowCount = 1;
+    var rowCount = table.rows.length;
+    for (var i = tableHeaderRowCount; i < rowCount; i++) {
+      table.deleteRow(tableHeaderRowCount);
+    }
     this.state.users.forEach(user => {
       this.addUserToTable(user);
     });

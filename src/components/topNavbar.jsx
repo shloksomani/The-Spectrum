@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import searchLens from "../assets/image/search.png";
 import logo from "../assets/image/Untitled3.png";
+import searchBroken from "../assets/image/noSearch.png";
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
@@ -206,8 +207,7 @@ export class TopNavbar extends Component {
                 summary: "No articles match the word you have searched for",
                 published: new Date(),
                 keywords: [],
-                top_image:
-                  "https://www.ianbrodie.com/wp-content/uploads/2017/01/search-results-stars-1.jpg",
+                top_image: searchBroken,
                 url: "#",
                 brand: "",
                 mbfc: "#",

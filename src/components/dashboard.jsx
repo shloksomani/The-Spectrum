@@ -59,26 +59,25 @@ export class Dashboard extends Component {
         {/* </canvas> */}
 
         <div className="container">
-          <form action="/dash" method="POST" className="mt-5">
-            <div className="form-group row">
-              <div className="col-4 offset-4 text-center">
-                <h4 className="dash">Add New News URL</h4>
-                <h4 className="dash">(Subject to Admin Approval)</h4>
-                <label htmlFor="urlSubmit" className="">
-                  Add New News URL
-                </label>
-                <div className="">
-                  <input
-                    name="urlToSubmit"
-                    type="text"
-                    className="form-control"
-                    id="urlSubmit"
-                    placeholder="https://AddNewURLHere"
-                  />
-                </div>
+          <div className="form-group row">
+            <div className="col-4 offset-4 text-center">
+              <h4 className="dash">Add New News URL</h4>
+              <h4 className="dash">(Subject to Admin Approval)</h4>
+              <label htmlFor="urlSubmit" className="">
+                Add New News URL
+              </label>
+              <div className="">
+                <input
+                  name="urlToSubmit"
+                  type="text"
+                  className="form-control"
+                  id="urlSubmit"
+                  placeholder="https://AddNewURLHere"
+                  onKeyDown={this.handelSubmitLink}
+                />
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </React.Fragment>
     );
@@ -92,6 +91,23 @@ export class Dashboard extends Component {
         <PieChart history={this.state.history} changeState={this.changeState} />
       </React.Fragment>
     );
+  };
+
+  handelSubmitLink = e => {
+    if (e.key === "Enter")
+      axios
+        .post("/user/suggested_articles", {
+          link: e.target.value
+        })
+        .then(response => {
+          console.log(response);
+          if (response.status === 200) {
+            console.log("Success");
+          }
+        })
+        .catch(error => {
+          console.log("error");
+        });
   };
 }
 

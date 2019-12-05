@@ -4,7 +4,7 @@ export default class Table extends Component {
   render() {
     return (
       <div>
-        <table id="userTable">
+        <table id={this.props.title} className="tables">
           <tbody>
             <tr>
               {/* <th>User Name</th>
