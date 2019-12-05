@@ -12,6 +12,7 @@
 /build
 client/build
 client/node_modules
+/client
 
 # misc
 .DS_Store

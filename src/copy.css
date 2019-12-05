@@ -309,7 +309,7 @@ body {
 .dash {
   color: #ffffff !important;
 }
-#userTable {
+.tables {
   margin: auto;
   color: #ffffff;
 }
@@ -319,7 +319,7 @@ body {
   color: #ffffff;
 }
 
-#userTable,
+.tables,
 td,
 th {
   border-collapse: collapse;

@@ -1,5 +1,6 @@
 import React, { Component, Redirect } from "react";
 import { Link } from "react-router-dom";
+import searchBroken from "../assets/image/noSearch.png";
 import axios from "axios";
 
 export class BiasNavbar extends Component {
@@ -150,8 +151,7 @@ export class BiasNavbar extends Component {
                 summary: "No articles match the word you have searched for",
                 published: new Date(),
                 keywords: [],
-                top_image:
-                  "https://www.ianbrodie.com/wp-content/uploads/2017/01/search-results-stars-1.jpg",
+                top_image: searchBroken,
                 url: "#",
                 brand: "",
                 mbfc: "#",

@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
 const User = require("../database/models/user");
+const Submission = require("../database/models/suggestedArticle");
 const passport = require("../passport");
 const middleware = require("../middleware");
 
@@ -11,16 +12,17 @@ router.post("/signup", middleware.notAuthenticate, async function(req, res) {
 
   const { email, password } = req.body;
   // ADD VALIDATION
-  User.find({}).then((res)=>{
-    if(res){
-      console.log(res);
-      
-    }
-  }).catch((err)=>{
-    console.log("Error in getting pro science");
-    console.log(err);
-  })
-  
+  User.find({})
+    .then(res => {
+      if (res) {
+        console.log(res);
+      }
+    })
+    .catch(err => {
+      console.log("Error in getting pro science");
+      console.log(err);
+    });
+
   User.findOne({ username: email }, async function(err, user) {
     if (err) {
       console.log("User.js post error: ", err);
@@ -105,6 +107,33 @@ router.get("/all", middleware.isAdmin, (req, res) => {
       res.json(users);
     }
   });
+});
+
+router.get("/suggested_articles", middleware.isAdmin, (req, res) => {
+  Submission.find({}, (err, articles) => {
+    if (err) {
+      console.log("No links to show", err);
+      res.status(400).send({
+        error: "No links to show"
+      });
+    } else {
+      console.log(articles);
+      res.json(articles);
+    }
+  });
+});
+
+router.post("/suggested_articles", middleware.loginRequired, (req, res) => {
+  if (req.user) {
+    const { link } = req.body;
+    submission = new Submission({
+      username: req.user.username,
+      url: link
+    });
+    submission.save().then(result => {
+      res.status(200).send();
+    });
+  }
 });
 
 router.post("/admin", middleware.isAdmin, (req, res) => {
