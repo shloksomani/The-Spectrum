@@ -58,6 +58,7 @@ export class Page extends Component {
               isLoggedOut={this.props.isLoggedOut}
               handleIsLoggedOut={this.props.handleIsLoggedOut}
               setRedirect={this.props.setRedirect}
+              setSearchData={this.setSearchData}
             ></TopNavbar>
             <BiasNavbar
               setterParent={this.props.handleBias}
@@ -85,6 +86,7 @@ export class Page extends Component {
               isLoggedOut={this.props.isLoggedOut}
               handleIsLoggedOut={this.props.handleIsLoggedOut}
               setRedirect={this.props.setRedirect}
+              setSearchData={this.setSearchData}
             ></TopNavbar>
             <BiasNavbar
               setterParent={this.props.handleBias}
