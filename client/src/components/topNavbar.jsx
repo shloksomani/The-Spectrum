@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import searchLens from "../assets/image/search.png";
 import logo from "../assets/image/Untitled3.png";
+import searchBroken from "../assets/image/noSearch.png";
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
@@ -8,7 +9,7 @@ export class TopNavbar extends Component {
   // componentWillReceiveProps() {
   //   this.handelLoginNav();
   // }
-  state = { redirect: null };
+  state = { redirect: null, keywords: "" };
   render() {
     return (
       <React.Fragment>
@@ -39,13 +40,16 @@ export class TopNavbar extends Component {
             </span>
             <div className="d-flex justify-content-center overlay-content">
               <span className="navbar-text d-lg-none d-xl-none searchBar">
-                <form className="form-inline">
+                <form className="form-inline" onSubmit={this.handleSearch}>
                   <input
                     className="form-control mr-sm-2"
                     type="search"
                     name="user_search"
                     placeholder="Search"
                     aria-label="Search"
+                    onChange={event => {
+                      this.setState({ keywords: event.target.value });
+                    }}
                   />
                   <button
                     className="btn my-2 my-sm-0 searchHeader"
@@ -181,6 +185,40 @@ export class TopNavbar extends Component {
       })
       .catch(error => {
         console.log("Logout error");
+      });
+  };
+
+  handleSearch = e => {
+    e.preventDefault();
+    axios
+      .post("/keywords", { keywords: this.state.keywords })
+      .then(res => {
+        if (res.status === 200) {
+          if (res.data.data.length > 0) {
+            console.log("search successfulll!");
+            console.log(res.data.data.length);
+            this.props.setSearchData(res.data.data);
+          } else {
+            this.props.setSearchData([
+              {
+                title: "NO SEARCH RESULTS FOR THIS!",
+                authors: [],
+                text: "",
+                summary: "No articles match the word you have searched for",
+                published: new Date(),
+                keywords: [],
+                top_image: searchBroken,
+                url: "#",
+                brand: "",
+                mbfc: "#",
+                bias: ""
+              }
+            ]);
+          }
+        }
+      })
+      .catch(err => {
+        console.log(err);
       });
   };
 

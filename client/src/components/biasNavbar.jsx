@@ -1,5 +1,6 @@
 import React, { Component, Redirect } from "react";
 import { Link } from "react-router-dom";
+import searchBroken from "../assets/image/noSearch.png";
 import axios from "axios";
 
 export class BiasNavbar extends Component {
@@ -137,9 +138,27 @@ export class BiasNavbar extends Component {
       .post("/keywords", { keywords: this.state.keywords })
       .then(res => {
         if (res.status === 200) {
-          console.log("search successful!");
-          console.log(res.data.data);
-          this.props.setSearchData(res.data.data);
+          if (res.data.data.length > 0) {
+            console.log("search successfulll!");
+            console.log(res.data.data.length);
+            this.props.setSearchData(res.data.data);
+          } else {
+            this.props.setSearchData([
+              {
+                title: "NO SEARCH RESULTS FOR THIS!",
+                authors: [],
+                text: "",
+                summary: "No articles match the word you have searched for",
+                published: new Date(),
+                keywords: [],
+                top_image: searchBroken,
+                url: "#",
+                brand: "",
+                mbfc: "#",
+                bias: ""
+              }
+            ]);
+          }
         }
       })
       .catch(err => {

@@ -6,7 +6,8 @@ export class Login extends Component {
   state = {
     username: "",
     password: "",
-    redirect: null
+    redirect: null,
+    error: ""
   };
 
   render() {
@@ -14,15 +15,17 @@ export class Login extends Component {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else {
       return (
-        <div className="container">
+        <div className="container mb-5">
           <div className="row mt-5">
             <div className="col-md-4 m-auto">
-              {/* <div className="container-fluid bg-3 text-center">
-							<div
-								className="alert alert-warning alert-dismissible fade show"
-								role="alert"
-							></div>
-						</div> */}
+              {this.state.error !== "" && (
+                <div
+                  className="alert alert-warning alert-dismissible fade show"
+                  role="alert"
+                >
+                  {this.state.error}
+                </div>
+              )}
               <div className="card card-body">
                 <h1 className="text-center mb-3">
                   <i className="fas fa-sign-in-alt"></i> Login
@@ -111,8 +114,7 @@ export class Login extends Component {
         //this.setState({ redirect: true });
       })
       .catch(error => {
-        console.log("login error!");
-        console.log(error);
+        this.setState({ error: "Wrong Credentials" });
       });
   };
 }

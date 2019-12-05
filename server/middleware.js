@@ -6,24 +6,24 @@ module.exports = {
     if (req.user) {
       return next();
     }
-    req.flash("error", "Please Login First");
-    return res.redirect("/auth/login");
+    // req.flash("error", "Please Login First");
+    return res.status(400).send("Please Login First");
   },
 
   isAdmin(req, res, next) {
     if (req.user) {
-      if (req.user[0].id == "0") {
+      if (req.user.username === "admin") {
         return next();
       }
-      return res.redirect("/");
+      console.log(req.user);
+      return res.status(400).send("Not authorized");
     }
-    req.flash("error", "Please Login First");
-    return res.redirect("/auth/login");
+    return res.status(400).send("Please Login First");
   },
 
   notAuthenticate(req, res, next) {
     if (req.user) {
-      return res.redirect("/dash");
+      return res.status(200);
     }
     next();
   },

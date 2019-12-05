@@ -309,7 +309,7 @@ body {
 .dash {
   color: #ffffff !important;
 }
-#userTable {
+.tables {
   margin: auto;
   color: #ffffff;
 }
@@ -319,7 +319,7 @@ body {
   color: #ffffff;
 }
 
-#userTable,
+.tables,
 td,
 th {
   border-collapse: collapse;
@@ -343,4 +343,12 @@ h4 {
 
 .red {
   color: red;
+}
+
+@media screen and (max-width: 991px) {
+  .articleImages {
+    max-width: 100%;
+    height: auto;
+    /* max-width: ; */
+  }
 }

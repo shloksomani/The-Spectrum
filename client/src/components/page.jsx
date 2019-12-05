@@ -20,10 +20,7 @@ import {
 
 export class Page extends Component {
   state = {
-    isLoggedIn: false,
-    username: null,
     users: [],
-    isLoggedOut: false,
     searchData: null
   };
 
@@ -37,7 +34,7 @@ export class Page extends Component {
   };
 
   componentDidMount() {
-    this.getAllUsers();
+    // this.getAllUsers();
   }
 
   getAllUsers = () => {
@@ -55,29 +52,23 @@ export class Page extends Component {
           <Router>
             <TopNavbar
               setterParent={this.props.handleBias}
-              isLoggedIn={this.state.isLoggedIn}
-              handelIsLoggedIn={this.handelIsLoggedIn}
-              username={this.state.username}
-              isLoggedOut={this.state.isLoggedOut}
-              handleIsLoggedOut={this.handleIsLoggedOut}
+              isLoggedIn={this.props.isLoggedIn}
+              handelIsLoggedIn={this.props.handelIsLoggedIn}
+              username={this.props.username}
+              isLoggedOut={this.props.isLoggedOut}
+              handleIsLoggedOut={this.props.handleIsLoggedOut}
               setRedirect={this.props.setRedirect}
             ></TopNavbar>
             <BiasNavbar
               setterParent={this.props.handleBias}
               setSearchData={this.setSearchData}
             ></BiasNavbar>
-            {this.props.bias === "" && (
-              <div>
-                <center>
-                  <img className="mainLogo" src={logo} alt="Logo"></img>
-                </center>
-              </div>
-            )}
+
             <Search
               searchData={this.state.searchData}
               parsed_data={this.props.data}
               shuffle={this.shuffle}
-              isLoggedIn={this.state.isLoggedIn}
+              isLoggedIn={this.props.isLoggedIn}
             />
           </Router>
         </React.Fragment>
@@ -88,63 +79,73 @@ export class Page extends Component {
           <Router>
             <TopNavbar
               setterParent={this.props.handleBias}
-              isLoggedIn={this.state.isLoggedIn}
-              handelIsLoggedIn={this.handelIsLoggedIn}
-              username={this.state.username}
-              isLoggedOut={this.state.isLoggedOut}
-              handleIsLoggedOut={this.handleIsLoggedOut}
+              isLoggedIn={this.props.isLoggedIn}
+              handelIsLoggedIn={this.props.handelIsLoggedIn}
+              username={this.props.username}
+              isLoggedOut={this.props.isLoggedOut}
+              handleIsLoggedOut={this.props.handleIsLoggedOut}
               setRedirect={this.props.setRedirect}
             ></TopNavbar>
             <BiasNavbar
               setterParent={this.props.handleBias}
               setSearchData={this.setSearchData}
             ></BiasNavbar>
-            {this.props.bias === "" && (
+            {/* {this.props.bias === "" && (
               <div>
                 <center>
                   <img className="mainLogo" src={logo} alt="Logo"></img>
                 </center>
               </div>
-            )}
+            )} */}
             <Switch>
               <Route exact path="/">
+                {this.props.bias === "" && (
+                  <div>
+                    <center>
+                      <img className="mainLogo" src={logo} alt="Logo"></img>
+                    </center>
+                  </div>
+                )}
                 <Home
                   parsed_data={this.props.data}
                   shuffle={this.shuffle}
-                  isLoggedIn={this.state.isLoggedIn}
+                  isLoggedIn={this.props.isLoggedIn}
                 />
               </Route>
-              <Route
-                exact
-                path="/:id"
-                render={props => (
-                  <BiasPage
-                    {...props}
-                    bias={this.props.bias}
-                    parsed_data={this.props.data}
-                    shuffle={this.shuffle}
-                    isLoggedIn={this.state.isLoggedIn}
-                  />
-                )}
-              />
+              {Object.keys(this.props.data).length > 0 && (
+                <Route
+                  exact
+                  path="/:id"
+                  render={props => (
+                    <BiasPage
+                      {...props}
+                      bias={this.props.bias}
+                      parsed_data={this.props.data}
+                      shuffle={this.shuffle}
+                      isLoggedIn={this.props.isLoggedIn}
+                    />
+                  )}
+                ></Route>
+              )}
+
               <Route exact path="/auth/login">
                 <Login
-                  isLoggedIn={this.state.isLoggedIn}
-                  handelIsLoggedIn={this.handelIsLoggedIn}
+                  isLoggedIn={this.props.isLoggedIn}
+                  handelIsLoggedIn={this.props.handelIsLoggedIn}
                   updateUser={this.getUser}
                 />
               </Route>
               <Route exact path="/auth/signup">
                 <Signup
-                  isLoggedIn={this.state.isLoggedIn}
-                  handelIsLoggedIn={this.handelIsLoggedIn}
+                  isLoggedIn={this.props.isLoggedIn}
+                  handelIsLoggedIn={this.props.handelIsLoggedIn}
                 />
               </Route>
               <Route exact path="/auth/admin">
                 <Admin users={this.state.users} getUsers={this.getAllUsers} />
               </Route>
               <Route exact path="/auth/history">
-                {this.state.isLoggedIn ? (
+                {this.props.isLoggedIn ? (
                   <History
                     users={this.state.users}
                     getUsers={this.getAllUsers}
@@ -154,10 +155,10 @@ export class Page extends Component {
                 )}
               </Route>
               <Route exact path="/auth/dashboard">
-                {this.state.isLoggedIn ? (
+                {this.props.isLoggedIn ? (
                   <Dashboard users={this.state.users} />
                 ) : (
-                  <Redirect to="/auth/login"></Redirect>
+                  <Redirect to="/"></Redirect>
                 )}
               </Route>
             </Switch>
@@ -167,6 +168,14 @@ export class Page extends Component {
     }
   }
 
+  // handelDashboardRouting = () => {
+  //   if (this.state.isLoggedIn) {
+  //     return <Dashboard user={this.state.users}></Dashboard>;
+  //   } else {
+  //     return <Redirect to="/auth/login"></Redirect>;
+  //   }
+  // };
+
   setSearchData = data => {
     console.log("inside setSearchData");
 
@@ -174,17 +183,17 @@ export class Page extends Component {
     this.props.setRedirect(true);
   };
 
-  handelIsLoggedIn = (bool, username) => {
-    console.log(
-      "inside handleIsLoggedIn after login calls fn, should set state"
-    );
+  // handelIsLoggedIn = (bool, username) => {
+  //   console.log(
+  //     "inside handleIsLoggedIn after login calls fn, should set state"
+  //   );
 
-    this.setState({ isLoggedIn: bool, username: username });
-  };
+  //   this.setState({ isLoggedIn: bool, username: username });
+  // };
 
-  handleIsLoggedOut = bool => {
-    this.setState({ isLoggedOut: bool });
-  };
+  // handleIsLoggedOut = bool => {
+  //   this.setState({ isLoggedOut: bool });
+  // };
 }
 
 export default Page;

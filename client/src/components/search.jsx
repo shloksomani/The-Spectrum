@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Container from "./container";
 
 export class Search extends Component {
-  componentDidMount(){
-    this.setListeners();
+  componentDidMount() {
+    //this.setListeners();
   }
   render() {
     return (
@@ -12,7 +12,7 @@ export class Search extends Component {
           <h4 className="d-inline-block align-middle heading dash" id="dash">
             Search Results:
           </h4>
-          <button
+          {/* <button
             className="btn  dropdown-toggle smth dash"
             type="button"
             id="dropdownMenu2"
@@ -21,8 +21,8 @@ export class Search extends Component {
             aria-expanded="false"
           >
             Filter Bias
-          </button>
-          <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
+          </button> */}
+          {/* <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
             <button className="dropdown-item" id="leftTog" type="button">
               Left Bias
             </button>
@@ -44,7 +44,7 @@ export class Search extends Component {
             <button className="dropdown-item" id="qTog" type="button">
               Questionable Sources
             </button>
-          </div>
+          </div> */}
         </div>
         {this.getSearchData()}
       </React.Fragment>
@@ -74,7 +74,7 @@ export class Search extends Component {
     let v = data1.dummy_data;
     console.log(v);
 
-    this.props.shuffle(v);
+    //this.props.shuffle(v);
     return v.map((article, index) => {
       return (
         <Container
@@ -88,11 +88,15 @@ export class Search extends Component {
   setListeners = () => {
     console.log(document.getElementById("leftTog"));
     document.getElementById("leftTog").addEventListener("click", this.toggle);
-    document.getElementById("leftCenTog").addEventListener("click", this.toggle);
+    document
+      .getElementById("leftCenTog")
+      .addEventListener("click", this.toggle);
     document.getElementById("rightTog").addEventListener("click", this.toggle);
     document.getElementById("sciTog").addEventListener("click", this.toggle);
     document.getElementById("qTog").addEventListener("click", this.toggle);
-    document.getElementById("rightCenTog").addEventListener("click", this.toggle);
+    document
+      .getElementById("rightCenTog")
+      .addEventListener("click", this.toggle);
     document.getElementById("leastTog").addEventListener("click", this.toggle);
   };
 
