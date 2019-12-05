@@ -62,7 +62,7 @@ We are using a MongoDB database to save articles, user-data and user submitted l
 Scraping and collecting news biases is being done using a Python script. We have a MongoDB database with news articles in various collections and different biases.
 To clarify, our backend is not in python, there is a single python script that complements our backend.
 
-#### User Interaction:
+### User Interaction:
 
 <strong>User signup is functional if you would like to create a new user</strong>. Alternatively, these are some pre-existing credentials.
 
@@ -90,14 +90,14 @@ If the user is interested in seeing news on a certain topic they <strong>can use
 It is important to note that <strong>a user remains logged in, even if they cancel out of the page. The session is preserved. They can return back to http://localhost:3000 and still be logged in until they select 'Logout'. </strong>
 
 
-#### Admin Interaction:
+### Admin Interaction:
 
     username: admin
     password admin
 
 Admins have the same functionality as users with some important additional functionality. When an admin logs in they <strong> will have an admin button on the top right of their page. If they select this, they are brought to an admin only page which with a table of all existing users and the option to remove a user. If a user is removed, they will no longer be able to login as their credentials will no longer exist. </strong> There is another table that has all of the articles users have suggested be added to our website.
 
-#### General Interaction:
+### General Interaction:
 Our website is available to everyone, even if they do not have an account or are not signed in. <strong>The news can still be searched and explored, however there is no dashboard functionality and no history tracking.</strong>
 
 
