@@ -1,27 +1,30 @@
 import newspaper
 import pymongo
-# this connectes to MongoDB server. It creates a database called "news_articles"
-client = pymongo.MongoClient("mongodb+srv://admin:admin@cluster0-dfcfv.mongodb.net/test?retryWrites=true&w=majority")
-db = client.news_articles
+import imghdr
+import mimetypes
+import urllib3
 
-"""
-When articles is initialized it accepts a dictionary where the key is the bias, and the value is a list of tuples. 
-The tuple holds the url to a news site, and the url to the media bias fact checker site.
-At initialization, Articles starts scraping the news sites and updating the database.
-"""
+client = pymongo.MongoClient(
+    "mongodb+srv://admin:admin@cluster0-dfcfv.mongodb.net/test?retryWrites=true&w=majority")
+db = client.news_articles
+keyword_lookup = {}
+
+
 class Articles():
-    def __init__(self, news_source_url ,bias, mbfc_url ):
+    def __init__(self, news_source_url, bias, mbfc_url):
         """
         Initialization begins the scraping of articles from saved news sources
         """
+        self.news_source_url = news_source_url
         self.mbfc_url = mbfc_url
-        
-        self.biases = ["left","left_center","least_bias",
-                       "right_center","right","pro_science",
+        self.bias = bias
+        self.biases = ["left", "left_center", "least_bias",
+                       "right_center", "right", "pro_science",
                        "conspiracy_pseudoscience",
-                       "questionable_sources","satire"]
+                       "questionable_sources", "satire"]
 
-        # Creates Collections in the database for each bias
+        # Collections
+        self.one_collection = db.articles
         self.left = db.left
         self.left_center = db.left_center
         self.least_bias = db.least_bias
@@ -32,23 +35,16 @@ class Articles():
         self.questionable_sources = db.questionable_sources
         self.satire = db.satire
 
-        # Scrape urls and add to database
         self.update_db()
 
     def update_db(self):
-        # tuple looks like ("https://www.foxnews.com/", "right_bias")
-        for tuple in self.allSources:
 
-            self.news_source_url = tuple[0]
-            self.paper = newspaper.build(self.news_source_url)
-            self.bias = tuple[1]
+        self.paper = newspaper.build(self.news_source_url)
 
-            # For every article in the news site
-            for article in self.paper.articles:
-                print(article)
-                self.article = article
-                # scrape the article
-                self.get_article()
+        for article in self.paper.articles:
+
+            self.article = article
+            self.get_article()
 
     def add_article_to_db(self):
         """
@@ -56,30 +52,8 @@ class Articles():
 
         :return:
         """
-        if self.bias == "left_center":
-            id = self.left_center.insert_one(self.meta_data).inserted_id
-            return id
-        if self.bias == "left":
-            id = self.left.insert_one(self.meta_data).inserted_id
-            return id
-        if self.bias == "least_bias":
-            id = self.least_bias.insert_one(self.meta_data).inserted_id
-            return id
-        if self.bias == "right_center":
-            id = self.right_center.insert_one(self.meta_data).inserted_id
-            return id
-        if self.bias == "pro_science":
-            id = self.pro_science.insert_one(self.meta_data).inserted_id
-            return id
-        if self.bias == "conspiracy_pseudoscience":
-            id = self.conspiracy_pseudoscience.insert_one(self.meta_data).inserted_id
-            return id
-        if self.bias == "questionable_sources":
-            id = self.questionable_sources.insert_one(self.meta_data).inserted_id
-            return id
-        if self.bias == "satire":
-            id = self.satire.insert_one(self.meta_data).inserted_id
-            return id
+        id = self.one_collection.insert_one(self.meta_data).inserted_id
+        return id
 
     def get_news_sources(self):
         db = client.news_sources
@@ -97,8 +71,7 @@ class Articles():
 
     def get_article(self):
         """
-        Given the url of an article scrape it.
-        Uses newspaper to scrape and get information on the article
+        Given the url of an article
         :param url:
         :return:
         """
@@ -109,27 +82,24 @@ class Articles():
             print("couldnt download")
             return None
 
-        # try to parse the article (break article into text, author, title, etc...)
+        # try to parse the article
         try:
             self.article.parse()
         except:
             print("couldnt parse")
             return None
 
-        # Try to use nlp on the article (gets keywords)
+        # Try to use nlp on the article
         try:
             self.article.nlp()
         except:
             print("couldnt use nlp")
             return None
+        if not is_url_image(self.article.top_image):
+            print(self.article.top_image)
+            print("Not an image URL")
+            return None
 
-        # create a "document" that will be added to the database. This is essentiall JSON format of all the 
-        # information on one article 
-        # {
-        # title: "blabla",
-        # authors: [bla, bla],
-        # etc...
-        #  }
         meta_data = {}
 
         meta_data["title"] = self.article.title
@@ -144,17 +114,41 @@ class Articles():
         meta_data['url'] = self.article.url
         meta_data['brand'] = self.paper.brand
         meta_data["mbfc"] = self.mbfc_url
+        meta_data['bias'] = self.bias
 
-        print(meta_data)
+        # print(meta_data)
         self.meta_data = meta_data
         id = self.add_article_to_db()
 
-#CBC = Articles("http://www.nbcnews.com/", "left_center")
+
+def is_url_image(url):
+    mimetype, encoding = mimetypes.guess_type(url)
+    return (mimetype and mimetype.startswith('image'))
+
+
+def check_url(url):
+    """Returns True if the url returns a response code between 200-300,
+       otherwise return False.
+    """
+    try:
+        headers = {
+            "Range": "bytes=0-10",
+            "User-Agent": "MyTestAgent",
+            "Accept": "*/*"
+        }
+
+        req = urllib3.Request(url, headers=headers)
+        response = urllib3.urlopen(req)
+        return response.code in range(200, 209)
+    except Exception:
+        return False
+
+
+def is_image_and_ready(url):
+    return is_url_image(url) and check_url(url)
 
 
 if __name__ == "__main__":
-    # When this file is run, pass in this information. to Articles. This is hardcoded right now but will be called from
-    # an API soon.
     collection = {
         "left_bias": [
             ("https://cnn.com", "https://mediabiasfactcheck.com/cnn/"),
@@ -212,7 +206,6 @@ if __name__ == "__main__":
              "https://mediabiasfactcheck.com/bipartisan-report/"),
         ]
     }
-    # for each news site, call an instance of Article and start the process of crawling, scraping and adding to the database
     for key in collection:
-        for tuple in collection["key"]:
-            Article(tuple[0] ,key, tuple[1])
+        for tuple in collection[key]:
+            Articles(tuple[0], key, tuple[1])
