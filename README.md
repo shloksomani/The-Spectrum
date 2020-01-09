@@ -1,7 +1,7 @@
 # The Spectrum
 
 This website helps users to see the whole spectrum of any global story by classifying which articles and news agencies are known to be biased.
-website: http://thespectrum.herokuapp.com/
+website: https://thespectrum.herokuapp.com/
 
 ## Table of contents
 
